@@ -35,3 +35,6 @@ iPhoneのショートカットのレシピを検索・共有できるWebアプ�
 
 ## 画面遷移図リンク
 https://xd.adobe.com/view/d67a0082-75c9-4fc5-b28c-6da26ce6ffe8-8329/
+
+## ER図リンク
+https://drive.google.com/file/d/1UD1m7Yeja6gUVQVOPtMAG_qcwrMjpZwo/view?usp=sharing
