@@ -1,1 +1,7 @@
-h1 sessions#new
+.container
+  h1.text-center ログイン
+  .w-50.mx-auto.mt-5
+    = simple_form_for :user, url: login_path do |f|
+      = f.input :email
+      = f.input :password
+      .text-center = f.button :submit, class: %w[btn btn-primary]

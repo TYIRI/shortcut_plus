@@ -1,1 +1,9 @@
-h1 users#new
+.container
+  h1.text-center ユーザー登録
+  .w-50.mx-auto.mt-5
+    = simple_form_for @user do |f|
+      = f.input :name
+      = f.input :email
+      = f.input :password
+      = f.input :password_confirmation
+      .text-center = f.button :submit, class: %w[btn btn-primary]
