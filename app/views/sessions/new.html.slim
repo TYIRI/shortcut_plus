@@ -4,4 +4,4 @@
     = simple_form_for :user, url: login_path do |f|
       = f.input :email
       = f.input :password
-      .text-center = f.button :submit, class: %w[btn btn-primary]
+      .text-center = f.button :submit, 'ログイン', class: %w[btn btn-primary]

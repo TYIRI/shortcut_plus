@@ -30,11 +30,13 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # UI/UX
 gem 'slim-rails'
 gem 'html2slim'
+gem 'rails-i18n', '~> 6.0'
 
 # Form
 gem 'simple_form'
 
 # Authentication
+gem 'pundit'
 gem 'sorcery'
 
 group :development, :test do
@@ -52,6 +54,7 @@ group :development, :test do
   # Debugger
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'pry-byebug'
 end
 
 group :development do
