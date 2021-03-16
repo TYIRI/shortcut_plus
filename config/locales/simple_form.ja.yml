@@ -35,3 +35,9 @@ ja:
         email: 'メールアドレス'
         password: 'パスワード'
         password_confirmation: 'パスワード（確認）'
+      recipe:
+        title: 'タイトル'
+        category_id: 'カテゴリ'
+        content: '本文'
+      category:
+        name: 'カテゴリ'

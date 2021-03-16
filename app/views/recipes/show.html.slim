@@ -1,0 +1,10 @@
+.container
+  = render 'shared/body_header'
+  = @recipe.category
+  .box
+    = @recipe.user.name
+    = @recipe.created_at
+    h1 = @recipe.title
+    p #タグ #タグ
+    = @recipe.content
+    = link_to 'レシピをダウンロード', "https://www.icloud.com/shortcuts/#{@recipe.shortcut_id}", class: %i[btn btn-danger]
