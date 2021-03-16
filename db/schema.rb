@@ -10,12 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_16_083801) do
+ActiveRecord::Schema.define(version: 2021_03_16_114759) do
 
   create_table "categories", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "comments", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "recipe_id", null: false
+    t.bigint "user_id", null: false
+    t.text "content", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["recipe_id"], name: "index_comments_on_recipe_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "recipe_tags", charset: "utf8mb4", force: :cascade do |t|
@@ -59,6 +69,8 @@ ActiveRecord::Schema.define(version: 2021_03_16_083801) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "comments", "recipes"
+  add_foreign_key "comments", "users"
   add_foreign_key "recipe_tags", "recipes"
   add_foreign_key "recipe_tags", "tags"
   add_foreign_key "recipes", "categories"
