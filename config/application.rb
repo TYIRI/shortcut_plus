@@ -34,5 +34,10 @@ module ShortcutPlus
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # デフォルトのlocalを日本語に設定
+    config.i18n.default_locale = :ja
+    # 複数のロケールファイルが読み込まれるようにpathを通す
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
   end
 end

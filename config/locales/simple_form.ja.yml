@@ -1,7 +1,7 @@
-en:
+ja:
   simple_form:
-    "yes": 'Yes'
-    "no": 'No'
+    "yes": 'はい'
+    "no": 'いいえ'
     required:
       text: 'required'
       mark: '*'
@@ -9,7 +9,7 @@ en:
       # When using html, text and mark won't be used.
       # html: '<abbr title="required">*</abbr>'
     error_notification:
-      default_message: "Please review the problems below:"
+      default_message: "エラーがあります。確認してください。"
     # Examples
     # labels:
     #   defaults:
@@ -29,3 +29,9 @@ en:
     # prompts:
     #   defaults:
     #     age: 'Select your age'
+    labels:
+      user:
+        name: '名前'
+        email: 'メールアドレス'
+        password: 'パスワード'
+        password_confirmation: 'パスワード（確認）'
