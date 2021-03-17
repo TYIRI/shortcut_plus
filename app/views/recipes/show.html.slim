@@ -1,6 +1,8 @@
 .container
   = render 'shared/body_header'
-  = @recipe.category
+  p 
+    | ▶︎
+    = @recipe.category.name
   .box
     = @recipe.user.name
     = @recipe.created_at
@@ -8,3 +10,7 @@
     p #タグ #タグ
     = @recipe.content
     = link_to 'レシピをダウンロード', "https://www.icloud.com/shortcuts/#{@recipe.shortcut_id}", class: %i[btn btn-danger]
+  .box.mt-5
+    h4 コメント
+    = render @comments
+    = render 'comments/form'
