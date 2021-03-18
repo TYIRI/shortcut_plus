@@ -1,10 +1,16 @@
-h1.text-center.mb-5 recipes#index
-.container-fluid.text-center
+.container-fluid
   = render 'shared/body_header'
-  .box.mb-5 カテゴリ
-    ul
-      li アラーム
-      li SNS
-
-  .box.mb-5 レシピランキング
-  .box.mb-5 ピックアップレシピ
+  .container
+    .mb-5
+      h3 カテゴリ
+      ul.list-group
+        li.list-group-item アラーム
+        li.list-group-item SNS
+        li.list-group-item YouTube
+        li.list-group-item GPS
+    .mb-5
+      h3 レシピランキング
+      .border
+    .mb-5
+      h3 ピックアップレシピ
+      .border

@@ -1,9 +1,9 @@
-header.navbar.navbar-expand-md.navbar-dark.bg-dark.mb-5
+header.navbar.navbar-expand-md.navbar-dark.bg-dark.mb-4
   h1.navbar-brand.mr-auto = link_to 'Shortcut Plus', root_path
   ul.navbar-nav
     - if logged_in?
-      li.nav-item.nav-link = link_to 'バッジ', root_path
-      li.nav-item.nav-link = link_to current_user, root_path
+      li.nav-item.nav-link = link_to 'バッジ99', root_path
+      li.nav-item.nav-link = link_to "#{current_user.name} ▼", root_path
       li.nav-item.nav-link = link_to 'ログアウト', logout_path, method: :delete
     - else
       li.nav-item.nav-link = link_to 'ユーザー登録', new_user_path

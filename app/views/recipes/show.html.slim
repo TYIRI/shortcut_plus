@@ -1,16 +1,18 @@
-.container
+.container-fluid
   = render 'shared/body_header'
-  p 
-    | ▶︎
-    = @recipe.category.name
-  .box
-    = @recipe.user.name
-    = @recipe.created_at
-    h1 = @recipe.title
-    p #タグ #タグ
-    = @recipe.content
-    = link_to 'レシピをダウンロード', "https://www.icloud.com/shortcuts/#{@recipe.shortcut_id}", class: %i[btn btn-danger]
-  .box.mt-5
-    h4 コメント
-    = render @comments
-    = render 'comments/form'
+  .container
+    p 
+      | ▶︎
+      = @recipe.category.name
+    .box.border.px-3.pt-4
+      = @recipe.user.name
+      = @recipe.created_at
+      h1 = @recipe.title
+      p #タグ #タグ
+      = @recipe.content
+      .row.m-4
+        = link_to 'レシピをダウンロード', "https://www.icloud.com/shortcuts/#{@recipe.shortcut_id}", class: %i[btn btn-danger]
+    .box.mt-5
+      h4 コメント
+      = render @comments
+      = render 'comments/form'

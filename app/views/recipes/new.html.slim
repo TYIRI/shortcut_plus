@@ -1,33 +1,34 @@
+= content_for :title do
+  | レシピ作成
 .container
-  h1 レシピ新規作成
-  .container-fluid
-    = simple_form_for @recipe do |f|
-      .row
-        .col-3
-          レシピ情報
-        .col-8
-          = f.input :title
-          = f.input :category_id
-          / = f.input :tag_id
-        .col-1
-      .row
-        .col-3
-          本文
-        .col-8
-          = f.input :content
-        .col-1
-      .row
-        .col-3
-          ショートカットリンク
-        .col-8
-          .d-flex.flex-row.align-items-center
-            p.mr-1 https://www.icloud.com/shortcuts/
-            = f.input :shortcut_id, label: false, placeholder: 'ショートカットID'
-        .col-1
-      .row.text-center
-        .col-4
-          = link_to 'プレビュー', root_path, class: %i[btn btn-primary]
-        .col-4
-          = f.button :submit, '下書きに保存する', name: 'draft', class: %i[btn btn-primary]
-        .col-4
-          = f.button :submit, '公開する', name: 'published', class: %i[btn btn-danger]      
+  h1 レシピ作成
+  = simple_form_for @recipe do |f|
+    .row.border.p-3
+      .col-3
+        h5 レシピ情報
+      .col-8
+        = f.input :title, placeholder: 'タイトル', label: false
+        = f.select :category_id, Category.pluck(:name, :id), { include_blank: 'カテゴリ選択' }, { class: 'form-control' }
+        / = f.input :tag_id
+      .col-1
+    .row.border.p-3
+      .col-3
+        h5 本文
+      .col-8
+        = f.input :content, label: false
+      .col-1
+    .row.border.p-3
+      .col-3
+        h5 共有リンク
+      .col-8
+        .d-flex.flex-row.align-items-center
+          p.mr-1 https://www.icloud.com/shortcuts/
+          = f.input :shortcut_id, label: false, placeholder: 'ショートカットID'
+      .col-1
+    .row.text-center.mt-5
+      .col-4
+        = link_to 'プレビュー', root_path, class: %i[btn btn-primary]
+      .col-4
+        = f.button :submit, '下書きに保存する', name: 'draft', class: %i[btn btn-primary]
+      .col-4
+        = f.button :submit, '公開する', name: 'published', class: %i[btn btn-danger]      
