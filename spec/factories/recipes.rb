@@ -1,9 +1,16 @@
 FactoryBot.define do
   factory :recipe do
-    title { "MyString" }
-    content { "MyText" }
-    status { 1 }
-    shortcut_id { "MyString" }
-    published_at { "2021-03-14 17:23:13" }
+    sequence(:title) { |n| "レシピタイトル#{n}" }
+    content { "レシピの内容です。" }
+    sequence(:shortcut_id) { |n| "shortcut#{n}" }
+    
+    trait :draft do
+      status { "draft" }
+    end
+    
+    trait :published do
+      status { "published" }
+      published_at { Time.current }
+    end
   end
 end
