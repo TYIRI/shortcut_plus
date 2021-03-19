@@ -5,14 +5,26 @@
     p 
       | ▶︎
       = link_to @recipe.category.name, category_path(@recipe.category_id)
-    .box.border.px-3.pt-4
+    .box.border.px-3.py-4
       = link_to @recipe.user.name, user_path(@recipe.user)
       = @recipe.created_at
       h1 = @recipe.title
       p #タグ #タグ
       = @recipe.content
-      .row.m-4
+      .row.mt-4.ml-5
         = link_to 'レシピをダウンロード', "https://www.icloud.com/shortcuts/#{@recipe.shortcut_id}", class: %i[btn btn-danger], target: :_blank
+      .d-flex.justify-content-end.mr-4
+        .border.border-primary.rounded.px-2.py-1
+          - if current_user&.liked_recipe?(@recipe)
+            = link_to '★Like', recipe_like_path(@recipe), method: :delete
+          - elsif current_user
+            = link_to '☆Like', recipe_likes_path(recipe_id: @recipe.id), method: :post
+          - else
+            | ☆Like
+          span.pl-1
+            = @recipe_likes_count
+        .ml-4.border.border-primary.rounded.px-2.py-1
+          = link_to 'ツイート', root_path
     .box.mt-5
       h4 コメント
       = render @comments
