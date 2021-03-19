@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :recipes, shallow: true, only: %i[new create show edit update destroy] do
     resources :comments, only: %i[create destroy]
   end
+  resources :recipe_likes, only: %i[create destroy]
 
   get '/search', to: 'recipes#search'
   get '/login', to: 'sessions#new'

@@ -8,6 +8,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    @recipe_likes_count = RecipeLike.where(recipe_id: @recipe.id).count
     @comment = Comment.new
     @comments = Comment.all.includes(:user).where(recipe_id: @recipe.id)
   end
