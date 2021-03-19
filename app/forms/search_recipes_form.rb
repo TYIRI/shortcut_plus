@@ -7,7 +7,7 @@ class SearchRecipesForm
   attribute :content
 
   def search_recipe
-    relation = Recipe.distinct.published
+    relation = Recipe.distinct.includes(:user, :category).published
 
     relation = relation.by_category(category_id) if category_id.present?
     title_words.each do |word|

@@ -31,7 +31,7 @@ ja:
     #     age: 'Select your age'
     labels:
       user:
-        name: '名前'
+        name: 'ユーザー名'
         email: 'メールアドレス'
         password: 'パスワード'
         password_confirmation: 'パスワード（確認）'

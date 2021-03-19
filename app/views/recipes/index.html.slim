@@ -3,9 +3,9 @@
   .container
     .mb-5
       h3 カテゴリ
-      ul.list-group
+      .row.mx-1
         - @categories.each do |category|
-          li.list-group-item
+          .col-3.border.p-3
             = link_to category.name, category_path(category)
     .mb-5
       h3 レシピランキング
