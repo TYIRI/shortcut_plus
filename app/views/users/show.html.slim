@@ -1,0 +1,16 @@
+= content_for :title, @user.name
+.container
+  h3 = @user.name
+  - @recipes.each do |recipe|
+    = link_to recipe_path(recipe) do
+      .border.my-3.p-4
+        div
+          td
+            h3 = recipe.title
+        div
+          td = recipe.user.name
+        div
+          td = recipe.created_at
+        div
+          td = recipe.category.name
+  = paginate @recipes

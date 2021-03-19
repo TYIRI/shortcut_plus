@@ -6,7 +6,7 @@
       | ▶︎
       = link_to @recipe.category.name, category_path(@recipe.category_id)
     .box.border.px-3.pt-4
-      = @recipe.user.name
+      = link_to @recipe.user.name, user_path(@recipe.user)
       = @recipe.created_at
       h1 = @recipe.title
       p #タグ #タグ
