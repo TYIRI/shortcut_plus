@@ -2,7 +2,7 @@ class Recipe < ApplicationRecord
   belongs_to :user
   belongs_to :category
   has_many :recipe_tags
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   with_options if: :published? do
     validates :title, presence: true

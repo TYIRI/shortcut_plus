@@ -1,9 +1,10 @@
+= content_for :title, @recipe.title
 .container-fluid
   = render 'shared/body_header'
   .container
     p 
       | ▶︎
-      = @recipe.category.name
+      = link_to @recipe.category.name, category_path(@recipe.category_id)
     .box.border.px-3.pt-4
       = @recipe.user.name
       = @recipe.created_at
@@ -11,7 +12,7 @@
       p #タグ #タグ
       = @recipe.content
       .row.m-4
-        = link_to 'レシピをダウンロード', "https://www.icloud.com/shortcuts/#{@recipe.shortcut_id}", class: %i[btn btn-danger]
+        = link_to 'レシピをダウンロード', "https://www.icloud.com/shortcuts/#{@recipe.shortcut_id}", class: %i[btn btn-danger], target: :_blank
     .box.mt-5
       h4 コメント
       = render @comments

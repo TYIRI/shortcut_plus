@@ -2,7 +2,9 @@ class RecipesController < ApplicationController
   skip_before_action :require_login, only: %i[index show search]
   before_action :set_search_recipe, only: %i[index show search]
 
-  def index; end
+  def index
+    @categories = Category.all
+  end
 
   def show
     @recipe = Recipe.find(params[:id])
