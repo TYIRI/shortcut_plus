@@ -4,10 +4,9 @@
     .mb-5
       h3 カテゴリ
       ul.list-group
-        li.list-group-item アラーム
-        li.list-group-item SNS
-        li.list-group-item YouTube
-        li.list-group-item GPS
+        - @categories.each do |category|
+          li.list-group-item
+            = link_to category.name, category_path(category)
     .mb-5
       h3 レシピランキング
       .border
