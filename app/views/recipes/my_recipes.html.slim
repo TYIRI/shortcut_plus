@@ -1,0 +1,20 @@
+= content_for :title do
+  | マイレシピ
+.container-fluid
+  = render 'shared/body_header'
+  .container
+    h1 マイレシピ
+    ul.nav.nav-tabs.nav-justified.nav-pills
+      li.nav-item
+        = link_to "公開済み（#{@published.size}）", '#item1', class: %i[nav-link active], data: { toggle: 'tab' }
+      li.nav-item
+        = link_to "下書き（#{@draft.size}）", '#item2', class: %i[nav-link], data: { toggle: 'tab' }
+    .tab-content.border-left.border-right.border-bottom
+      .tab-pane.fade.show.active.p-3#item1
+        #published-recipes-list
+          = render 'recipes/published_recipes'
+          = link_to_next_page @published_recipes, 'もっと見る', remote: true, id: 'view-more', class: %i[btn text-info border border-info w-100], params: { type: :published_recipes }
+      .tab-pane.fade.p-3#item2
+        #draft-recipes-list
+          = render 'recipes/draft_recipes'
+          = link_to_next_page @draft_recipes, 'もっと見る', remote: true, id: 'view-more', class: %i[btn text-info border border-info w-100], params: { type: :draft_recipes }
