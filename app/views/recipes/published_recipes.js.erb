@@ -1,0 +1,3 @@
+$('#view-more').remove();
+$('#published-recipes-list').append("<%= escape_javascript(render 'recipes/published_recipes', object: @published_recipes) %>");
+$("#published-recipes-list").append("<%= escape_javascript(link_to_next_page(@published_recipes, 'もっと見る', remote: true, id: 'view-more', class: %i[btn text-info border border-info w-100], params: { type: :published_recipes })) %>");

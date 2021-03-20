@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   skip_before_action :require_login, only: %i[index show search]
-  before_action :set_search_recipe, only: %i[index show search]
+  before_action :set_search_recipe, only: %i[index show my_recipes search]
 
   def index
     @categories = Category.all
@@ -25,6 +25,21 @@ class RecipesController < ApplicationController
       redirect_to recipe_path(@recipe)
     else
       render :new
+    end
+  end
+
+  def my_recipes
+    @published = current_user.recipes.published.includes(:category).order(id: :desc)
+    @published_recipes = @published.page(params[:page]).per(1)
+    @draft = current_user.recipes.draft.includes(:category).order(id: :desc)
+    @draft_recipes = @draft.page(params[:page]).per(1)
+
+    # Ajax通信のみ通過
+    return unless request.xhr?
+
+    case params[:type]
+    when 'published_recipes', 'draft_recipes'
+      render "recipes/#{params[:type]}"
     end
   end
 
