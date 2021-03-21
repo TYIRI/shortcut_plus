@@ -7,7 +7,7 @@
       = link_to @recipe.category.name, category_path(@recipe.category_id)
     .box.border.px-3.py-4
       = link_to @recipe.user.name, user_path(@recipe.user)
-      = @recipe.created_at
+      = @recipe.published_at
       h1 = @recipe.title
       p #タグ #タグ
       = @recipe.content
