@@ -1,7 +1,6 @@
-= content_for :title do
-  | レシピ作成
+= content_for :title, @recipe.title
 .container
-  h1 レシピ作成
+  h1 レシピ編集
   = simple_form_for @recipe do |f|
     .row.border.p-3
       .col-3
@@ -28,7 +27,13 @@
     .row.text-center.mt-5
       .col-4
         = link_to 'プレビュー', root_path, class: %i[btn btn-primary]
-      .col-4
-        = f.button :submit, '下書きに保存する', name: 'draft', class: %i[btn btn-primary]
-      .col-4
-        = f.button :submit, '公開する', name: 'published', class: %i[btn btn-danger] 
+      - if @recipe.published?
+        .col-4
+          = f.button :submit, '公開停止', name: 'draft', class: %i[btn btn-primary]
+        .col-4
+          = f.button :submit, '更新する', name: 'published', class: %i[btn btn-danger]
+      - else
+        .col-4
+          = f.button :submit, '下書きに保存する', name: 'draft', class: %i[btn btn-primary]
+        .col-4
+          = f.button :submit, '公開する', name: 'published', class: %i[btn btn-danger]

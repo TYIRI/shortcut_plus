@@ -1,10 +1,26 @@
-- @published_recipes.each do |recipe|
-  = link_to recipe_path(recipe) do
-    .border.my-3.p-4
-      div
-        td
-          h3 = recipe.title
-      div
-        td = recipe.created_at
-      div
-        td = recipe.category.name
+- @published_recipes.each.with_index(1) do |recipe, i|
+  - unless i == 1 && @page_num_p == 1
+    .border
+  .row.mx-1
+    .col-6
+      = link_to recipe_path(recipe) do
+        .border.my-3.p-4
+          div
+            td
+              h3 = recipe.title
+          div
+            td = recipe.created_at
+          div
+            td = recipe.category.name
+    .col-3.my-3
+      p アクセス数：
+      p
+        | Like：
+        = recipe.liked_users.size
+      p
+        | 最終更新日：
+        = recipe.updated_at
+    .col-3.my-3
+      .d-flex.justify-content-around
+        = link_to '編集', edit_recipe_path(recipe), class: %i[btn btn-warning p-3]
+        = link_to '削除', recipe_path(recipe), class: %i[btn btn-danger p-3], method: :delete, data: { confirm: "「#{recipe.title}」を削除してもよろしいですか？" }
