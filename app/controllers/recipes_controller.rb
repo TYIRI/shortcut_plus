@@ -5,6 +5,8 @@ class RecipesController < ApplicationController
 
   def index
     @categories = Category.all
+    @ranking_recipes = Recipe.published.order(impressions_count: :desc).limit(5)
+    @pickup_recipes = Recipe.published.sample(5)
   end
 
   def new
@@ -30,6 +32,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     redirect_to root_path if @recipe.draft?
 
+    impressionist(@recipe, nil, unique: [:session_hash])
     @recipe_likes_count = RecipeLike.where(recipe_id: @recipe.id).count
     @comment = Comment.new
     @comments = Comment.all.includes(:user).where(recipe_id: @recipe.id)
