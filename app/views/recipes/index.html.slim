@@ -10,6 +10,30 @@
     .mb-5
       h3 レシピランキング
       .border
+      - @ranking_recipes.each do |recipe|
+        = link_to recipe_path(recipe) do
+          .border.my-3.p-4
+            div
+              td
+                h3 = recipe.title
+            div
+              td = recipe.user.name
+            div
+              td = recipe.created_at
+            div
+              td = recipe.category.name
     .mb-5
       h3 ピックアップレシピ
       .border
+      - @pickup_recipes.each do |recipe|
+        = link_to recipe_path(recipe) do
+          .border.my-3.p-4
+            div
+              td
+                h3 = recipe.title
+            div
+              td = recipe.user.name
+            div
+              td = recipe.created_at
+            div
+              td = recipe.category.name

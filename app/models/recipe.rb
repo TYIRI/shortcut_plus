@@ -6,6 +6,8 @@ class Recipe < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :liked_users, through: :recipe_likes, source: :user
 
+  is_impressionable counter_cache: true
+
   with_options if: :published? do
     validates :title, presence: true
     validates :content, presence: true
