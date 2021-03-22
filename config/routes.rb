@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   end
   resources :recipe_likes, only: %i[create destroy]
 
+  get '/settings', to: 'users#edit'
   get '/my_recipes', to: 'recipes#my_recipes'
   get '/search', to: 'recipes#search'
   get '/login', to: 'sessions#new'

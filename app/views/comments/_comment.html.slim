@@ -1,4 +1,6 @@
 .border-top.py-3
+  - if comment.user.avatar.attached?
+    = image_tag comment.user.avatar.variant(resize_to_fill: [20, 20]).processed, class: %i[rounded-circle bg-white border mr-1]
   = comment.user.name
   = comment.created_at
   p = comment.content

@@ -1,0 +1,44 @@
+= content_for :title do
+  | 設定
+.container
+  h1.text-center 設定
+  = form_with model: current_user do |f|
+    .row.mx-1.mt-5.mb-4.align-items-center
+      .col-1
+      .col-3
+        - if current_user.avatar.attached?
+          = image_tag current_user.avatar.variant(resize_to_fill: [200, 200]).processed, class: %i[rounded-circle bg-white border]
+        - else
+          .rounded-circle.text-light.bg-secondary.py-5.mx-4
+            p.m-auto.text-center アイコン未設定
+      .col-7
+        .form-group.row.align-items-center
+          = f.label :name, class: %i[font-weight-bold col-4 mb-0 pr-0 pl-5]
+          .col-8
+            = f.text_field :name, class: %i[form-control]
+        .form-group.row.align-items-center.mb-0
+          = f.label :email, class: %i[font-weight-bold col-4 mb-0 pr-0 pl-5]
+          .col-8
+            = f.email_field :email, class: %i[form-control]
+      .col-1
+    .row.mx-1.mt-1
+      .col-1
+      .col-3
+        = f.file_field :avatar
+      .col-8
+    .row.mx-1.my-5
+      .col-4
+      .col-7
+        .form-group.row.align-items-center
+          = f.label :password, class: %i[font-weight-bold col-4 mb-0 pr-0 pl-5]
+          .col-8
+            = f.password_field :password, placeholder: '変更後のパスワード', class: %i[form-control]
+        .form-group.row.align-items-center.mb-0
+          = f.label :password_confirmation, class: %i[font-weight-bold col-4 mb-0 pr-0 pl-5]
+          .col-8
+            = f.password_field :password_confirmation, placeholder: '変更後のパスワード', class: %i[form-control]
+      .col-1
+    .row.mx-1.mb-5
+      .col-11.text-right
+        = f.submit '変更を保存', class: %i[btn border border-danger text-danger]
+      .col-1
