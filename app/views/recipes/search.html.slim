@@ -8,12 +8,13 @@
       = link_to recipe_path(recipe) do
         .border.my-3.p-4
           div
-            td
-              h3 = recipe.title
+            h3 = recipe.title
           div
-            td = recipe.user.name
+            - if recipe.user.avatar.attached?
+              = image_tag recipe.user.avatar.variant(resize_to_fill: [20, 20]).processed, class: %i[rounded-circle bg-white border mr-1]
+            = recipe.user.name
           div
-            td = recipe.created_at
+            = recipe.created_at
           div
-            td = recipe.category.name
+            = recipe.category.name
     = paginate @recipes

@@ -5,8 +5,8 @@ class RecipesController < ApplicationController
 
   def index
     @categories = Category.all
-    @ranking_recipes = Recipe.published.order(impressions_count: :desc).limit(5)
-    @pickup_recipes = Recipe.published.sample(5)
+    @ranking_recipes = Recipe.published.includes(:user, :category).order(impressions_count: :desc).limit(5)
+    @pickup_recipes = Recipe.published.includes(:user, :category).sample(5)
   end
 
   def new

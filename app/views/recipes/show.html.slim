@@ -6,7 +6,10 @@
       | ▶︎
       = link_to @recipe.category.name, category_path(@recipe.category_id)
     .box.border.px-3.py-4
-      = link_to @recipe.user.name, user_path(@recipe.user)
+      = link_to user_path(@recipe.user) do
+        - if @recipe.user.avatar.attached?
+          = image_tag @recipe.user.avatar.variant(resize_to_fill: [30, 30]).processed, class: %i[rounded-circle bg-white border mr-1]
+        = @recipe.user.name
       = @recipe.published_at
       h1 = @recipe.title
       p #タグ #タグ
@@ -29,5 +32,3 @@
       h4 コメント
       = render @comments
       = render 'comments/form'
-    .mt-5
-      = @recipe.impressionist_count
