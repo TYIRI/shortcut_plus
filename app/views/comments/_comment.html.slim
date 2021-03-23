@@ -4,3 +4,20 @@
   = comment.user.name
   = comment.created_at
   p = comment.content
+  / .border.border-primary.rounded.px-2.py-1
+  .d-flex.justify-content-end.mr-5
+    - if current_user&.liked_comment?(comment)
+      = link_to comment_like_path(comment), method: :delete do
+        | ★Like
+        span.pl-1
+          = CommentLike.where(comment_id: comment.id).count
+    - elsif current_user
+      = link_to comment_likes_path(comment_id: comment.id), method: :post do
+        | ☆Like
+        span.pl-1
+          = CommentLike.where(comment_id: comment.id).count
+    - else
+      p.mb-0
+        | ☆Like
+        span.pl-1
+          = CommentLike.where(comment_id: comment.id).count

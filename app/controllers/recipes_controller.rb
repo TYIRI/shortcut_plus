@@ -5,8 +5,8 @@ class RecipesController < ApplicationController
 
   def index
     @categories = Category.all
-    @ranking_recipes = Recipe.published.includes(:user, :category).order(impressions_count: :desc).limit(5)
-    @pickup_recipes = Recipe.published.includes(:user, :category).sample(5)
+    @ranking_recipes = Recipe.published.includes(:category, user: { avatar_attachment: :blob }).order(impressions_count: :desc).limit(5)
+    @pickup_recipes = Recipe.published.includes(:category, user: { avatar_attachment: :blob }).sample(5)
   end
 
   def new
@@ -35,7 +35,7 @@ class RecipesController < ApplicationController
     impressionist(@recipe, nil, unique: [:session_hash])
     @recipe_likes_count = RecipeLike.where(recipe_id: @recipe.id).count
     @comment = Comment.new
-    @comments = Comment.all.includes(:user).where(recipe_id: @recipe.id)
+    @comments = Comment.all.includes(user: { avatar_attachment: :blob }).where(recipe_id: @recipe.id)
   end
 
   def edit; end

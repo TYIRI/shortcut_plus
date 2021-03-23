@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
-    @recipes = Recipe.published.includes(:user).where(category_id: params[:id]).order(id: :desc).page(params[:page])
+    @recipes = Recipe.published.includes(user: { avatar_attachment: :blob }).where(category_id: params[:id]).order(id: :desc).page(params[:page])
   end
 
   private

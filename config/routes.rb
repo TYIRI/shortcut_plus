@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :comments, only: %i[create destroy]
   end
   resources :recipe_likes, only: %i[create destroy]
+  resources :comment_likes, only: %i[create destroy]
 
   get '/settings', to: 'users#edit'
   get '/my_recipes', to: 'recipes#my_recipes'

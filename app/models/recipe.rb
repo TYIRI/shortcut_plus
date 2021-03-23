@@ -2,8 +2,8 @@ class Recipe < ApplicationRecord
   belongs_to :user
   belongs_to :category
   has_many :recipe_tags
-  has_many :recipe_likes, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :recipe_likes, dependent: :destroy
   has_many :liked_users, through: :recipe_likes, source: :user
 
   is_impressionable counter_cache: true
