@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :require_login, only: %i[new create show]
+  skip_before_action :require_login, only: %i[new create show activate]
 
   def new
     @user = User.new
@@ -26,6 +26,15 @@ class UsersController < ApplicationController
       redirect_to settings_path
     else
       render :edit
+    end
+  end
+
+  def activate
+    if @user = User.load_from_activation_token(params[:id])
+      @user.activate!
+      redirect_to login_path
+    else
+      not_authenticated
     end
   end
 
