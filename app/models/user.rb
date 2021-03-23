@@ -4,6 +4,8 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :recipe_likes, dependent: :destroy
   has_many :liked_recipes, through: :recipe_likes, source: :recipe
+  has_many :comment_likes, dependent: :destroy
+  has_many :liked_comments, through: :comment_likes, source: :comment
   has_one_attached :avatar
 
   validates :name, presence: true, uniqueness: true, length: { maximum: 50 }
@@ -34,4 +36,19 @@ class User < ApplicationRecord
   def unlike_recipe(recipe)
     recipe_likes.find_by(recipe_id: recipe.id).destroy
   end
+
+    # コメントをLikeしていたらtrueを返す
+    def liked_comment?(comment)
+      liked_comments.include?(comment)
+    end
+  
+    # コメントをLikeする
+    def like_comment(comment)
+      liked_comments << comment
+    end
+  
+    # コメントのLikeを解除する
+    def unlike_comment(comment)
+      comment_likes.find_by(comment_id: comment.id).destroy
+    end
 end

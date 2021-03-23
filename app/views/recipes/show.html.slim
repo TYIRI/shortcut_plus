@@ -17,18 +17,23 @@
       .row.mt-4.ml-5
         = link_to 'レシピをダウンロード', "https://www.icloud.com/shortcuts/#{@recipe.shortcut_id}", class: %i[btn btn-danger], target: :_blank
       .d-flex.justify-content-end.mr-4
-        .border.border-primary.rounded.px-2.py-1
-          - if current_user&.liked_recipe?(@recipe)
-            = link_to '★Like', recipe_like_path(@recipe), method: :delete
-          - elsif current_user
-            = link_to '☆Like', recipe_likes_path(recipe_id: @recipe.id), method: :post
-          - else
+        - if current_user&.liked_recipe?(@recipe)
+          = link_to recipe_like_path(@recipe), method: :delete, class: %i[border border-primary rounded px-2 py-1] do
+            | ★Like
+            span.pl-1
+              = @recipe_likes_count
+        - elsif current_user
+          = link_to recipe_likes_path(recipe_id: @recipe.id), method: :post, class: %i[border border-primary rounded px-2 py-1] do
             | ☆Like
-          span.pl-1
-            = @recipe_likes_count
-        .ml-4.border.border-primary.rounded.px-2.py-1
-          = link_to 'ツイート', root_path
-    .box.mt-5
+            span.pl-1
+              = @recipe_likes_count
+        - else
+          p.border.border-primary.rounded.px-2.py-1.mb-0
+            | ☆Like
+            span.pl-1
+              = @recipe_likes_count
+        = link_to 'ツイート', root_path, class: %i[ml-4 border border-primary rounded px-2 py-1]
+    .box.my-5
       h4 コメント
       = render @comments
       = render 'comments/form'
