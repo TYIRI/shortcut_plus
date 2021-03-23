@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   def new; end
 
   def create
-    @user = login(params[:user][:email], params[:user][:password])
+    @user = login(params[:user][:email], params[:user][:password], params[:user][:remember_me])
     if @user
       redirect_to root_path
     else

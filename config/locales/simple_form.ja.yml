@@ -34,7 +34,8 @@ ja:
         name: 'ユーザー名'
         email: 'メールアドレス'
         password: 'パスワード'
-        password_confirmation: 'パスワード（確認）'
+        password_confirmation: 'パスワード再入力'
+        remember_me: 'ログインを記憶する'
       recipe:
         title: 'タイトル'
         category_id: 'カテゴリ'
