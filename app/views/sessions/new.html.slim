@@ -2,7 +2,7 @@
   | ログイン
 .container
   h1.text-center ログイン
-  .w-50.mx-auto.mt-5
+  .w-50.mx-auto.my-5
     = simple_form_for :user, url: login_path do |f|
       = f.input :email
       = f.input :password
@@ -10,3 +10,11 @@
         = f.input :remember_me, as: :boolean, boolean_style: :inline
       .text-center.mt-5
         = f.button :submit, 'ログイン', class: %w[btn btn-primary]
+  .w-50.mx-auto.d-flex.justify-content-center
+    div
+      p 
+        | ▶︎ ユーザー登録は
+        = link_to 'こちら', new_user_path
+      p 
+        | ▶︎ 
+        = link_to 'パスワードをお忘れの場合', new_password_reset_path
