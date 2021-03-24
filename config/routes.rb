@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
   resources :recipe_likes, only: %i[create destroy]
   resources :comment_likes, only: %i[create destroy]
+  resources :password_resets, only: %i[new create edit update]
 
   get '/settings', to: 'users#edit'
   get '/my_recipes', to: 'recipes#my_recipes'
