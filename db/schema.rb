@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_24_011908) do
+ActiveRecord::Schema.define(version: 2021_03_24_140125) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -150,8 +150,13 @@ ActiveRecord::Schema.define(version: 2021_03_24_011908) do
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
     t.integer "access_count_to_reset_password_page", default: 0
+    t.string "email_change_digest"
+    t.datetime "email_change_token_expires_at"
+    t.datetime "email_change_email_sent_at"
+    t.string "unconfirmed_email"
     t.index ["activation_token"], name: "index_users_on_activation_token"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["email_change_digest"], name: "index_users_on_email_change_digest"
     t.index ["name"], name: "index_users_on_name", unique: true
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token"

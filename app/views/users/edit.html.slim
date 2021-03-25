@@ -19,7 +19,9 @@
         .form-group.row.align-items-center.mb-0
           = f.label :email, class: %i[font-weight-bold col-4 mb-0 pr-0 pl-5]
           .col-8
-            = f.email_field :email, class: %i[form-control]
+            = current_user.email
+            = link_to new_email_change_path do
+              u.ml-1 変更する
       .col-1
     .row.mx-1.mt-1
       .col-1
