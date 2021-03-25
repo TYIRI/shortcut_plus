@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :users, only: %i[new create] do
+  resources :users, only: %i[new create edit update destroy] do
     member do
       get :activate
     end
@@ -12,7 +12,11 @@ Rails.application.routes.draw do
   resources :comment_likes, only: %i[create destroy]
   resources :password_resets, only: %i[new create edit update]
 
-  get '/settings', to: 'users#edit'
+  scope '/settings' do
+    get '/', to: 'users#edit', as: :settings
+    resources :email_changes, only: %i[new create edit]
+  end
+  # get '/settings/email_change', to: 'users#email_change'
   get '/my_recipes', to: 'recipes#my_recipes'
   get '/search', to: 'recipes#search'
   get '/login', to: 'sessions#new'
@@ -21,5 +25,5 @@ Rails.application.routes.draw do
   root 'recipes#index'
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
-  resources :users, path: '/', only: %i[show edit update destroy]
+  resources :users, path: '/', only: %i[show]
 end

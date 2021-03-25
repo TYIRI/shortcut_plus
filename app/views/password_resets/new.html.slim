@@ -2,7 +2,7 @@
   | パスワードリセット
 .container
   .w-50.mx-auto.my-4
-    p.mb-5
+    p.mb-5.text-center
       | パスワードを再設定します。<br>
         登録済みのメールアドレスを入力してください。
     = simple_form_for :password_reset, url: password_resets_path, method: :post do |f|

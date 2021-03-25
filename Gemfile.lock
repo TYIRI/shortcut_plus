@@ -324,6 +324,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt (~> 3.1.16)
   better_errors
   binding_of_caller
   bootsnap (>= 1.4.4)

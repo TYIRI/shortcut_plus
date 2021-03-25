@@ -38,6 +38,7 @@ gem 'simple_form'
 # Authentication
 gem 'pundit'
 gem 'sorcery'
+gem 'bcrypt', '~> 3.1.16'
 
 # Pagenation
 gem 'kaminari'
