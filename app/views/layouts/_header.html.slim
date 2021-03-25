@@ -3,15 +3,25 @@ header.navbar.navbar-expand-md.navbar-dark.bg-dark.mb-4
   ul.navbar-nav
     - if logged_in?
       li.nav-item.nav-link = link_to 'バッジ99', root_path
-      li.nav-item.nav-link
-        = link_to root_path, class: %i[d-flex] do
+      li.nav-item.dropdown
+        button.btn.btn-link.d-flex.dropdown-toggle.text-light.align-items-center data-toggle='dropdown' type='button'
           - if current_user.avatar.attached?
             = image_tag current_user.avatar.variant(resize_to_fill: [25, 25]).processed, class: %i[rounded-circle bg-white]
-          .ml-1
-            = "#{current_user.name} ▼"
-      li.nav-item.nav-link = link_to 'マイレシピ', my_recipes_path
-      li.nav-item.nav-link = link_to '設定', settings_path
-      li.nav-item.nav-link = link_to 'ログアウト', logout_path, method: :delete
+          .mx-1
+            = current_user.name
+        .dropdown-menu.dropdown-menu-right
+          .dropdown-item-text
+            = link_to new_recipe_path do
+              button.btn.btn-danger type='button'
+                | レシピ作成
+          = link_to 'マイレシピ', my_recipes_path, class: %i[dropdown-item]
+          = link_to '設定', settings_path, class: %i[dropdown-item]
+          .dropdown-divider
+          = link_to 'お知らせ', root_path, class: %i[dropdown-item]
+          = link_to 'ヘルプ', root_path, class: %i[dropdown-item]
+          = link_to 'プライバシーポリシー', root_path, class: %i[dropdown-item]
+          .dropdown-divider
+          = link_to 'ログアウト', logout_path, method: :delete, class: %i[dropdown-item]
     - else
       li.nav-item.nav-link = link_to 'ユーザー登録', new_user_path
       li.nav-item.nav-link = link_to 'ログイン', login_path
