@@ -4,29 +4,29 @@
   h1 レシピ作成
   = simple_form_for @recipe do |f|
     .row.border.p-3
-      .col-3
+      .col-2
         h5 レシピ情報
-      .col-8
+      .col-9
         = f.input :title, placeholder: 'タイトル', label: false
         = f.select :category_id, Category.pluck(:name, :id), { include_blank: 'カテゴリ選択' }, { class: 'form-control mb-3' }
         ul#recipe-tags.border.rounded.pl-2
         = hidden_field_tag :tag_hidden, @tag_list
       .col-1
     .row.border.p-3
-      .col-3
+      .col-2
         h5 本文
-      .col-8
-        = f.input :content, label: false
+      .col-9
+        = f.rich_text_area :content, label: false
       .col-1
     .row.border.p-3
-      .col-3
+      .col-2
         h5 共有リンク
-      .col-8
+      .col-9
         .d-flex.flex-row.align-items-center
           p.mr-1 https://www.icloud.com/shortcuts/
           = f.input :shortcut_id, label: false, placeholder: 'ショートカットID'
       .col-1
-    .row.text-center.mt-5
+    .row.text-center.my-5
       .col-4
         = link_to 'プレビュー', root_path, class: %i[btn btn-primary]
       .col-4

@@ -1,0 +1,54 @@
+<p>
+  ▶︎
+  <%= link_to @recipe.category.name, category_path(@recipe.category_id) %>
+</p>
+<div class="box border px-5 py-4">
+  <%= link_to name_path(@recipe.user) do %>
+    <% if @recipe.user.avatar.attached? %>
+      <%= image_tag @recipe.user.avatar.variant(resize_to_fill: [30, 30]).processed, class: %i[rounded-circle bg-white border mr-2] %>
+    <% end %>
+    <%= @recipe.user.name %>
+  <% end %>
+  <%= @recipe.published_at %>
+  <h1 class="mt-4">
+    <%= @recipe.title %>
+  </h1>
+  <div class="d-flex mb-4">
+    <%= render @tags %>
+  </div>
+  <%= @recipe.content %>
+  <div class="row mt-4 ml-5">
+    <% if @recipe.shortcut_id.present? %>
+      <%= link_to 'レシピをダウンロード', "https://www.icloud.com/shortcuts/#{@recipe.shortcut_id}", class: %i[btn btn-danger], target: :_blank %>
+    <% else %>
+      <button class="btn btn-secondary" disabled>
+        レシピのリンク未登録
+      </button>
+    <% end %>
+  </div>
+  <div class="d-flex justify-content-end mr-4">
+    <% if current_user&.liked_recipe?(@recipe) %>
+      <%= link_to recipe_like_path(@recipe), method: :delete, class: %i[border border-primary rounded px-2 py-1] do %>
+        ★Like
+        <span class="pl-1">
+          <%= @recipe_likes_count %>
+        </span>
+      <% end %>
+    <% elsif current_user %>
+      <%= link_to recipe_likes_path(recipe_id: @recipe.id), method: :post, class: %i[border border-primary rounded px-2 py-1] do %>
+        ☆Like
+        <span class="pl-1">
+          <%= @recipe_likes_count %>
+        </span>
+      <% end %>
+    <% else %>
+      <p class="border border-primary rounded px-2 py-1 mb-0">
+        ☆Like
+        <span class="pl-1">
+          <%= @recipe_likes_count %>
+        </span>
+      </p>
+    <% end %>
+    <%= link_to 'ツイート', root_path, class: %i[ml-4 border border-primary rounded px-2 py-1] %>
+  </div>
+</div>

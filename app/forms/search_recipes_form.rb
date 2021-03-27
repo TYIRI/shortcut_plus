@@ -3,29 +3,21 @@ class SearchRecipesForm
   include ActiveModel::Attributes
 
   attribute :category_id, :integer
-  attribute :title, :string
-  attribute :content
+  attribute :title_and_content, :string
 
   def search_recipe
     relation = Recipe.distinct.includes(:category, user: { avatar_attachment: :blob }).published
 
     relation = relation.by_category(category_id) if category_id.present?
-    title_words.each do |word|
-      relation = relation.title_contain(word)
-    end
-    content_words.each do |word|
-      relation = relation.content_contain(word)
+    title_and_content_words.each do |word|
+      relation = relation.title_and_content_contain(word)
     end
     relation
   end
 
   private
 
-  def title_words
-    title.present? ? title.split(nil) : []
-  end
-
-  def content_words
-    content.present? ? content.split(nil) : []
+  def title_and_content_words
+    title_and_content.present? ? title_and_content.split(nil) : []
   end
 end
