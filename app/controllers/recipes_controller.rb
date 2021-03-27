@@ -92,11 +92,11 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:title, :category_id, :content, :status, :shortcut_id, :published_at)
+    params.require(:recipe).permit(:title, :category_id, :status, :shortcut_id, :published_at, :content)
   end
 
   def search_params
-    params[:q]&.permit(:title, :content, :category_id)
+    params[:q]&.permit(:title_and_content, :category_id)
   end
 
   def set_recipe
