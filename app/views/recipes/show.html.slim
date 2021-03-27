@@ -6,7 +6,7 @@
       | ▶︎
       = link_to @recipe.category.name, category_path(@recipe.category_id)
     .box.border.px-3.py-4
-      = link_to user_path(@recipe.user) do
+      = link_to name_path(@recipe.user) do
         - if @recipe.user.avatar.attached?
           = image_tag @recipe.user.avatar.variant(resize_to_fill: [30, 30]).processed, class: %i[rounded-circle bg-white border mr-2]
         = @recipe.user.name
