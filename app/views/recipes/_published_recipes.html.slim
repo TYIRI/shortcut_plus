@@ -13,7 +13,9 @@
           div
             td = recipe.category.name
     .col-3.my-3
-      p アクセス数：
+      p
+        | アクセス数：
+        = recipe.impressionist_count
       p
         | Like：
         = recipe.liked_users.size
