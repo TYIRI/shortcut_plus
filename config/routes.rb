@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :categories, only: %i[show]
   resources :recipes, shallow: true, only: %i[new create show edit update destroy] do
     resources :comments, only: %i[create destroy]
+    get 'get_tag_search', on: :collection, defaults: { format: 'json' }
+    get 'get_tag_search', on: :member, defaults: { format: 'json' }
   end
   resources :recipe_likes, only: %i[create destroy]
   resources :comment_likes, only: %i[create destroy]

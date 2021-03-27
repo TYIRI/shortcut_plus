@@ -1,3 +1,4 @@
 class Tag < ApplicationRecord
-  has_many :recipe_tags, dependent: :destroy
+  has_many :tag_maps, dependent: :destroy
+  has_many :recipes, through: :tag_maps
 end

@@ -7,8 +7,10 @@
         h5 レシピ情報
       .col-8
         = f.input :title, placeholder: 'タイトル', label: false
-        = f.select :category_id, Category.pluck(:name, :id), { include_blank: 'カテゴリ選択' }, { class: 'form-control' }
-        / = f.input :tag_id
+        = f.select :category_id, Category.pluck(:name, :id), { include_blank: 'カテゴリ選択' }, { class: 'form-control mb-3' }
+        / = f.input :tag_ids, placeholder: "タグ（複数つける場合は','で区切ってください）", label: false, value: @tag_list
+        ul#recipe-tags.border.rounded.pl-2
+        = hidden_field_tag :tag_hidden, @tag_list
       .col-1
     .row.border.p-3
       .col-3

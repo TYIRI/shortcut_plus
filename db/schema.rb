@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_24_140125) do
+ActiveRecord::Schema.define(version: 2021_03_25_083244) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -102,16 +102,6 @@ ActiveRecord::Schema.define(version: 2021_03_24_140125) do
     t.index ["user_id"], name: "index_recipe_likes_on_user_id"
   end
 
-  create_table "recipe_tags", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "recipe_id", null: false
-    t.bigint "tag_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["recipe_id", "tag_id"], name: "index_recipe_tags_on_recipe_id_and_tag_id", unique: true
-    t.index ["recipe_id"], name: "index_recipe_tags_on_recipe_id"
-    t.index ["tag_id"], name: "index_recipe_tags_on_tag_id"
-  end
-
   create_table "recipes", charset: "utf8mb4", force: :cascade do |t|
     t.string "title", limit: 255
     t.text "content"
@@ -125,6 +115,16 @@ ActiveRecord::Schema.define(version: 2021_03_24_140125) do
     t.integer "impressions_count", default: 0
     t.index ["category_id"], name: "index_recipes_on_category_id"
     t.index ["user_id"], name: "index_recipes_on_user_id"
+  end
+
+  create_table "tag_maps", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "recipe_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["recipe_id", "tag_id"], name: "index_tag_maps_on_recipe_id_and_tag_id", unique: true
+    t.index ["recipe_id"], name: "index_tag_maps_on_recipe_id"
+    t.index ["tag_id"], name: "index_tag_maps_on_tag_id"
   end
 
   create_table "tags", charset: "utf8mb4", force: :cascade do |t|
@@ -170,8 +170,8 @@ ActiveRecord::Schema.define(version: 2021_03_24_140125) do
   add_foreign_key "comments", "users"
   add_foreign_key "recipe_likes", "recipes"
   add_foreign_key "recipe_likes", "users"
-  add_foreign_key "recipe_tags", "recipes"
-  add_foreign_key "recipe_tags", "tags"
   add_foreign_key "recipes", "categories"
   add_foreign_key "recipes", "users"
+  add_foreign_key "tag_maps", "recipes"
+  add_foreign_key "tag_maps", "tags"
 end
