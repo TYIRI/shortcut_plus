@@ -8,9 +8,12 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "jquery"
-import 'bootstrap'
-import '@fortawesome/fontawesome-free/js/all'
-import '../src/application.scss'
+import "jquery-ui/ui/widgets/autocomplete"
+import "./tag-it"
+import "bootstrap"
+import "@fortawesome/fontawesome-free/js/all"
+import './recipes'
+import "../src/application.scss"
 
 Rails.start()
 Turbolinks.start()

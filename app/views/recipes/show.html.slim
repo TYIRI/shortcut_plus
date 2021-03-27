@@ -8,11 +8,12 @@
     .box.border.px-3.py-4
       = link_to user_path(@recipe.user) do
         - if @recipe.user.avatar.attached?
-          = image_tag @recipe.user.avatar.variant(resize_to_fill: [30, 30]).processed, class: %i[rounded-circle bg-white border mr-1]
+          = image_tag @recipe.user.avatar.variant(resize_to_fill: [30, 30]).processed, class: %i[rounded-circle bg-white border mr-2]
         = @recipe.user.name
       = @recipe.published_at
-      h1 = @recipe.title
-      p #タグ #タグ
+      h1.mt-4 = @recipe.title
+      .d-flex.mb-4
+        = render @tags
       = @recipe.content
       .row.mt-4.ml-5
         = link_to 'レシピをダウンロード', "https://www.icloud.com/shortcuts/#{@recipe.shortcut_id}", class: %i[btn btn-danger], target: :_blank

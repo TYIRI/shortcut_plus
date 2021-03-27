@@ -12,7 +12,7 @@
             h3 = recipe.title
           div
             - if recipe.user.avatar.attached?
-              = image_tag recipe.user.avatar.variant(resize_to_fill: [20, 20]).processed, class: %i[rounded-circle bg-white border mr-1]
+              = image_tag recipe.user.avatar.variant(resize_to_fill: [20, 20]).processed, class: %i[rounded-circle bg-white border mr-2]
             = recipe.user.name
           div
             = recipe.created_at

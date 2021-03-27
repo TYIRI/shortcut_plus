@@ -6,8 +6,8 @@ header.navbar.navbar-expand-md.navbar-dark.bg-dark.mb-4
       li.nav-item.dropdown
         button.btn.btn-link.d-flex.dropdown-toggle.text-light.align-items-center data-toggle='dropdown' type='button'
           - if current_user.avatar.attached?
-            = image_tag current_user.avatar.variant(resize_to_fill: [25, 25]).processed, class: %i[rounded-circle bg-white]
-          .mx-1
+            = image_tag current_user.avatar.variant(resize_to_fill: [25, 25]).processed, class: %i[rounded-circle bg-white mr-2]
+          .mr-1
             = current_user.name
         .dropdown-menu.dropdown-menu-right
           .dropdown-item-text
