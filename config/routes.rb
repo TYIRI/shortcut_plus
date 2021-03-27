@@ -28,5 +28,5 @@ Rails.application.routes.draw do
   root 'recipes#index'
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
-  resources :users, path: '/', only: %i[show]
+  get '/:id', to: 'users#show', as: :name
 end
