@@ -2,3 +2,27 @@
 .ui-helper-hidden-accessible {
   display: none;
 }
+
+// Action TextのTrixのレイアウトを変更
+.trix-content {  
+  line-height: 30px;
+  color: #333;
+}
+
+.trix-content h1 {
+  border-bottom: 1px solid #ccc;
+  font-size: 1.8em;
+  line-height: 1.8;
+}
+
+.comment-area .trix-content h1 {
+  border: none;
+  font-size: 1.2em;
+  line-height: 1.2;
+}
+
+.trix-content pre {
+  font-size: 1.2rem;
+  padding-top: 0;
+  padding-bottom: 0;
+}

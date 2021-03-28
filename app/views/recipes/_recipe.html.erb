@@ -17,7 +17,7 @@
     <%= render @tags %>
   </div>
   <%= @recipe.content %>
-  <div class="row mt-4 ml-5">
+  <div class="mt-4 text-center">
     <% if @recipe.shortcut_id.present? %>
       <%= link_to 'レシピをダウンロード', "https://www.icloud.com/shortcuts/#{@recipe.shortcut_id}", class: %i[btn btn-danger], target: :_blank %>
     <% else %>
