@@ -27,7 +27,7 @@
       .col-1
     .row.text-center.my-5
       .col-4
-        = link_to 'プレビュー', root_path, class: %i[btn btn-primary]
+        = f.button :submit, 'プレビュー', name: 'preview', class: %i[btn btn-outline-primary], formtarget: :_blank, rel: 'noopener'
       - if @recipe.published?
         .col-4
           = f.button :submit, '公開停止', name: 'draft', class: %i[btn btn-primary]

@@ -19,7 +19,7 @@
   <%= @recipe.content %>
   <div class="mt-4 text-center">
     <% if @recipe.shortcut_id.present? %>
-      <%= link_to 'レシピをダウンロード', "https://www.icloud.com/shortcuts/#{@recipe.shortcut_id}", class: %i[btn btn-danger], target: :_blank %>
+      <%= link_to 'レシピをダウンロード', "https://www.icloud.com/shortcuts/#{@recipe.shortcut_id}", class: %i[btn btn-danger], target: :_blank, rel: 'noopener' %>
     <% else %>
       <button class="btn btn-secondary" disabled>
         レシピのリンク未登録
@@ -28,19 +28,9 @@
   </div>
   <div class="d-flex justify-content-end mr-4">
     <% if current_user&.liked_recipe?(@recipe) %>
-      <%= link_to recipe_like_path(@recipe), method: :delete, class: %i[border border-primary rounded px-2 py-1] do %>
-        ★Like
-        <span class="pl-1">
-          <%= @recipe_likes_count %>
-        </span>
-      <% end %>
+      <%= render 'recipe_likes/dislike' %>
     <% elsif current_user %>
-      <%= link_to recipe_likes_path(recipe_id: @recipe.id), method: :post, class: %i[border border-primary rounded px-2 py-1] do %>
-        ☆Like
-        <span class="pl-1">
-          <%= @recipe_likes_count %>
-        </span>
-      <% end %>
+      <%= render 'recipe_likes/like' %>
     <% else %>
       <p class="border border-primary rounded px-2 py-1 mb-0">
         ☆Like
