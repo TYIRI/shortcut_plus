@@ -6,12 +6,12 @@
       .row.mx-1
         - @categories.each do |category|
           .col-3.border.p-3
-            = link_to category.name, category_path(category)
+            = link_to category.name, category_path(category), class: 'text-dark'
     .mb-5
       h3 レシピランキング
       .border
       - @ranking_recipes.each do |recipe|
-        = link_to recipe_path(recipe) do
+        = link_to recipe_path(recipe), class: 'text-dark' do
           .border.my-3.p-4
             div
               h3 = recipe.title
@@ -27,7 +27,7 @@
       h3 ピックアップレシピ
       .border
       - @pickup_recipes.each do |recipe|
-        = link_to recipe_path(recipe) do
+        = link_to recipe_path(recipe), class: 'text-dark' do
           .border.my-3.p-4
             div
               h3 = recipe.title

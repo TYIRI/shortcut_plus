@@ -5,5 +5,6 @@
     = render @recipe
     .box.my-5.comment-area
       h4 コメント
-      = render @comments
+      #js-comments
+        = render @comments
       = render 'comments/form'

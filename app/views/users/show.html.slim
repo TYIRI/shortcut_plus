@@ -4,7 +4,7 @@
     = image_tag @user.avatar.variant(resize_to_fill: [100, 100]).processed, class: %i[rounded-circle bg-white border mr-1]
   h3 = @user.name
   - @recipes.each do |recipe|
-    = link_to recipe_path(recipe) do
+    = link_to recipe_path(recipe), class: 'text-dark' do
       .border.my-3.p-4
         div
           h3 = recipe.title
