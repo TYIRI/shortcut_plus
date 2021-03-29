@@ -2,7 +2,7 @@
   - unless i == 1 && @page_num_d == 1
     .border
   .row.mx-1
-    .col-9
+    .col-6
       .border.my-3.p-4
         div
           td
@@ -11,6 +11,9 @@
           td = recipe.created_at
         div
           td = recipe.category.name
+    .col-3.my-3
+      .d-flex.justify-content-center
+        = link_to 'プレビュー', recipe_preview_path(recipe), class: %i[btn btn-outline-primary], target: :_blank, rel: 'noopener'
     .col-3.my-3
       .d-flex.justify-content-around
         = link_to '編集', edit_recipe_path(recipe), class: %i[btn btn-warning p-3]

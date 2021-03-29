@@ -1,0 +1,1 @@
+$("#js-like-button-for-recipe-<%= @recipe.id %>").replaceWith("<%= j(render('recipe_likes/dislike', recipe: @recipe)) %>");

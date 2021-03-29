@@ -15,7 +15,12 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = current_user.recipes.build(recipe_params)
-    tag_list = params[:tag_list].split(',')
+    @tag_list = params[:tag_list].split(',')
+
+    if params[:preview]
+      render 'preview'
+      return
+    end
 
     if params[:published]
       @recipe.status = :published
@@ -23,7 +28,7 @@ class RecipesController < ApplicationController
     end
 
     if @recipe.save
-      @recipe.save_recipe_with_tags(tag_list)
+      @recipe.save_recipe_with_tags(@tag_list)
       redirect_to my_recipes_path(current_user) and return if params[:draft]
       redirect_to recipe_path(@recipe)
     else
@@ -47,10 +52,16 @@ class RecipesController < ApplicationController
   end
 
   def update
-    tag_list = params[:tag_list].split(',')
+    @tag_list = params[:tag_list].split(',')
     @recipe.published_at = Time.now if params[:published] && @recipe.draft?
+
+    if params[:preview]
+      render 'preview'
+      return
+    end
+  
     if @recipe.update(recipe_params.merge(status: params_status))
-      @recipe.save_recipe_with_tags(tag_list)
+      @recipe.save_recipe_with_tags(@tag_list)
       redirect_to recipe_path(@recipe) if @recipe.published?
       redirect_to my_recipes_path if @recipe.draft?
     else
@@ -87,6 +98,11 @@ class RecipesController < ApplicationController
 
   def get_tag_search
     @tags = Tag.where('name LIKE ?', "%#{params[:key]}%")
+  end
+
+  def preview
+    @recipe = current_user.recipes.draft.find(params[:recipe_id])
+    @tag_list = @recipe.tags.pluck(:name)
   end
 
   private

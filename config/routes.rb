@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :tags, only: %i[show]
   resources :recipes, shallow: true, only: %i[new create show edit update destroy] do
     resources :comments, only: %i[create destroy]
+    get '/preview', to: 'recipes#preview', as: :preview
     get 'get_tag_search', on: :collection, defaults: { format: 'json' }
     get 'get_tag_search', on: :member, defaults: { format: 'json' }
   end

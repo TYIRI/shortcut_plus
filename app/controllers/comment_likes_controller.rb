@@ -7,7 +7,7 @@ class CommentLikesController < ApplicationController
 
   def destroy
     comment = Comment.find(params[:id])
-    current_user.unlike_comment(comment)
+    current_user.dislike_comment(comment)
     redirect_to comment.recipe
   end
 end

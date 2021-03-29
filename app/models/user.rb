@@ -71,7 +71,7 @@ class User < ApplicationRecord
   end
 
   # レシピのLikeを解除する
-  def unlike_recipe(recipe)
+  def dislike_recipe(recipe)
     recipe_likes.find_by(recipe_id: recipe.id).destroy
   end
 
@@ -86,7 +86,7 @@ class User < ApplicationRecord
   end
 
   # コメントのLikeを解除する
-  def unlike_comment(comment)
+  def dislike_comment(comment)
     comment_likes.find_by(comment_id: comment.id).destroy
   end
 end
