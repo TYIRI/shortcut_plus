@@ -1,5 +1,5 @@
 header.navbar.navbar-expand-md.navbar-dark.bg-dark.mb-4
-  h1.navbar-brand.mr-auto = link_to 'Shortcut Plus', root_path
+  h1.navbar-brand.mr-auto = link_to 'Shortcut Plus', root_path, class: 'text-danger'
   ul.navbar-nav
     - if logged_in?
       li.nav-item.nav-link = link_to 'バッジ99', root_path

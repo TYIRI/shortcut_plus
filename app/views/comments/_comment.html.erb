@@ -1,4 +1,4 @@
-<div class="border-top py-3">
+<div class="border-top py-3" id="comment-<%= comment.id %>">
   <% if comment.user.avatar.attached? %>
     <%= image_tag comment.user.avatar.variant(resize_to_fill: [20, 20]).processed, class: %i[rounded-circle bg-white border mr-2] %>
   <% end %>
@@ -9,19 +9,9 @@
   </p>
   <div class="d-flex justify-content-end mr-5">
     <% if current_user&.liked_comment?(comment) %>
-      <%= link_to comment_like_path(comment), method: :delete do %>
-        ★Like
-        <span class="pl-1">
-          <%= CommentLike.where(comment_id: comment.id).count %>
-        </span>
-      <% end %>
+      <%= render 'comment_likes/dislike', comment: comment %>
     <% elsif current_user %>
-      <%= link_to comment_likes_path(comment_id: comment.id), method: :post do %>
-        ☆Like
-        <span class="pl-1">
-          <%= CommentLike.where(comment_id: comment.id).count %>
-        </span>
-      <% end %>
+      <%= render 'comment_likes/like', comment: comment %>
     <% else %>
       <p class="mb-0">
         ☆Like

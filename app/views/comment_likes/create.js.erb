@@ -1,0 +1,1 @@
+$("#js-like-button-for-comment-<%= @comment.id %>").replaceWith("<%= j(render('comment_likes/dislike', comment: @comment)) %>");

@@ -1,0 +1,4 @@
+= link_to comment_likes_path(comment_id: comment.id), method: :post, id: "js-like-button-for-comment-#{comment.id}", class: %i[border border-secondary text-secondary rounded px-2 py-1], remote: true do
+  | ☆Like
+  span.pl-1
+    = CommentLike.where(comment_id: comment.id).count
