@@ -17,11 +17,6 @@ class RecipesController < ApplicationController
     @recipe = current_user.recipes.build(recipe_params)
     @tag_list = params[:tag_list].split(',')
 
-    if params[:preview]
-      render 'preview'
-      return
-    end
-
     if params[:published]
       @recipe.status = :published
       @recipe.published_at = Time.now
@@ -98,11 +93,6 @@ class RecipesController < ApplicationController
 
   def get_tag_search
     @tags = Tag.where('name LIKE ?', "%#{params[:key]}%")
-  end
-
-  def preview
-    @recipe = current_user.recipes.draft.find(params[:recipe_id])
-    @tag_list = @recipe.tags.pluck(:name)
   end
 
   private

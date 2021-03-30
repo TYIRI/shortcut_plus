@@ -27,9 +27,7 @@
           = f.input :shortcut_id, label: false, placeholder: 'ショートカットID'
       .col-1
     .row.text-center.my-5
-      .col-4
-        = f.button :submit, 'プレビュー', name: 'preview', class: %i[btn btn-outline-primary], formtarget: :_blank, rel: 'noopener'
-      .col-4
+      .col-6
         = f.button :submit, '下書きに保存する', name: 'draft', class: %i[btn btn-primary]
-      .col-4
+      .col-6
         = f.button :submit, '公開する', name: 'published', class: %i[btn btn-danger]
