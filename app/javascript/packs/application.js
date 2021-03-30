@@ -13,6 +13,7 @@ import "./tag-it"
 import "bootstrap"
 import "@fortawesome/fontawesome-free/js/all"
 import './recipes'
+import './edit_comment'
 import "../src/application.scss"
 
 Rails.start()
