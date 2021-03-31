@@ -2,7 +2,9 @@ header.navbar.navbar-expand-md.navbar-dark.bg-dark.mb-4
   h1.navbar-brand.mr-auto = link_to 'Shortcut Plus', root_path, class: 'text-danger'
   ul.navbar-nav
     - if logged_in?
-      li.nav-item.nav-link = link_to 'バッジ99', root_path
+      li.nav-item.nav-link
+        = render 'notifications/notification_badge'
+      .modal.fade#notification-modal tabindex="-1" role="dialog"
       li.nav-item.dropdown
         button.btn.btn-link.d-flex.dropdown-toggle.text-light.align-items-center data-toggle='dropdown' type='button'
           - if current_user.avatar.attached?

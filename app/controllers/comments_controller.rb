@@ -1,7 +1,9 @@
 class CommentsController < ApplicationController
   def create
     @comment = current_user.comments.build(comment_params)
-    @comment.save
+    if @comment.save
+      @comment.recipe.create_notification_comment(current_user, @comment.id)
+    end
   end
 
   def update

@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :liked_recipes, through: :recipe_likes, source: :recipe
   has_many :comment_likes, dependent: :destroy
   has_many :liked_comments, through: :comment_likes, source: :comment
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
   has_one_attached :avatar
 
   validates :name, presence: true, uniqueness: true, length: { maximum: 50 }

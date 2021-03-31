@@ -1,0 +1,24 @@
+// 未読ありの通知バッジ
+.n-circle {
+  position: absolute;
+  padding-left: 1rem;
+  padding-top: 1rem;
+  color: #efa04c;
+}
+
+// 通知モーダル内のAction TextのTrixのレイアウトを変更
+#notification-modal .trix-content {  
+  color: #777;
+  font-size: 0.9em;
+}
+
+#notification-modal .trix-content h1 {
+  border: none;
+  font-size: 1em;
+  line-height: 1;
+}
+
+#notification-modal .trix-content pre {
+  color: #777;
+  font-size: 0.9rem;
+}

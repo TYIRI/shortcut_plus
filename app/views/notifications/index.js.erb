@@ -1,0 +1,3 @@
+$("#notification-modal").html("<%= escape_javascript(render 'dialog') %>");
+$("#notification-modal").modal("show");
+$("#notification-badge").replaceWith("<%= j(render 'notification_badge') %>");

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_28_031011) do
+ActiveRecord::Schema.define(version: 2021_03_31_011429) do
 
   create_table "action_text_rich_texts", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -99,6 +99,21 @@ ActiveRecord::Schema.define(version: 2021_03_28_031011) do
     t.index ["impressionable_type", "impressionable_id", "session_hash"], name: "poly_session_index"
     t.index ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index", length: { message: 191 }
     t.index ["user_id"], name: "index_impressions_on_user_id"
+  end
+
+  create_table "notifications", charset: "utf8mb4", force: :cascade do |t|
+    t.integer "visitor_id", null: false
+    t.integer "visited_id", null: false
+    t.integer "recipe_id"
+    t.integer "comment_id"
+    t.string "action", default: "", null: false
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["comment_id"], name: "index_notifications_on_comment_id"
+    t.index ["recipe_id"], name: "index_notifications_on_recipe_id"
+    t.index ["visited_id"], name: "index_notifications_on_visited_id"
+    t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
   end
 
   create_table "recipe_likes", charset: "utf8mb4", force: :cascade do |t|
