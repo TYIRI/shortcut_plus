@@ -1,0 +1,43 @@
+<div class="col-11 mx-auto">
+  <div class="form-inline">
+    <span>
+      <%= link_to user_path(notification.visitor) do %>
+        <%= image_tag notification.visitor.avatar.variant(resize_to_fill: [25, 25]).processed, class: %i[rounded-circle bg-white mr-2] %>
+        <strong>
+          <%= notification.visitor.name %>
+        </strong>
+      <% end %>
+      <%= 'さんが' %>
+      <% case notification.action %>
+      <% when 'like' then %>
+        <% if notification.recipe_id %>
+          <%= link_to 'あなたのレシピ', notification.recipe, class: %i[font-weight-bold] %>
+        <% elsif notification.comment_id %>
+          <%= link_to 'あなたのコメント', notification.comment.recipe, class: %i[font-weight-bold] %>
+        <% end %>
+        <%= 'にいいねしました' %>
+      <% when 'comment' then %>
+        <% if notification.recipe.user_id == notification.visited.id %>
+          <%= link_to 'あなたのレシピ', notification.recipe, class: %i[font-weight-bold] %>
+        <% else %>
+          <span>
+            <%= link_to recipe_path(notification.recipe) do %>
+              <%= image_tag notification.recipe.user.avatar.variant(resize_to_fill: [25, 25]).processed, class: %i[rounded-circle bg-white mr-2] %>
+              <strong>
+                <%= notification.recipe.user.name + 'さんのレシピ' %>
+              </strong>
+            <% end %>
+          </span>
+        <% end %>
+        <%= 'にコメントしました' %>
+        <div class="px-4 py-2">
+          <%= Comment.find_by(id: notification.comment_id)&.content %>
+        </div>
+      <% end %>
+    </span>
+  </div>
+  <div class="small text-muted text-right">
+    <%= time_ago_in_words(notification.created_at).upcase %>
+  </div>
+  <hr>
+</div>

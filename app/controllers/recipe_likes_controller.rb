@@ -2,6 +2,7 @@ class RecipeLikesController < ApplicationController
   def create
     @recipe = Recipe.find(params[:recipe_id])
     current_user.like_recipe(@recipe)
+    @recipe.create_notification_like(current_user)
     @recipe_likes_count = RecipeLike.where(recipe_id: @recipe.id).count
   end
 
