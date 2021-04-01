@@ -27,7 +27,36 @@
       .col-1
       .col-3
         = f.file_field :avatar
-      .col-8
+      .col-7
+        .row.align-items-center.mb-4
+          p.font-weight-bold.pl-5.m-0.col-7 マイレシピにいいね
+          .col-5
+            = f.radio_button :notification_recipe_like, 'true'
+            = f.label :notification_recipe_like, '通知する', value: 'true', class: %i[m-0 mr-3 ml-1]
+            = f.radio_button :notification_recipe_like, 'false'
+            = f.label :notification_recipe_like, '通知しない', value: 'false', class: %i[m-0 ml-1]
+        .row.align-items-center.mb-4
+          p.font-weight-bold.pl-5.m-0.col-7 コメントにいいね
+          .col-5
+            = f.radio_button :notification_comment_like, 'true'
+            = f.label :notification_comment_like, '通知する', value: 'true', class: %i[m-0 mr-3 ml-1]
+            = f.radio_button :notification_comment_like, 'false'
+            = f.label :notification_comment_like, '通知しない', value: 'false', class: %i[m-0 ml-1]
+        .row.align-items-center.mb-4
+          p.font-weight-bold.pl-5.m-0.col-7 マイレシピに新しいコメント
+          .col-5
+            = f.radio_button :notification_recipe_comment, 'true'
+            = f.label :notification_recipe_comment, '通知する', value: 'true', class: %i[m-0 mr-3 ml-1]
+            = f.radio_button :notification_recipe_comment, 'false'
+            = f.label :notification_recipe_comment, '通知しない', value: 'false', class: %i[m-0 ml-1]
+        .row.align-items-center.mb-4
+          p.font-weight-bold.pl-5.m-0.col-7 コメントしたレシピに新しいコメント
+          .col-5
+            = f.radio_button :notification_others_recipe_comment, 'true'
+            = f.label :notification_others_recipe_comment, '通知する', value: 'true', class: %i[m-0 mr-3 ml-1]
+            = f.radio_button :notification_others_recipe_comment, 'false'
+            = f.label :notification_others_recipe_comment, '通知しない', value: 'false', class: %i[m-0 ml-1]
+      .col-1
     .row.mx-1.my-5
       .col-4
       .col-7

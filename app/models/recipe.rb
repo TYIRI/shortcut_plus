@@ -42,10 +42,10 @@ class Recipe < ApplicationRecord
   end
 
   def create_notification_like(current_user)
-    temp = Notification.where("visitor_id = ? and visited_id = ? and recipe_id = ? and action = ?", current_user.id, user_id, id, 'like')
+    temp = Notification.where("visitor_id = ? and visited_id = ? and recipe_id = ? and action = ?", current_user.id, user_id, id, 'recipe_like')
 
     if temp.blank?
-      notification = current_user.active_notifications.new(recipe_id: id, visited_id: user_id, action: 'like')
+      notification = current_user.active_notifications.new(recipe_id: id, visited_id: user_id, action: 'recipe_like')
       if notification.visitor_id == notification.visited_id
         notification.checked = true
       end
@@ -62,7 +62,13 @@ class Recipe < ApplicationRecord
   end
 
   def save_notification_comment(current_user, comment_id, visited_id)
-    notification = current_user.active_notifications.new(recipe_id: id, comment_id: comment_id, visited_id: visited_id, action: 'comment')
+    if user.id == visited_id
+      action = 'recipe_comment'
+    else
+      action = 'others_recipe_comment'
+    end
+
+    notification = current_user.active_notifications.new(recipe_id: id, comment_id: comment_id, visited_id: visited_id, action: action)
     if notification.visitor_id == notification.visited_id
       notification.checked = true
     end

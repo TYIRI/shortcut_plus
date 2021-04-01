@@ -41,6 +41,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar, :notification_recipe_like, :notification_comment_like, :notification_recipe_comment, :notification_others_recipe_comment)
   end
 end

@@ -9,26 +9,27 @@
       <% end %>
       <%= 'さんが' %>
       <% case notification.action %>
-      <% when 'like' then %>
-        <% if notification.recipe_id %>
-          <%= link_to 'あなたのレシピ', notification.recipe, class: %i[font-weight-bold] %>
-        <% elsif notification.comment_id %>
-          <%= link_to 'あなたのコメント', notification.comment.recipe, class: %i[font-weight-bold] %>
-        <% end %>
+      <% when 'recipe_like' then %>
+        <%= link_to 'あなたのレシピ', notification.recipe, class: %i[font-weight-bold] %>
         <%= 'にいいねしました' %>
-      <% when 'comment' then %>
-        <% if notification.recipe.user_id == notification.visited.id %>
-          <%= link_to 'あなたのレシピ', notification.recipe, class: %i[font-weight-bold] %>
-        <% else %>
-          <span>
-            <%= link_to recipe_path(notification.recipe) do %>
-              <%= image_tag notification.recipe.user.avatar.variant(resize_to_fill: [25, 25]).processed, class: %i[rounded-circle bg-white mr-2] %>
-              <strong>
-                <%= notification.recipe.user.name + 'さんのレシピ' %>
-              </strong>
-            <% end %>
-          </span>
-        <% end %>
+      <% when 'comment_like' then %>
+        <%= link_to 'あなたのコメント', notification.comment.recipe, class: %i[font-weight-bold] %>
+        <%= 'にいいねしました' %>
+      <% when 'recipe_comment' then %>
+        <%= link_to 'あなたのレシピ', notification.recipe, class: %i[font-weight-bold] %>
+        <%= 'にコメントしました' %>
+        <div class="px-4 py-2">
+          <%= Comment.find_by(id: notification.comment_id)&.content %>
+        </div>
+      <% when 'others_recipe_comment' then %>
+        <span>
+          <%= link_to recipe_path(notification.recipe) do %>
+            <%= image_tag notification.recipe.user.avatar.variant(resize_to_fill: [25, 25]).processed, class: %i[rounded-circle bg-white mr-2] %>
+            <strong>
+              <%= notification.recipe.user.name + 'さんのレシピ' %>
+            </strong>
+          <% end %>
+        </span>
         <%= 'にコメントしました' %>
         <div class="px-4 py-2">
           <%= Comment.find_by(id: notification.comment_id)&.content %>
