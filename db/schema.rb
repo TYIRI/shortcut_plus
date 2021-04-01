@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_31_011429) do
+ActiveRecord::Schema.define(version: 2021_03_31_120834) do
 
   create_table "action_text_rich_texts", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -177,6 +177,10 @@ ActiveRecord::Schema.define(version: 2021_03_31_011429) do
     t.datetime "email_change_token_expires_at"
     t.datetime "email_change_email_sent_at"
     t.string "unconfirmed_email"
+    t.boolean "notification_recipe_like", default: true, null: false
+    t.boolean "notification_comment_like", default: true, null: false
+    t.boolean "notification_recipe_comment", default: true, null: false
+    t.boolean "notification_others_recipe_comment", default: true, null: false
     t.index ["activation_token"], name: "index_users_on_activation_token"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["email_change_digest"], name: "index_users_on_email_change_digest"

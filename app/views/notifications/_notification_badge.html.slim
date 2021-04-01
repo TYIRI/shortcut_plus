@@ -1,5 +1,5 @@
 = link_to notifications_path, id: 'notification-badge', remote: true do
-  - if unchecked_notifications.any?
+  - if unchecked_notifications&.any?
     span.fa-stack.align-items-center
       i.far.fa-bell.fa-lg.fa-stack-1x style="font-size: 1.5em;" 
       i.fas.fa-circle.n-circle.fa-stack-1x style="font-size: 1.7em;" 

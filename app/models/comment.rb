@@ -9,10 +9,10 @@ class Comment < ApplicationRecord
   validates :content, presence: true
 
   def create_notification_like(current_user)
-    temp = Notification.where("visitor_id = ? and visited_id = ? and comment_id = ? and action = ?", current_user.id, user_id, id, 'like')
+    temp = Notification.where("visitor_id = ? and visited_id = ? and comment_id = ? and action = ?", current_user.id, user_id, id, 'comment_like')
 
     if temp.blank?
-      notification = current_user.active_notifications.new(comment_id: id, visited_id: user_id, action: 'like')
+      notification = current_user.active_notifications.new(comment_id: id, visited_id: user_id, action: 'comment_like')
       if notification.visitor_id == notification.visited_id
         notification.checked = true
       end

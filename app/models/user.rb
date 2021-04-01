@@ -15,6 +15,10 @@ class User < ApplicationRecord
   validates :name, presence: true, uniqueness: true, length: { maximum: 50 }
   validates :email, presence: true, uniqueness: true
   validates :role, presence: true
+  validates :notification_recipe_like, inclusion: { in: [true, false] }
+  validates :notification_comment_like, inclusion: { in: [true, false] }
+  validates :notification_recipe_comment, inclusion: { in: [true, false] }
+  validates :notification_others_recipe_comment, inclusion: { in: [true, false] }
   validates :password, length: { minimum: 3 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
