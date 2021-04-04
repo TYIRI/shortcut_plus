@@ -35,4 +35,22 @@ $(document).on('turbolinks:load', function(){
       $(".continue").attr("disabled", true);
     }
   });
+
+  $("#password-reset-form").validationEngine( 'attach', {
+    promptPosition: "inline",
+    maxErrorsPerField: 1,
+    addFailureCssClassToField: "invalid",
+    "custom_error_messages": {
+      "#user_password": {
+        "required": {
+          "message": "パスワードを入力してください"
+        }
+      },
+      "#user_password_confirmation": {
+        "required": {
+          "message": "パスワード再入力を入力してください"
+        }
+      }
+    }
+  });
 });

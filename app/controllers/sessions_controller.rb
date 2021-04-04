@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
     if @user
       redirect_to root_path
     else
+      @failed = true
       render :new
     end
   end
