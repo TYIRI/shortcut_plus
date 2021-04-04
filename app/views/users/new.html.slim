@@ -3,10 +3,10 @@
 .container
   h1.text-center ユーザー登録
   .w-50.mx-auto.mt-5
-    = simple_form_for @user do |f|
-      = f.input :name
-      = f.input :email
-      = f.input :password
-      = f.input :password_confirmation
+    = simple_form_for @user, html: { id: 'signup-form' } do |f|
+      = f.input :name, input_html: { class: "validate[required, minSize[3], maxSize[50], custom[name], custom[excludedName], ajax[ajaxUserCall]]" }
+      = f.input :email, input_html: { class: "validate[required, custom[email]]" }
+      = f.input :password, input_html: { class: "validate[required, custom[password]]" }
+      = f.input :password_confirmation, input_html: { class: "validate[required, custom[password], equals[user_password]]" }
       .text-center.mt-5
-        = f.button :submit, '登録', class: %w[btn btn-primary]
+        = f.button :submit, '登録', class: %w[btn btn-primary continue]

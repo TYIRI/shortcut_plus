@@ -12,14 +12,18 @@ class User < ApplicationRecord
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
   has_one_attached :avatar
 
-  validates :name, presence: true, uniqueness: true, length: { maximum: 50 }
-  validates :email, presence: true, uniqueness: true
+  VALID_NAME_REGEX = /\A[a-zA-Z0-9]+[a-zA-Z0-9_-]*[a-zA-Z0-9]+\z/i
+  INVALID_NAME_REGEX = /\A(user[s]*|recipe[s]*|categories|tags|comment[s]*|preview[s]*|recipe_like[s]*|comment_like[s]*|password_reset[s]*|notification[s]*|setting[s]*|email_change[s]*|my_recipe[s]*|search[s]*|login[s]*|logout[s]*|labo[s]*)\z/i
+  VALID_EMAIL_REGEX = /\A[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*\z/i
+
+  validates :name, presence: true, uniqueness: true, length: { in: 3..50 }, format: { with: VALID_NAME_REGEX }, format: { without: INVALID_NAME_REGEX }
+  validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
   validates :role, presence: true
   validates :notification_recipe_like, inclusion: { in: [true, false] }
   validates :notification_comment_like, inclusion: { in: [true, false] }
   validates :notification_recipe_comment, inclusion: { in: [true, false] }
   validates :notification_others_recipe_comment, inclusion: { in: [true, false] }
-  validates :password, length: { minimum: 3 }, if: -> { new_record? || changes[:crypted_password] }
+  validates :password, length: { minimum: 8 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
   validates :avatar, attachment: { purge: true, content_type: %r{\Aimage/(png|jpeg)\Z}, maximum: 10_485_760 }

@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   resources :users, only: %i[new create edit update destroy] do
-    member do
-      get :activate
-    end
+    get :activate, on: :member
+    get '/check_user', on: :collection, to: 'users#check_user'
   end
   resources :categories, only: %i[show]
   resources :tags, only: %i[show]

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :require_login, only: %i[new create show activate]
+  skip_before_action :require_login, only: %i[new create show activate check_user]
 
   def new
     @user = User.new
@@ -8,7 +8,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to root_path
+      @email = @user.email
+      render 'users/thanks'
     else
       render :new
     end
@@ -35,6 +36,16 @@ class UsersController < ApplicationController
       redirect_to login_path
     else
       not_authenticated
+    end
+  end
+
+  def check_user
+    name = params[:fieldValue]
+    user = User.where("name = ?", name).first
+    if user.present?
+      render json: ['user_name', false, 'このユーザー名はすでに使われています']
+    else
+      render json: ['user_name', true, '']
     end
   end
 
