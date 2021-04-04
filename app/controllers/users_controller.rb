@@ -20,10 +20,13 @@ class UsersController < ApplicationController
     @recipes = @user.recipes.published.includes(:category).order(id: :desc).page(params[:page])
   end
 
-  def edit; end
+  def edit
+    @user = User.find(current_user.id)
+  end
 
   def update
-    if current_user.update(user_params)
+    @user = User.find(current_user.id)
+    if @user.update(user_params)
       redirect_to settings_path
     else
       render :edit

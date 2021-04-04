@@ -15,17 +15,20 @@ class User < ApplicationRecord
   VALID_NAME_REGEX = /\A[a-zA-Z0-9]+[a-zA-Z0-9_-]*[a-zA-Z0-9]+\z/i
   INVALID_NAME_REGEX = /\A(user[s]*|recipe[s]*|categories|tags|comment[s]*|preview[s]*|recipe_like[s]*|comment_like[s]*|password_reset[s]*|notification[s]*|setting[s]*|email_change[s]*|my_recipe[s]*|search[s]*|login[s]*|logout[s]*|labo[s]*)\z/i
   VALID_EMAIL_REGEX = /\A[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*\z/i
+  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}\z/i
 
-  validates :name, presence: true, uniqueness: true, length: { in: 3..50 }, format: { with: VALID_NAME_REGEX }, format: { without: INVALID_NAME_REGEX }
-  validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
+  validates :name, presence: true, uniqueness: { message: "はすでに使用されています" }, length: { in: 3..50 }
+  validates_format_of :name, with: VALID_NAME_REGEX, message: "は半角英数及び記号（_-）で入力してください。（記号は先頭と末尾には使えません）"
+  validates_format_of :name, without: INVALID_NAME_REGEX, message: "は使用できません"
+  validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX, message: "のフォーマットが正しくありません" }
   validates :role, presence: true
   validates :notification_recipe_like, inclusion: { in: [true, false] }
   validates :notification_comment_like, inclusion: { in: [true, false] }
   validates :notification_recipe_comment, inclusion: { in: [true, false] }
   validates :notification_others_recipe_comment, inclusion: { in: [true, false] }
-  validates :password, length: { minimum: 8 }, if: -> { new_record? || changes[:crypted_password] }
+  validates :password, format: { with: VALID_PASSWORD_REGEX, message: "は英字と数字両方を含む8文字以上のパスワードを入力してください" }, length: { minimum: 8 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
-  validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
+  validates :password_confirmation, presence: true, format: { with: VALID_PASSWORD_REGEX, message: "は英字と数字両方を含む8文字以上のパスワードを入力してください" }, if: -> { new_record? || changes[:crypted_password] }
   validates :avatar, attachment: { purge: true, content_type: %r{\Aimage/(png|jpeg)\Z}, maximum: 10_485_760 }
 
   enum role: { general: 0, admin: 1 }
