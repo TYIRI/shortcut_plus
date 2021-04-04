@@ -12,6 +12,9 @@ import "jquery-ui/ui/widgets/autocomplete"
 import "./tag-it"
 import "bootstrap"
 import "@fortawesome/fontawesome-free/js/all"
+import "./jquery.validationEngine-ja"
+import "./jquery.validationEngine"
+import "./jquery.validationEngine.handler"
 import './recipes'
 import './edit_comment'
 import "../src/application.scss"
