@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :users, only: %i[new create edit update destroy] do
+  resources :users, only: %i[new create destroy] do
     get :activate, on: :member
     get '/check_user', on: :collection, to: 'users#check_user'
   end
@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   scope '/settings' do
     get '/', to: 'users#edit', as: :settings
+    patch '/', to: 'users#update'
     resources :email_changes, only: %i[new create edit]
   end
 

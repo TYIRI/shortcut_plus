@@ -7,7 +7,7 @@
   }
 }
 
-.invalidError { // submit時にエラーの場合のエラーメッセージ
+.invalidError, .help-block { // submit時にエラーの場合のエラーメッセージ
   width: 100%;
 	position:relative;
 	color: #ea352d;
@@ -15,4 +15,10 @@
 	min-width: 120px;
   font-size: 14px;
   padding: 4px 10px 4px 10px;
+}
+
+.has-error {
+  input {
+    border: #ea352d 1px solid;
+  }
 }
