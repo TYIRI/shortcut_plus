@@ -1,0 +1,18 @@
+#signup-form, #password-reset-form {
+  & input.invalid { // バリデーションNGの場合に枠線を赤色に変更
+    border: #ea352d 1px solid;
+  }
+  & input.valid {
+    border: seagreen 1px solid; // バリデーションNGの場合に枠線を緑色に変更
+  }
+}
+
+.invalidError { // submit時にエラーの場合のエラーメッセージ
+  width: 100%;
+	position:relative;
+	color: #ea352d;
+	font-weight: bold;
+	min-width: 120px;
+  font-size: 14px;
+  padding: 4px 10px 4px 10px;
+}
