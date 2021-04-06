@@ -1,4 +1,4 @@
-#signup-form, #password-reset-form {
+#signup-form, #password-reset-form, #new-recipe, #edit-recipe {
   & input.invalid { // バリデーションNGの場合に枠線を赤色に変更
     border: #ea352d 1px solid;
   }
@@ -18,7 +18,11 @@
 }
 
 .has-error {
-  input {
+  input, select {
     border: #ea352d 1px solid;
   }
+}
+
+.rich-text-has-error {
+  border: #ea352d 1px solid;
 }

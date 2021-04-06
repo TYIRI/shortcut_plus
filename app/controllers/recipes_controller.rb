@@ -15,18 +15,20 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = current_user.recipes.build(recipe_params)
-    @tag_list = params[:tag_list].split(',')
-
+    @tag_list = params[:tag_list]
+    
     if params[:published]
       @recipe.status = :published
       @recipe.published_at = Time.now
     end
-
+    
     if @recipe.save
+      @tag_list = params[:tag_list].split(',')
       @recipe.save_recipe_with_tags(@tag_list)
       redirect_to my_recipes_path(current_user) and return if params[:draft]
       redirect_to recipe_path(@recipe)
     else
+      @failed = true if params[:published] && @recipe.content.body.blank?
       render :new
     end
   end
@@ -47,19 +49,21 @@ class RecipesController < ApplicationController
   end
 
   def update
-    @tag_list = params[:tag_list].split(',')
+    @tag_list = params[:tag_list]
     @recipe.published_at = Time.now if params[:published] && @recipe.draft?
-
+    
     if params[:preview]
       render 'preview'
       return
     end
-  
+    
     if @recipe.update(recipe_params.merge(status: params_status))
+      @tag_list = params[:tag_list].split(',')
       @recipe.save_recipe_with_tags(@tag_list)
       redirect_to recipe_path(@recipe) if @recipe.published?
       redirect_to my_recipes_path if @recipe.draft?
     else
+      @failed = true if params[:published] && @recipe.content.body.blank?
       render :edit
     end
   end

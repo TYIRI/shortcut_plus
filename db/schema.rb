@@ -133,9 +133,9 @@ ActiveRecord::Schema.define(version: 2021_03_31_120834) do
     t.datetime "published_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id"
-    t.bigint "category_id"
     t.integer "impressions_count", default: 0
+    t.bigint "user_id", null: false
+    t.bigint "category_id"
     t.index ["category_id"], name: "index_recipes_on_category_id"
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end

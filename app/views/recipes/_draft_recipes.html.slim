@@ -9,8 +9,9 @@
             h3 = recipe.title
         div
           td = recipe.created_at
-        div
-          td = recipe.category.name
+        - if recipe.category
+          div
+            td = recipe.category.name
     .col-3.my-3
       .d-flex.justify-content-center
         = link_to 'プレビュー', preview_path(recipe), class: %i[btn btn-outline-primary], target: :_blank, rel: 'noopener'

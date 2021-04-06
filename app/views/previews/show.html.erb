@@ -5,7 +5,9 @@
   <div class="container">
     <p>
       ▶︎
-      <%= link_to @recipe.category.name, category_path(@recipe.category_id) %>
+      <% if @recipe.category %>
+        <%= link_to @recipe.category.name, category_path(@recipe.category_id) %>
+      <% end %>
     </p>
     <div class="box border px-5 py-4">
       <%= link_to name_path(@recipe.user) do %>

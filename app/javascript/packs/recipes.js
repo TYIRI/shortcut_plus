@@ -4,12 +4,13 @@ $(document).on('turbolinks:load', function() {
     fieldName: 'tag_list',
     tagLimit:10,         // タグの最大数
     singleField: true,   // タグの一意性
+    placeholderText: 'タグ(スペース区切りで10個まで入力できます)'
   });
   tag_string = $('#tag_hidden').val();
   $(".tagit-new").addClass(
     'w-100');
-  $(".ui-widget-content.ui-autocomplete-input").attr(
-    'placeholder','タグ(スペース区切りで複数入力できます)');
+  // $(".ui-widget-content.ui-autocomplete-input").attr(
+  //   'placeholder','タグ(スペース区切りで10個まで入力できます)');
   try {
     tag_list = tag_string.split(',');
     results = [];
@@ -26,20 +27,20 @@ $(document).on('turbolinks:load', function() {
 // タグ入力が行われたときの処理
 $(document).on("keyup", '.tagit', function() {
   // placeholderを消す
-  $(".ui-widget-content.ui-autocomplete-input").removeAttr('placeholder');
+  // $(".ui-widget-content.ui-autocomplete-input").removeAttr('placeholder');
   
-  // 空ならばplaceholderを表示
-  let tag_count = $(".tagit-choice").length    // 登録済みのタグを数える
-  if(tag_count === 0) {
-    $(".ui-widget-content.ui-autocomplete-input").attr(
-      'placeholder','タグ(スペース区切りで複数入力できます)');
-  }
+  // // 空ならばplaceholderを表示
+  // let tag_count = $(".tagit-choice").length    // 登録済みのタグを数える
+  // if(tag_count === 0) {
+  //   $(".ui-widget-content.ui-autocomplete-input").attr(
+  //     'placeholder','タグ(スペース区切りで10個まで入力できます)');
+  // }
 
   // Ajaxでタグ一覧を取得
   let input = $(".ui-widget-content.ui-autocomplete-input").val();
   $.ajax({
     type: 'GET',
-    url: 'get_tag_search', // routesで設定のURL
+    url: 'recipes/get_tag_search', // routesで設定のURL
     data: { key: input }, // 入力値を:keyとしてcontrollerに渡す
     dataType: 'json'
   })
