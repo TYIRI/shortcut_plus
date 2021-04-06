@@ -1,6 +1,6 @@
 class Recipe < ApplicationRecord
   belongs_to :user
-  belongs_to :category
+  belongs_to :category, optional: true
   has_many :tag_maps
   has_many :comments, dependent: :destroy
   has_many :recipe_likes, dependent: :destroy
@@ -9,13 +9,15 @@ class Recipe < ApplicationRecord
   has_many :notifications, dependent: :destroy
   has_rich_text :content
 
-  is_impressionable counter_cache: true
-
+  validates :title, length: { maximum: 100 }
+  
   with_options if: :published? do
     validates :title, presence: true
     validates :content, presence: true
-    validates :category_id, presence: true
+    validates :category_id, presence: { message: "を選択してください"}
   end
+
+  is_impressionable counter_cache: true
 
   enum status: { draft: 0, published: 1 }
 

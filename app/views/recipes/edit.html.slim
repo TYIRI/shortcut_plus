@@ -1,40 +1,42 @@
 = content_for :title, @recipe.title
 .container
   h1 レシピ編集
-  = simple_form_for @recipe do |f|
+  = form_with model: @recipe, id: 'edit-recipe' do |f|
     .row.border.p-3
       .col-2
         h5 レシピ情報
       .col-9
-        = f.input :title, placeholder: 'タイトル', label: false
-        = f.select :category_id, Category.pluck(:name, :id), { include_blank: 'カテゴリ選択' }, { class: 'form-control mb-3' }
-        ul#recipe-tags.border.rounded.pl-2
+        = f.text_field :title, placeholder: 'タイトル', label: false, class: %w[form-control]
+        = f.select :category_id, Category.pluck(:name, :id), { include_blank: 'カテゴリ選択' }, { class: 'form-control mt-3' }
+        ul#recipe-tags.border.rounded.pl-2.mt-3
         = hidden_field_tag :tag_hidden, @tag_list
       .col-1
     .row.border.p-3
       .col-2
         h5 本文
       .col-9
-        = f.rich_text_area :content, label: false
+        - if @failed
+          = f.rich_text_area :content, label: false, class: %w[rich-text-has-error]
+          p.invalidError 本文を入力してください
+        - else
+          = f.rich_text_area :content, label: false
       .col-1
     .row.border.p-3
       .col-2
         h5 共有リンク
       .col-9
         .d-flex.flex-row.align-items-center
-          p.mr-1 https://www.icloud.com/shortcuts/
-          = f.input :shortcut_id, label: false, placeholder: 'ショートカットID'
+          p.mr-1.mb-0 https://www.icloud.com/shortcuts/
+          = f.text_field :shortcut_id, label: false, placeholder: 'ショートカットID', class: %w[form-control]
       .col-1
     .row.text-center.my-5
-      .col-4
-        = f.button :submit, 'プレビュー', name: 'preview', class: %i[btn btn-outline-primary], formtarget: :_blank, rel: 'noopener'
       - if @recipe.published?
-        .col-4
-          = f.button :submit, '公開停止', name: 'draft', class: %i[btn btn-primary]
-        .col-4
-          = f.button :submit, '更新する', name: 'published', class: %i[btn btn-danger]
+        .col-6
+          = f.submit '公開停止', name: 'draft', class: %w[btn btn-primary]
+        .col-6
+          = f.submit '更新する', name: 'published', class: %w[btn btn-danger]
       - else
-        .col-4
-          = f.button :submit, '下書きに保存する', name: 'draft', class: %i[btn btn-primary]
-        .col-4
-          = f.button :submit, '公開する', name: 'published', class: %i[btn btn-danger]
+        .col-6
+          = f.submit '下書きに保存する', name: 'draft', class: %w[btn btn-primary]
+        .col-6
+          = f.submit '公開する', name: 'published', class: %w[btn btn-danger]
