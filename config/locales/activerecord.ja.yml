@@ -16,3 +16,5 @@ ja:
         status: '状態'
         published_at: '公開日'
         category_id: 'カテゴリ'
+      comment:
+        content: 'コメント'
