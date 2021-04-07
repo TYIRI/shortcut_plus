@@ -3,6 +3,9 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.build(comment_params)
     if @comment.save
       @comment.recipe.create_notification_comment(current_user, @comment.id)
+      render :create
+    else
+      render :error
     end
   end
 

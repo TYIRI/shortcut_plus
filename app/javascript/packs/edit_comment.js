@@ -40,7 +40,7 @@ $(function() {
   }
 
   function showErrorMessages(commentId, messages) {
-      $('<p class="error_messages text-danger">' + messages.join('<br>') + '</p>').insertBefore($("#js-textarea-comment-" + commentId))
+      $('<p class="error_messages invalidError">' + messages.join('<br>') + '</p>').insertAfter($("#js-textarea-comment-" + commentId))
   }
 
   function submitComment(content, commentId) {
