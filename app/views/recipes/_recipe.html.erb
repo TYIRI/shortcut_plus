@@ -39,6 +39,8 @@
         </span>
       </p>
     <% end %>
-    <%= link_to 'ツイート', root_path, class: %i[ml-4 border border-primary rounded px-2 py-1] %>
+    <%= link_to "http://twitter.com/share?url=#{recipe_url}&text=#{recipe.title}&hashtags=ShortcutPlus", class: %w[ml-4 py-1], target: :_blank, rel: 'noopener' do %>
+      <i class="fab fa-twitter twitter fa-lg"></i>
+    <% end %>
   </div>
 </div>
