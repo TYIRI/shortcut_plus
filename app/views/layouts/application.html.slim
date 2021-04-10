@@ -1,11 +1,11 @@
 doctype html
 html.h-100
   head
-    title
-      = full_title yield :title
-    meta[name="viewport" content="width=device-width,initial-scale=1"]
+    = render 'layouts/meta_tags'
     = csrf_meta_tags
     = csp_meta_tag
+    = favicon_pack_tag 'favicon.ico'
+    = favicon_pack_tag 'apple-touch-icon.JPG', rel: 'apple-touch-icon', sizes: '180x180', type: 'image/jpg'
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     = stylesheet_pack_tag 'application'

@@ -9,7 +9,7 @@
     <p class="ml-3">
       <%= comment.created_at %>
     </p>
-    <% if current_user.own?(comment) %>
+    <% if current_user&.own?(comment) %>
       <p class="ml-auto js-edit-comment-button" data-comment-id="<%= comment.id %>">
         編集
       </p>

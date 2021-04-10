@@ -1,4 +1,4 @@
-= content_for :title, @recipe.title
+- set_meta_tags title: @recipe.title, og: { type: 'article' }
 .container
   h1 レシピ編集
   = form_with model: @recipe, id: 'edit-recipe' do |f|

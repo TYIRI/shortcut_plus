@@ -1,4 +1,4 @@
-= content_for :title, @tag.name
+- set_meta_tags title: @tag.name, og: { type: 'article' }
 .container-fluid
   = render 'shared/body_header'
   .container

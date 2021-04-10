@@ -19,9 +19,13 @@ import './recipes'
 import './edit_comment'
 import "../src/application.scss"
 
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
 require("trix")
 require("@rails/actiontext")
+
+const images = require.context('../images', true)
+const imagePath = (name) => images(name, true)

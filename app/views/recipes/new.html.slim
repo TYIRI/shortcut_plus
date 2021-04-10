@@ -1,7 +1,6 @@
-= content_for :title do
-  | レシピ作成
+- set_meta_tags title: 'レシピ作成', og: { type: 'article' }
 .container
-  h1#hoge レシピ作成
+  h1 レシピ作成
   = form_with model: @recipe, id: 'new-recipe' do |f|
     .row.border.p-3
       .col-2
