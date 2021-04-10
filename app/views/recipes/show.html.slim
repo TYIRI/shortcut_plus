@@ -1,4 +1,4 @@
-= content_for :title, @recipe.title
+- set_meta_tags title: @recipe.title, description: @recipe.content.body, og: { title: @recipe.title, type: 'article' }
 .container-fluid
   = render 'shared/body_header'
   .container

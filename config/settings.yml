@@ -1,0 +1,7 @@
+site:
+  name: 'ShortcutPlus'
+  description: 'iOSショートカットアプリのレシピサービス。便利なレシピの検索や、自分で作ったレシピを公開してシェアできる。'
+  meta:
+    ogp:
+      type: 'website'
+      image_path: /images/og-image.png

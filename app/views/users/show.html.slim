@@ -1,4 +1,4 @@
-= content_for :title, @user.name
+- set_meta_tags title: @user.name, og: { type: 'article' }
 .container
   - if @user.avatar.attached?
     = image_tag @user.avatar.variant(resize_to_fill: [100, 100]).processed, class: %i[rounded-circle bg-white border mr-1]

@@ -1,5 +1,4 @@
-= content_for :title do
-  | 設定
+- set_meta_tags title: '設定'
 .container
   h1.text-center 設定
   = form_with model: @user, url: '/settings', id: 'setting-form' do |f|
