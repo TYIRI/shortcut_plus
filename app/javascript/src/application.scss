@@ -8,4 +8,83 @@
 
 .pagination {
   justify-content: center;
+  
+  /*ページネーション自体のデザイン*/
+  & > li > .page-link {
+    border: none;
+    color: #696969;
+  
+    &:hover {
+      border-radius: 15px;
+    }
+  }
+
+  /* 表示しているページ番号のデザイン */
+  & > .active > .page-link {
+    background-color: #2538AA;
+    border-radius: 15px;
+  }
+}
+
+body {
+  background-color: #FAF8F6;
+}
+
+header {
+  background-color: #050520;
+  border-bottom: 1px solid #FF1758;
+}
+
+.new-recipe-btn {
+  border-radius: 0;
+  border: 3px solid #FF1758;
+  color: #FF1758;
+  background-color: #FFF;
+  
+  &:hover {
+    border: 3px solid #F04E71;
+    color: #F04E71;
+    background-color: #FFF6FF;
+  }
+}
+
+.dropdown-menu .new-recipe-btn {
+  border: none;
+  background-color: #F04E71;
+  color: #FFF;
+
+  &:hover {
+    background-color: #CD043C;
+  }
+}
+
+// ドロップダウン内のメニューをクリックしたときのデザイン
+.dropdown-item:focus {
+  background-color: #CCC;
+}
+
+.search-form {
+  border: 1px solid #050520;
+  border-radius: 0;
+}
+
+.search-btn {
+  border: 1px solid #050520;
+  border-radius: 0;
+  background-color: #222;
+  
+  &:hover {
+    background-color: #111;
+  }
+}
+
+footer {
+  background-color: #6D6861;
+  // background-color: #7A7671;
+  // background-color: #A3967F;
+}
+
+.footer-text {
+  color: #DDD;
+  font-size:0.9em;
 }

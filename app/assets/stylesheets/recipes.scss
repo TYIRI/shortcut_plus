@@ -3,26 +3,124 @@
   display: none;
 }
 
-// Action TextのTrixのレイアウトを変更
-.trix-content {  
-  line-height: 30px;
-  color: #333;
+.recipe-description-category {
+  font-size: 0.9em;
 }
 
-.trix-content h1 {
-  border-bottom: 1px solid #ccc;
-  font-size: 1.8em;
-  line-height: 1.8;
+.recipe-description-title {
+  color: #2538AA;
 }
 
-.comment-area .trix-content h1 {
+.recipe-description-content {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.box-title {
+  padding-bottom: 10px;
+  border-bottom: 5px solid #555;
+  font-weight: bold;
+}
+
+.tag {
+  padding: 4px 8px;
+  font-size: 0.8em;
+  border-radius: 45px;
+  background-color: #EEE;
+
+  &:hover {
+    background-color: #DDD;
+  }
+}
+
+.tag-icon {
+  color: #888;
+  margin-right: 2px;
+}
+
+.my-recipes-tab {
+  color: #678;
   border: none;
-  font-size: 1.2em;
-  line-height: 1.2;
+
+  &:hover {
+    background-color: #DDD;
+    color: #567;
+  }
 }
 
-.trix-content pre {
-  font-size: 1.2rem;
-  padding-top: 0;
-  padding-bottom: 0;
+.nav-pills .nav-item .nav-link {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 3px solid #A0A9BF;
+  
+  &.active {
+    color: #FFF;
+    background-color: #4BB0FF;
+    font-weight: bold;
+    border-bottom: 3px solid #2692D8;
+  }
+}
+
+.my-recipes-icon {
+  color: #2538AA;
+}
+
+.my-recipes-icon-text {
+  color: #2538AA;
+  font-size: 0.7em;
+}
+
+#no-comment-text {
+  font-size: 0.9em;
+}
+
+
+.comment-header-text, .comment-footer-text {
+  font-size: 0.9em;
+}
+
+.comment-icon {
+  color: #2538AA;
+  cursor: pointer;
+}
+
+.recipe-download-btn {
+  background-color: #F04E71;
+  
+  &:hover {
+    background-color: #DD3259;
+  }
+}
+
+// いいねボタンのデザイン
+.like-btn {
+  color: #888;
+
+  &:hover {
+    color: #666;
+    text-decoration: none;
+  }
+}
+
+.dislike-btn {
+  color: #2538AA;
+  
+  &:hover {
+    color: #2538AA;
+    text-decoration: none;
+  }
+}
+
+.guest-like-btn {
+  color: #888;
+}
+
+// ツイートボタンのデザイン
+.twitter-btn {
+  color: #888;
+
+  &:hover {
+    color: #00ACEE;
+  }
 }

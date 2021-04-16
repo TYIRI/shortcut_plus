@@ -6,19 +6,14 @@
   color: #efa04c;
 }
 
-// 通知モーダル内のAction TextのTrixのレイアウトを変更
-#notification-modal .trix-content {  
-  color: #777;
+// 通知モーダル内のAction Textのレイアウトを変更
+.notification-content {
+  color: #666;
   font-size: 0.9em;
 }
 
-#notification-modal .trix-content h1 {
-  border: none;
-  font-size: 1em;
-  line-height: 1;
-}
-
-#notification-modal .trix-content pre {
-  color: #777;
-  font-size: 0.9rem;
+// 通知モーダル内の通知概要のレイアウトを変更
+.notification-text {
+  font-weight: bold;
+  color: #C96;
 }

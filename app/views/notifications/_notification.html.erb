@@ -1,38 +1,38 @@
 <div class="col-11 mx-auto">
   <div class="form-inline">
     <span>
-      <%= link_to user_path(notification.visitor) do %>
-        <%= image_tag notification.visitor.avatar.variant(resize_to_fill: [25, 25]).processed, class: %i[rounded-circle bg-white mr-2] %>
-        <strong>
-          <%= notification.visitor.name %>
-        </strong>
+      <%= link_to user_path(notification.visitor), class: %w[notification-text] do %>
+        <% if notification.visitor.avatar %>
+          <%= image_tag notification.visitor.avatar.variant(resize_to_fill: [25, 25]).processed, class: %w[rounded-circle bg-white mr-1] %>
+        <% else %>
+          <%= image_pack_tag 'default_avatar.PNG', size: '25x25', class: %w[rounded-circle mr-1] %>
+        <% end %>
+        <%= notification.visitor.name %>
       <% end %>
       <%= 'さんが' %>
       <% case notification.action %>
       <% when 'recipe_like' then %>
-        <%= link_to 'あなたのレシピ', notification.recipe, class: %i[font-weight-bold] %>
+        <%= link_to 'あなたのレシピ', notification.recipe, class: %w[notification-text] %>
         <%= 'にいいねしました' %>
       <% when 'comment_like' then %>
-        <%= link_to 'あなたのコメント', notification.comment.recipe, class: %i[font-weight-bold] %>
+        <%= link_to 'あなたのコメント', notification.comment.recipe, class: %w[notification-text] %>
         <%= 'にいいねしました' %>
       <% when 'recipe_comment' then %>
-        <%= link_to 'あなたのレシピ', notification.recipe, class: %i[font-weight-bold] %>
+        <%= link_to 'あなたのレシピ', notification.recipe, class: %w[notification-text] %>
         <%= 'にコメントしました' %>
-        <div class="px-4 py-2">
-          <%= Comment.find_by(id: notification.comment_id)&.content %>
+        <div class="px-4 py-2 notification-content">
+          <%= strip_tags(Comment.find_by(id: notification.comment_id).content.body.to_s).truncate(120) %>
         </div>
       <% when 'others_recipe_comment' then %>
         <span>
-          <%= link_to recipe_path(notification.recipe) do %>
-            <%= image_tag notification.recipe.user.avatar.variant(resize_to_fill: [25, 25]).processed, class: %i[rounded-circle bg-white mr-2] %>
-            <strong>
-              <%= notification.recipe.user.name + 'さんのレシピ' %>
-            </strong>
+          <%= link_to recipe_path(notification.recipe), class: %w[notification-text] do %>
+            <%= image_tag notification.recipe.user.avatar.variant(resize_to_fill: [25, 25]).processed, class: %w[rounded-circle bg-white mr-1] %>
+            <%= notification.recipe.user.name + 'さんのレシピ' %>
           <% end %>
         </span>
         <%= 'にコメントしました' %>
-        <div class="px-4 py-2">
-          <%= Comment.find_by(id: notification.comment_id)&.content %>
+        <div class="px-4 py-2 notification-content">
+          <%= strip_tags(Comment.find_by(id: notification.comment_id).content.body.to_s).truncate(120) %>
         </div>
       <% end %>
     </span>

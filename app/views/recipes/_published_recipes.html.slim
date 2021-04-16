@@ -1,28 +1,41 @@
 - @published_recipes.each.with_index(1) do |recipe, i|
   - unless i == 1 && @page_num_p == 1
-    .border
+    hr
   .row.mx-1
-    .col-6
-      = link_to recipe_path(recipe), class: 'text-dark' do
-        .border.my-3.p-4
-          div
-            td
-              h3 = recipe.title
-          div
-            td = recipe.created_at
-          div
-            td = recipe.category.name
-    .col-3.my-3
-      p
-        | アクセス数：
-        = recipe.impressionist_count
-      p
-        | Like：
-        = recipe.liked_users.size
-      p
-        | 最終更新日：
-        = recipe.updated_at
-    .col-3.my-3
+    .col-9.my-3
+      .d-flex
+        .text-muted
+          = l recipe.published_at
+          |  に公開
+        .text-muted.ml-5
+          | （最終更新：
+          = l recipe.updated_at
+          | ）
+      = link_to recipe.category.name, category_path(recipe.category), class: 'text-dark recipe-description-category'
+      h5.font-weight-bold
+        = link_to recipe_path(recipe), class: 'recipe-description-title' do
+          = recipe.title
+      .d-flex.mb-2
+        - recipe.tags.each do |tag|
+          .mr-3
+            = link_to tag_path(tag), class: 'text-dark tag' do
+              i.fas.fa-cog.tag-icon
+              = tag.name
+    .col-3.my-3.d-flex.flex-column.justify-content-between
       .d-flex.justify-content-around
-        = link_to '編集', edit_recipe_path(recipe), class: %i[btn btn-warning p-3]
-        = link_to '削除', recipe_path(recipe), class: %i[btn btn-danger p-3], method: :delete, data: { confirm: "「#{recipe.title}」を削除してもよろしいですか？" }
+        = link_to edit_recipe_path(recipe) do
+          .d-flex.flex-column
+            i.fas.fa-pencil-alt.fa-lg.my-recipes-icon.mx-auto
+            p.mb-0.my-recipes-icon-text 編集
+        = link_to recipe_path(recipe), method: :delete, data: { confirm: "「#{recipe.title}」を削除してもよろしいですか？" } do
+          .d-flex.flex-column
+            i.fas.fa-trash-alt.fa-lg.my-recipes-icon.mx-auto
+            p.mb-0.my-recipes-icon-text 削除
+      div
+        p.mb-0
+          | アクセス数：
+          = recipe.impressionist_count
+        p.mb-0
+          i.fas.fa-thumbs-up
+          span.ml-2
+            = recipe.liked_users.size

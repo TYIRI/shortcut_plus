@@ -1,4 +1,5 @@
-= form_with model: [@recipe, @comment], data: { remote: true } do |f|
-  = f.rich_text_area :content, id: 'js-comment-form-content', label: false
+= form_with model: [@recipe, @comment], data: { remote: true }, id: 'comment-form' do |f|
+  = f.rich_text_area :content, id: 'js-comment-form-content', label: false, class: %w[trix-content form-input]
   #comment-error
-  = f.submit 'コメント投稿', class: %w[btn btn-primary my-4]
+  .text-right
+    = f.submit 'コメント投稿', class: %w[btn form-btn text-white my-4]

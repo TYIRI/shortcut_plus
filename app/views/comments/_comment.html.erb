@@ -1,45 +1,46 @@
-<div class="border-top py-3" id="comment-<%= comment.id %>">
-  <div class="d-flex">
-    <div>
-      <% if comment.user.avatar.attached? %>
-      <%= image_tag comment.user.avatar.variant(resize_to_fill: [20, 20]).processed, class: %i[rounded-circle bg-white border mr-2] %>
-      <% end %>
-      <%= comment.user.name %>
-    </div>
-    <p class="ml-3">
-      <%= comment.created_at %>
+<div class="border-bottom py-3 px-2" id="comment-<%= comment.id %>">
+  <div class="d-flex align-items-center comment-header-text">
+    <% if comment.user.avatar.attached? %>
+      <%= image_tag comment.user.avatar.variant(resize_to_fill: [20, 20]).processed, class: %w[rounded-circle bg-white border mr-1] %>
+    <% else %>
+      <%= image_pack_tag 'default_avatar.PNG', size: '20x20', class: %w[rounded-circle mr-1] %>
+    <% end %>
+    <%= comment.user.name %>
+    <p class="ml-3 mb-0 text-muted">
+      <%= l comment.created_at %>
     </p>
     <% if current_user&.own?(comment) %>
-      <p class="ml-auto js-edit-comment-button" data-comment-id="<%= comment.id %>">
-        編集
-      </p>
-      <p class="ml-3">
-        <%= link_to '削除', comment_path(comment), method: :delete, remote: true, data: { confirm: 'コメントを削除してもよろしいですか？' } %>
-      </p>
+      <i class="fas fa-pencil-alt fa-lg comment-icon ml-auto js-edit-comment-button" data-comment-id="<%= comment.id %>"></i>
+      <%= link_to comment_path(comment), method: :delete, remote: true, data: { confirm: 'コメントを削除してもよろしいですか？' }, class: %w[ml-4] do %>
+        <i class="fas fa-trash-alt fa-lg comment-icon"></i>
+      <% end %>
     <% end %>
   </div>
-  <div class="my-2" id="js-comment-<%= comment.id %>">
+  <div class="my-4" id="js-comment-<%= comment.id %>">
     <%= comment.content %>
   </div>
-  <div id="js-textarea-comment-box-<%= comment.id %>" style="display: none;">
-    <%= simple_form_for comment, remote: true do |f| %>
-      <%= f.rich_text_area :content, id: "js-textarea-comment-#{comment.id}", label: false %>
-      <button class="btn btn-outline-secondary js-button-edit-comment-cancel" data-comment-id="<%= comment.id %>">キャンセル</button>
-      <button class="btn btn-success js-button-comment-update" data-comment-id="<%= comment.id %>">更新</button>
+  <div id="js-textarea-comment-box-<%= comment.id %>" class="my-3" style="display: none;">
+    <%= simple_form_for comment, remote: true, html: { id: 'edit-comment-form' } do |f| %>
+      <%= f.rich_text_area :content, id: "js-textarea-comment-#{comment.id}", label: false, class: %w[trix-content form-input mb-3] %>
+      <div class="d-flex justify-content-end">
+        <button class="btn edit-comment-cancel-btn text-white js-button-edit-comment-cancel" data-comment-id="<%= comment.id %>">キャンセル</button>
+        <button class="btn form-btn text-white ml-4 js-button-comment-update" data-comment-id="<%= comment.id %>">更新</button>
+      </div>
     <% end %>
   </div>
-  <div class="d-flex justify-content-end mr-5">
+  <div>
     <% if current_user&.liked_comment?(comment) %>
       <%= render 'comment_likes/dislike', comment: comment %>
     <% elsif current_user %>
       <%= render 'comment_likes/like', comment: comment %>
     <% else %>
-      <p class="mb-0">
-        ☆Like
-        <span class="pl-1">
+      <p class="guest-like-btn mb-0 comment-footer-text">
+        <i class="fas fa-thumbs-up fa-lg"></i>
+        <span class="pl-2">
           <%= CommentLike.where(comment_id: comment.id).count %>
         </span>
       </p>
     <% end %>
   </div>
 </div>
+

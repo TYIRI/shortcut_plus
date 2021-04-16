@@ -1,4 +1,4 @@
-= link_to recipe_likes_path(recipe_id: @recipe.id), method: :post, id: "js-like-button-for-recipe-#{@recipe.id}", class: %i[border border-secondary text-secondary rounded px-2 py-1], remote: true do
-  | ☆Like
-  span.pl-1
+= link_to recipe_likes_path(recipe_id: @recipe.id), method: :post, id: "js-like-button-for-recipe-#{@recipe.id}", class: %w[like-btn], remote: true do
+  i.fas.fa-thumbs-up.fa-lg
+  span.pl-2
     = @recipe_likes_count

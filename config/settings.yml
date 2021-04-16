@@ -4,4 +4,4 @@ site:
   meta:
     ogp:
       type: 'website'
-      image_path: /images/og-image.png
+      image_path: /images/og-image.PNG

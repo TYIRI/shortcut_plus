@@ -1,13 +1,15 @@
+// 非同期でバリデーションNGの場合のフォームデザイン
 #signup-form, #password-reset-form, #new-recipe, #edit-recipe {
-  & input.invalid { // バリデーションNGの場合に枠線を赤色に変更
+  & input.invalid {
     border: #ea352d 1px solid;
   }
   & input.valid {
-    border: seagreen 1px solid; // バリデーションNGの場合に枠線を緑色に変更
+    border: seagreen 1px solid;
   }
 }
 
-.invalidError, .help-block { // submit時にエラーの場合のエラーメッセージ
+// submit時にエラーの場合のエラーメッセージ
+.invalidError, .help-block {
   width: 100%;
 	position:relative;
 	color: #ea352d;
@@ -17,12 +19,98 @@
   padding: 4px 10px 4px 10px;
 }
 
-.has-error {
-  input, select {
+// バリデーション失敗時のフォームデザイン
+#signup-form, #password-reset-form, #new-recipe, #edit-recipe, #setting-form {
+  & .has-error {
+    & input, select {
+      border: #ea352d 1px solid;
+    }
+  }
+
+  & .rich-text-has-error {
     border: #ea352d 1px solid;
+    border-radius: 0;
   }
 }
 
-.rich-text-has-error {
-  border: #ea352d 1px solid;
+// デフォルトのフォームデザイン
+#signup-form, #signin-form, #password-reset-form, #new-recipe, #edit-recipe, #setting-form, #email-change-form, #comment-form, #edit-comment-form {
+  & .form-input {
+    border: 1px solid #99A;
+    border-radius: 0;
+  }
+
+  & .form-btn {
+    border-radius: 0;
+    background-color: #D93060;
+    
+    &:hover {
+      background-color: #8D043C;
+    }
+  }
+  
+  & .recipe-draft-btn {
+    border-radius: 0;
+    background-color: #2538AA;
+    
+    &:hover {
+      background-color: #252080;
+    }
+  }
+  
+  & .edit-comment-cancel-btn {
+    border-radius: 0;
+    background-color: #777;
+    
+    &:hover {
+      background-color: #555;
+    }
+  }
+}
+
+.new-recipe-input {
+  border: 1px solid #99A;
+  border-radius: 0;
+}
+
+// Action TextのTrixのレイアウトを変更
+.trix-content {  
+  line-height: 30px;
+  color: #333;
+
+  & h1 {
+    border-bottom: 1px solid #ccc;
+    font-size: 1.8em;
+    line-height: 1.8;
+  }
+
+  & pre {
+    font-size: 1.2rem;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  & blockquote {
+    color: #777;
+  }
+}
+
+// コメントのAction TextのTrixのレイアウトを変更
+.comment-area .trix-content {
+  font-size: 0.9em;
+  line-height: 27px;
+
+  & h1 {
+    border: none;
+    font-size: 1.2em;
+    line-height: 1.2;
+  }
+}
+
+#recipe_content {
+  min-height: 20em;
+}
+
+.guide-link {
+  color: #2538AA;
 }
