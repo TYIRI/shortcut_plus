@@ -2,7 +2,7 @@
   - unless i == 1 && @page_num_p == 1
     hr
   .row.mx-1
-    .col-9.my-3
+    .col-8.my-3
       .d-flex
         .text-muted
           = l recipe.published_at
@@ -21,7 +21,20 @@
             = link_to tag_path(tag), class: 'text-dark tag' do
               i.fas.fa-cog.tag-icon
               = tag.name
-    .col-3.my-3.d-flex.flex-column.justify-content-between
+    .col-2.my-3
+      div
+        p.mb-0
+          | アクセス数：
+          = recipe.impressionist_count
+        p.mb-0
+          i.fas.fa-thumbs-up
+          span.ml-2
+            = recipe.liked_users.size
+        p.mb-0
+          i.far.fa-comment
+          span.ml-2
+            = recipe.comments.size
+    .col-2.my-3.d-flex.flex-column.justify-content-between
       .d-flex.justify-content-around
         = link_to edit_recipe_path(recipe) do
           .d-flex.flex-column
@@ -31,11 +44,3 @@
           .d-flex.flex-column
             i.fas.fa-trash-alt.fa-lg.my-recipes-icon.mx-auto
             p.mb-0.my-recipes-icon-text 削除
-      div
-        p.mb-0
-          | アクセス数：
-          = recipe.impressionist_count
-        p.mb-0
-          i.fas.fa-thumbs-up
-          span.ml-2
-            = recipe.liked_users.size

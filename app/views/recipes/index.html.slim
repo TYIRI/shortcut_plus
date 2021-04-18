@@ -3,7 +3,9 @@
   .row
     .col-8
       .mb-5.bg-white.p-3.shadow-sm
-        h5.box-title.mb-0 人気のレシピ
+        .d-flex.align-items-center.border-solid.box-title-1
+          i.fas.fa-chart-line.fa-lg.mr-2
+          h5.mb-0 人気のレシピ
         - @ranking_recipes.each do |recipe|
           .border-top.p-3
             .d-flex.mb-2
@@ -23,7 +25,9 @@
                     i.fas.fa-cog.tag-icon
                     = tag.name
       .mb-5.bg-white.p-3.shadow-sm
-        h5.box-title.mb-0 ピックアップ
+        .d-flex.align-items-center.border-solid.box-title-1
+          i.fas.fa-plus.fa-lg.mr-2
+          h5.mb-0 ピックアップ
         - @pickup_recipes.each do |recipe|
           .border-top.p-3
             .d-flex.mb-2
@@ -44,10 +48,14 @@
                     = tag.name
     .col-4
       .bg-white.p-3.shadow-sm
-        h5.box-title.mb-4 カテゴリ
+        .d-flex.align-items-center.border-dotted.box-title-2
+          i.fas.fa-caret-square-right.fa-lg.mr-2
+          p.mb-0 カテゴリ
         .ul
           - @categories.each do |category|
-            .li.mb-2
-              = link_to category_path(category), class: 'text-dark' do
-                i.fas.fa-caret-square-right.fa-lg.mr-2
-                = category.name
+            = link_to category_path(category), class: 'text-dark category-list' do
+              li.py-2.d-flex.category-list-item
+                .mr-auto
+                  = category.name
+                p.mb-0.text-muted &rsaquo;
+            .border-dotted
