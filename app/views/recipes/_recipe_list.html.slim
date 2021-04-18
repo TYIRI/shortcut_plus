@@ -1,7 +1,7 @@
 - recipes.each do |recipe|
   .border-top.p-3
     .d-flex.mb-2
-      = link_to name_path(recipe.user), class: 'text-dark' do
+      = link_to labo_path(recipe.user), class: 'text-dark' do
         div
           = render 'shared/user_name', user: recipe.user
       .ml-4.text-muted

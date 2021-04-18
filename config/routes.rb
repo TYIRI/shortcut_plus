@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     get :activate, on: :member
     get '/check_user', on: :collection, to: 'users#check_user'
   end
+  resources :labos, path: 'labo/', only: %i[show]
   resources :categories, only: %i[show]
   resources :tags, only: %i[show]
   resources :recipes, shallow: true, only: %i[new create show edit update destroy] do
@@ -30,5 +31,4 @@ Rails.application.routes.draw do
   root 'recipes#index'
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
-  get '/:id', to: 'users#show', as: :name
 end

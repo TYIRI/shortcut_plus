@@ -1,11 +1,13 @@
 <div class="border-bottom py-3 px-2" id="comment-<%= comment.id %>">
   <div class="d-flex align-items-center comment-header-text">
-    <% if comment.user.avatar.attached? %>
-      <%= image_tag comment.user.avatar.variant(resize_to_fill: [20, 20]).processed, class: %w[rounded-circle bg-white border mr-1] %>
-    <% else %>
-      <%= image_pack_tag 'default_avatar.PNG', size: '20x20', class: %w[rounded-circle mr-1] %>
+    <%= link_to labo_path(comment.user), class: %w[d-flex align-items-center text-dark] do %>
+      <% if comment.user.avatar.attached? %>
+        <%= image_tag comment.user.avatar.variant(resize_to_fill: [20, 20]).processed, class: %w[rounded-circle bg-white border mr-1] %>
+      <% else %>
+        <%= image_pack_tag 'default_avatar.PNG', size: '20x20', class: %w[rounded-circle mr-1] %>
+      <% end %>
+      <%= comment.user.name %>
     <% end %>
-    <%= comment.user.name %>
     <p class="ml-3 mb-0 text-muted">
       <%= l comment.created_at %>
     </p>

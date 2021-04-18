@@ -140,7 +140,7 @@
                     "alertText": "半角英数及び記号（_-）で入力してください。（記号は先頭と末尾には使えません）"
                 },
                 "excludedName": {
-                    "regex": /^(?!(?:user[s]*|recipe[s]*|categories|tags|comment[s]*|preview[s]*|recipe_like[s]*|comment_like[s]*|password_reset[s]*|notification[s]*|setting[s]*|email_change[s]*|my_recipe[s]*|search[s]*|login[s]*|logout[s]*|labo[s]*)$).+$/i,
+                    "regex": /^(?!(?:index|new|edit|user[s]*|recipe[s]*|comment[s]*|preview[s]*|recipe_like[s]*|comment_like[s]*|password_reset[s]*|notification[s]*|setting[s]*|email_change[s]*|my_recipe[s]*|search[s]*|login[s]*|logout[s]*|labo[s]*)$).+$/i,
                     "alertText": "このユーザー名は使用できません"
                 },
                 "password": {
