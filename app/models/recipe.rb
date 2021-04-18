@@ -1,7 +1,7 @@
 class Recipe < ApplicationRecord
   belongs_to :user
   belongs_to :category, optional: true
-  has_many :tag_maps
+  has_many :tag_maps, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :recipe_likes, dependent: :destroy
   has_many :liked_users, through: :recipe_likes, source: :user

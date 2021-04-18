@@ -1,21 +1,42 @@
 - @draft_recipes.each.with_index(1) do |recipe, i|
   - unless i == 1 && @page_num_d == 1
-    .border
+    hr
   .row.mx-1
-    .col-6
-      .border.my-3.p-4
-        div
-          td
-            h3 = recipe.title
-        div
-          td = recipe.created_at
-        - if recipe.category
-          div
-            td = recipe.category.name
-    .col-3.my-3
-      .d-flex.justify-content-center
-        = link_to 'プレビュー', preview_path(recipe), class: %i[btn btn-outline-primary], target: :_blank, rel: 'noopener'
-    .col-3.my-3
+    .col-8.my-3
+      .d-flex
+        .text-muted
+          = l recipe.created_at
+          |  に作成
+        .text-muted.ml-5
+          | （最終更新：
+          = l recipe.updated_at
+          | ）
+      - if recipe.category
+        = link_to recipe.category.name, category_path(recipe.category), class: 'text-dark recipe-description-category'
+      - else
+        p.text-dark.recipe-description-category.mb-0 カテゴリ未設定
+      h5.font-weight-bold.text-dark
+        - if recipe.title.present?
+          = recipe.title
+        - else
+          | タイトル未定
+      .d-flex.mb-2
+        - recipe.tags.each do |tag|
+          .mr-3
+            = link_to tag_path(tag), class: 'text-dark tag' do
+              i.fas.fa-cog.tag-icon
+              = tag.name
+    .col-4.my-3
       .d-flex.justify-content-around
-        = link_to '編集', edit_recipe_path(recipe), class: %i[btn btn-warning p-3]
-        = link_to '削除', recipe_path(recipe), class: %i[btn btn-danger p-3], method: :delete,  data: { confirm: "「#{recipe.title}」を削除してもよろしいですか？" }
+        = link_to preview_path(recipe), target: :_blank, rel: 'noopener' do
+          .d-flex.flex-column
+            i.fas.fa-eye.fa-lg.my-recipes-icon.mx-auto
+            p.mb-0.my-recipes-icon-text プレビュー
+        = link_to edit_recipe_path(recipe) do
+          .d-flex.flex-column
+            i.fas.fa-pencil-alt.fa-lg.my-recipes-icon.mx-auto
+            p.mb-0.my-recipes-icon-text 編集
+        = link_to recipe_path(recipe), method: :delete, data: { confirm: "下書きのレシピを削除してもよろしいですか？" } do
+          .d-flex.flex-column
+            i.fas.fa-trash-alt.fa-lg.my-recipes-icon.mx-auto
+            p.mb-0.my-recipes-icon-text 削除

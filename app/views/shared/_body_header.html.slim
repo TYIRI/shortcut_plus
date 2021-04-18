@@ -1,10 +1,12 @@
-.row.mb-5
+.row.mb-5.mt-4
   .col-2
   .col-8
     = form_with model: @search_recipes_form, scope: :q, url: search_path, method: :get, html: { class: 'form-inline' } do |f|
         .m-auto
-          => f.select :category_id, Category.pluck(:name, :id) , { include_blank: 'カテゴリ未選択'}, class: 'form-control'
-          => f.search_field :title_and_content, class: 'form-control', placeholder: 'キーワード'
-          = f.submit '検索', class: %w[btn btn-success]
+          => f.select :category_id, Category.pluck(:name, :id) , { include_blank: 'カテゴリ未選択'}, class: 'form-control search-form'
+          => f.search_field :title_and_content, class: 'form-control search-form', placeholder: 'キーワード'
+          = f.submit '検索', class: %w[btn search-btn text-white]
   .col-2
-    = link_to 'レシピ作成', new_recipe_path, class: %i[btn btn-danger]
+    = link_to new_recipe_path, class: %w[btn new-recipe-btn] do
+      i.fas.fa-edit.fa-lg.mr-1
+      | レシピ作成

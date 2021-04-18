@@ -1,36 +1,38 @@
 - set_meta_tags title: 'レシピ作成', og: { type: 'article' }
-.container
-  h1 レシピ作成
-  = form_with model: @recipe, id: 'new-recipe' do |f|
-    .row.border.p-3
-      .col-2
-        h5 レシピ情報
-      .col-9
-        = f.text_field :title, placeholder: 'タイトル', label: false, class: %w[form-control]
-        = f.select :category_id, Category.pluck(:name, :id), { include_blank: 'カテゴリ選択' }, { class: 'form-control mt-3' }
-        ul#recipe-tags.border.rounded.pl-2.mt-3
-        = hidden_field_tag :tag_hidden, @tag_list
-      .col-1
-    .row.border.p-3
-      .col-2
-        h5 本文
-      .col-9
-        - if @failed
-          = f.rich_text_area :content, label: false, class: %w[rich-text-has-error]
-          p.invalidError 本文を入力してください
-        - else
-          = f.rich_text_area :content, label: false
-      .col-1
-    .row.border.p-3
-      .col-2
-        h5 共有リンク
-      .col-9
-        .d-flex.flex-row.align-items-center
-          p.mr-1.mb-0 https://www.icloud.com/shortcuts/
-          = f.text_field :shortcut_id, label: false, placeholder: 'ショートカットID', class: %w[form-control]
-      .col-1
-    .row.text-center.my-5
-      .col-6
-        = f.submit '下書きに保存する', name: 'draft', class: %w[btn btn-primary]
-      .col-6
-        = f.submit '公開する', name: 'published', class: %W[btn btn-danger]
+.bg-white
+  .container.mt-4
+    .d-flex.align-items-center.mb-2
+      i.fas.fa-edit.fa-lg.mr-1
+      h5.mb-0 レシピ作成
+    = form_with model: @recipe, id: 'new-recipe' do |f|
+      .row.border.p-3
+        .col-2
+          p レシピ情報
+        .col-9
+          = f.text_field :title, placeholder: 'タイトル', label: false, class: %w[form-control form-input]
+          = f.select :category_id, Category.pluck(:name, :id), { include_blank: 'カテゴリ選択' }, { class: 'form-control form-input mt-3' }
+          ul#recipe-tags.form-input.pl-2.mt-3
+          = hidden_field_tag :tag_hidden, @tag_list
+        .col-1
+      .row.border.p-3
+        .col-2
+          p 本文
+        .col-9
+          - if @failed
+            = f.rich_text_area :content, label: false, class: %w[trix-content rich-text-has-error]
+            p.invalidError 本文 を入力してください
+          - else
+            = f.rich_text_area :content, label: false, class: %w[trix-content form-input]
+        .col-1
+      .row.border.p-3
+        .col-2
+          p 共有リンク
+        .col-9
+          .d-flex.flex-row.align-items-center
+            p.mr-1.mb-0 https://www.icloud.com/shortcuts/
+            = f.text_field :shortcut_id, label: false, placeholder: 'ショートカットID', class: %w[form-control form-input]
+        .col-1
+      .row.text-center.my-5
+        .d-flex.mx-auto
+          = f.submit '下書きに保存する', name: 'draft', class: %w[btn recipe-draft-btn text-white px-4 mx-5]
+          = f.submit '公開する', name: 'published', class: %W[btn form-btn text-white px-4 mx-5]

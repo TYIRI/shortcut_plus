@@ -1,10 +1,10 @@
 - set_meta_tags title: 'パスワード再設定'
-.container
-  h1.text-center パスワード再設定
+.container.mt-4
+  h3.text-center パスワード再設定
   .w-50.mx-auto.my-5
-    p.mb-5 新しいパスワードを入力して再設定を完了してください。
+    p.text-center.mb-5 新しいパスワードを入力して再設定を完了してください。
     = simple_form_for @user, url: password_reset_path(@token), html: { id: 'password-reset-form'} do |f|
-      = f.input :password, input_html: { class: "validate[required, custom[password]]" }
-      = f.input :password_confirmation, input_html: { class: "validate[required, custom[password], equals[user_password]]" }
+      = f.input :password, placeholder: '*英数含む8文字以上', input_html: { class: "form-input validate[required, custom[password]]" }
+      = f.input :password_confirmation, input_html: { class: "form-input validate[required, custom[password], equals[user_password]]" }
       .text-center.mt-5
-        = f.button :submit, 'パスワードを設定', class: %w[btn btn-primary]
+        = f.button :submit, 'パスワードを設定', class: %w[btn form-btn text-white px-3]

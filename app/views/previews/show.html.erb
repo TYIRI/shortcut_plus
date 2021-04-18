@@ -1,36 +1,55 @@
 <% set_meta_tags title: 'プレビュー', og: { type: 'article' } %>
-<div class="container-fluid">
-  <div class="container">
-    <p>
-      ▶︎
+<div class="container mt-4">
+  <div class="col-10 mx-auto px-3 pb-2">
+    <div class="d-flex align-items-center">
+      <i class="fas fa-caret-square-right fa-lg mr-2"></i>
       <% if @recipe.category %>
-        <%= link_to @recipe.category.name, category_path(@recipe.category_id) %>
+        <p class="mb-0">
+          <%= link_to @recipe.category.name, category_path(@recipe.category_id), class: %w[text-dark] %>
+        </p>
+      <% else %>
+        <p class="mb-0 text-dark">
+          カテゴリ未選択
+        </p>
       <% end %>
-    </p>
-    <div class="box border px-5 py-4">
-      <%= link_to name_path(@recipe.user) do %>
-        <% if @recipe.user.avatar.attached? %>
-          <%= image_tag @recipe.user.avatar.variant(resize_to_fill: [30, 30]).processed, class: %i[rounded-circle bg-white border mr-2] %>
-        <% end %>
+    </div>
+  </div>
+  <div class="col-10 mx-auto mb-3 bg-white p-4 shadow-sm">
+    <%= link_to name_path(@recipe.user), class: %w[mr-4 text-dark] do %>
+      <% if @recipe.user.avatar.attached? %>
+        <%= image_tag @recipe.user.avatar.variant(resize_to_fill: [30, 30]).processed, class: %w[rounded-circle bg-white border mr-1] %>
+      <% else %>
+        <%= image_pack_tag 'default_avatar.PNG', size: '30x30', class: %w[rounded-circle mr-1] %>
+      <% end %>
+      <strong>
         <%= @recipe.user.name %>
-      <% end %>
-      <%= Time.zone.now %>
-      <h1 class="mt-4">
+      </strong>
+    <% end %>
+    <span class="text-muted">
+      <%= l Time.zone.now %>
+    </span>
+    <h2 class="mt-4 font-weight-bold">
+      <% if @recipe.title.present? %>
         <%= @recipe.title %>
-      </h1>
-      <div class="d-flex mb-4">
-        <%= render @tags %>
-      </div>
-      <%= @recipe.content %>
-      <div class="mt-4 text-center">
-        <% if @recipe.shortcut_id.present? %>
-          <%= link_to 'レシピをダウンロード', "https://www.icloud.com/shortcuts/#{@recipe.shortcut_id}", class: %i[btn btn-danger], target: :_blank, rel: 'noopener' %>
-        <% else %>
-          <button class="btn btn-secondary" disabled>
-            レシピのリンク未登録
-          </button>
+      <% else %>
+        タイトル未定
+      <% end %>
+    </h2>
+    <div class="d-flex mb-5">
+      <%= render @tags %>
+    </div>
+    <%= @recipe.content %>
+    <div class="mt-4 text-center">
+      <% if @recipe.shortcut_id.present? %>
+        <%= link_to "https://www.icloud.com/shortcuts/#{@recipe.shortcut_id}", class: %w[btn recipe-download-btn text-white], target: :_blank, rel: 'noopener' do %>
+          <i class="fas fa-mobile-alt fa-lg mr-2"></i>
+          レシピをダウンロード
         <% end %>
-      </div>
+      <% else %>
+        <button class="btn btn-secondary" disabled>
+          レシピのリンク未登録
+        </button>
+      <% end %>
     </div>
   </div>
 </div>

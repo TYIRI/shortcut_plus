@@ -1,10 +1,13 @@
-- set_meta_tags title: @recipe.title, description: @recipe.content.body, og: { title: @recipe.title, type: 'article' }
-.container-fluid
-  = render 'shared/body_header'
-  .container
-    = render @recipe
-    .box.my-5.comment-area
-      h4 コメント
-      .mb-5#js-comments
-        = render @comments
-      = render 'comments/form'
+- set_meta_tags title: @recipe.title, description: @recipe.content.body.to_s, og: { title: @recipe.title, type: 'article' }
+.container.mt-4
+  = render @recipe
+  .col-10.mx-auto.my-4.bg-white.p-3.shadow-sm.comment-area
+    .d-flex.align-items-center.border-bottom.pb-3
+      i.far.fa-comment.fa-lg.mr-2
+      .h5.mb-0.font-weight-bold コメント
+    - if @comments.any?
+      = render @comments
+    - else
+      p.mt-3.mb-5#no-comment-text まだコメントはありません。
+    .mb-5#js-comments
+    = render 'comments/form'

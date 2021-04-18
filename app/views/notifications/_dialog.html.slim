@@ -1,6 +1,8 @@
 .modal-dialog
-  .modal-content.py-4
+  .modal-content.py-3
     - notifications = @notifications.where.not(visitor_id: current_user.id)
+    p.col-11.mb-0.mx-auto.text-muted
+      | 通知
     hr.w-100
     - if notifications.exists?
       = render notifications
