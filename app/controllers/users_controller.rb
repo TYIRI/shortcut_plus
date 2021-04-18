@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :require_login, only: %i[new create show activate check_user]
+  skip_before_action :require_login, only: %i[new create activate check_user]
 
   def new
     @user = User.new
@@ -13,11 +13,6 @@ class UsersController < ApplicationController
     else
       render :new
     end
-  end
-
-  def show
-    @user = User.find_by(name: params[:id])
-    @recipes = @user.recipes.published.includes(:category).order(id: :desc).page(params[:page])
   end
 
   def edit

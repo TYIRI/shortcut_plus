@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_one_attached :avatar
 
   VALID_NAME_REGEX = /\A[a-zA-Z0-9]+[a-zA-Z0-9_-]*[a-zA-Z0-9]+\z/i
-  INVALID_NAME_REGEX = /\A(user[s]*|recipe[s]*|categories|tags|comment[s]*|preview[s]*|recipe_like[s]*|comment_like[s]*|password_reset[s]*|notification[s]*|setting[s]*|email_change[s]*|my_recipe[s]*|search[s]*|login[s]*|logout[s]*|labo[s]*)\z/i
+  INVALID_NAME_REGEX = /\A(index|new|edit|user[s]*|recipe[s]*|comment[s]*|preview[s]*|recipe_like[s]*|comment_like[s]*|password_reset[s]*|notification[s]*|setting[s]*|email_change[s]*|my_recipe[s]*|search[s]*|login[s]*|logout[s]*|labo[s]*)\z/i
   VALID_EMAIL_REGEX = /\A[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*\z/i
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}\z/i
 
