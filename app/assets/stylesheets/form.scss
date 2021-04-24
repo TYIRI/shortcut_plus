@@ -34,7 +34,7 @@
 }
 
 // デフォルトのフォームデザイン
-#signup-form, #signin-form, #password-reset-form, #new-recipe, #edit-recipe, #setting-form, #email-change-form, #comment-form, #edit-comment-form {
+#signup-form, #signin-form, #password-reset-form, #new-recipe, #edit-recipe, #setting-form, #email-change-form, #comment-form, .edit-comment-form {
   & .form-input {
     border: 1px solid #99A;
     border-radius: 0;
@@ -113,4 +113,13 @@
 
 .guide-link {
   color: #2538AA;
+}
+
+// tag-itのラベル、オートコンプリート表示
+.tagit-choice .tagit-label, .tagit-autocomplete.ui-menu {
+  word-break: break-all;
+}
+
+.tagit-new input {
+  font-size: 1rem;
 }

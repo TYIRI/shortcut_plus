@@ -1,6 +1,7 @@
 class PasswordResetsController < ApplicationController
   skip_before_action :require_login
   before_action -> { redirect_to root_path }, if: :logged_in?
+  before_action :set_categories
 
   def create
     @user = User.find_by_email(params[:password_reset][:email])

@@ -1,16 +1,15 @@
 - recipes.each do |recipe|
   .border-top.p-3
     .d-flex.mb-2
-      = link_to labo_path(recipe.user), class: 'text-dark' do
-        div
-          = render 'shared/user_name', user: recipe.user
+      = link_to labo_path(recipe.user), class: 'text-dark d-flex align-items-center word-break-all' do
+        = render 'shared/user_name', user: recipe.user
       .ml-4.text-muted
         = l recipe.created_at
     = link_to recipe.category.name, category_path(recipe.category), class: 'text-dark recipe-description-category'
     h5.font-weight-bold
       = link_to recipe_path(recipe), class: 'recipe-description-title' do
         = recipe.title
-    .d-flex.mb-2
+    .d-flex.flex-wrap.mb-2
       - recipe.tags.each do |tag|
         .mr-3
           = link_to tag_path(tag), class: 'text-dark tag' do

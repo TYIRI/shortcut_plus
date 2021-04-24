@@ -6,7 +6,9 @@
       <% else %>
         <%= image_pack_tag 'default_avatar.PNG', size: '20x20', class: %w[rounded-circle mr-1] %>
       <% end %>
-      <%= comment.user.name %>
+      <p class="mb-0 word-break-all">
+        <%= comment.user.name %>
+      </p>
     <% end %>
     <p class="ml-3 mb-0 text-muted">
       <%= l comment.created_at %>
@@ -22,7 +24,7 @@
     <%= comment.content %>
   </div>
   <div id="js-textarea-comment-box-<%= comment.id %>" class="my-3" style="display: none;">
-    <%= simple_form_for comment, remote: true, html: { id: 'edit-comment-form' } do |f| %>
+    <%= simple_form_for comment, remote: true, html: { class: 'edit-comment-form' } do |f| %>
       <%= f.rich_text_area :content, id: "js-textarea-comment-#{comment.id}", label: false, class: %w[trix-content form-input mb-3] %>
       <div class="d-flex justify-content-end">
         <button class="btn edit-comment-cancel-btn text-white js-button-edit-comment-cancel" data-comment-id="<%= comment.id %>">キャンセル</button>

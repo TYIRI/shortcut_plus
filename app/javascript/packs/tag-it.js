@@ -353,7 +353,7 @@
 
         _cleanedInput: function() {
             // Returns the contents of the tag input, cleaned and ready to be passed to createTag
-            return $.trim(this.tagInput.val().replace(/^"(.*)"$/, '$1')).substr(0, 100);
+            return $.trim(this.tagInput.val().replace(/^"(.*)"$/, '$1')).substr(0, 40);
         },
 
         _lastTag: function() {

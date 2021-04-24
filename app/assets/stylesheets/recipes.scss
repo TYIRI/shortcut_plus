@@ -37,6 +37,12 @@
   border-bottom: 1px dotted #CCC;
 }
 
+.box-title-3 {
+  padding-bottom: 15px;
+  font-weight: bold;
+  color: #F04E71;
+}
+
 .category-list:hover {
   text-decoration: none;
 }
@@ -57,6 +63,7 @@
   font-size: 0.8em;
   border-radius: 45px;
   background-color: #EEE;
+  word-break: break-all;
 
   &:hover {
     background-color: #DDD;
@@ -102,6 +109,14 @@
   font-size: 0.7em;
 }
 
+.my-recipes-published-total {
+  padding: 0;
+}
+
+#view-more-published, #view-more-draft {
+  width: 100%;
+}
+
 #no-comment-text {
   font-size: 0.9em;
 }
@@ -114,6 +129,10 @@
 .comment-icon {
   color: #2538AA;
   cursor: pointer;
+}
+
+.recipe-date-updated {
+  display: inline-block;
 }
 
 .recipe-download-btn {

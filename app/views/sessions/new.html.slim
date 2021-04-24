@@ -1,7 +1,7 @@
 - set_meta_tags title: 'ログイン'
-.container.mt-4
+.container-fluid.container-max-width.mt-4
   h3.text-center ログイン
-  .w-50.mx-auto.my-5
+  .col-md-6.col-10.mx-auto.my-5
     = simple_form_for :user, url: login_path, html: { id: 'signin-form' } do |f|
       = f.input :email, input_html: { class: 'form-input'}
       = f.input :password, input_html: { class: 'form-input' }
@@ -11,7 +11,7 @@
         p.invalidError メールアドレスまたはパスワードが誤っています
       .text-center.mt-5
         = f.button :submit, 'ログイン', class: %w[btn form-btn text-white px-5]
-  .w-50.mx-auto.d-flex.justify-content-center
+  .mx-auto.d-flex.justify-content-center.w-50-responsive.sp-mb-5
     div
       p 
         | ▶︎ ユーザー登録は

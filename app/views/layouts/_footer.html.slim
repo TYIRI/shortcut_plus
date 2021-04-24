@@ -1,9 +1,18 @@
 footer.footer.mt-auto.py-4
-  div.container
+  .container-fluid.container-max-width
     ul.list-unstyled.d-flex.justify-content-center
-      li.mx-3 = link_to 'お知らせ', root_path, class: 'footer-text'
-      p.text-white |
-      li.mx-3 = link_to 'ヘルプ', root_path, class: 'footer-text'
-      p.text-white |
-      li.mx-3 = link_to 'プライバシーポリシー', root_path, class: 'footer-text'
-    p.text-center.footer-text Copyright © 2021. TYIRI
+      = link_to root_path, class: 'footer-text mx-3' do
+        li.d-flex
+          | お知らせ
+          p.mb-0.sp-show.ml-auto &rsaquo;
+      p.mb-0.text-white.sp-hide |
+      = link_to root_path, class: 'footer-text mx-3' do
+        li.d-flex
+          | ヘルプ
+          p.mb-0.sp-show.ml-auto &rsaquo;
+      p.mb-0.text-white.sp-hide |
+      = link_to root_path, class: 'footer-text mx-3' do
+        li.d-flex
+          | プライバシーポリシー
+          p.mb-0.sp-show.ml-auto &rsaquo;
+    p.mt-5.text-center.footer-copy Copyright © 2021. TYIRI

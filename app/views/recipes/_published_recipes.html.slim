@@ -1,13 +1,13 @@
 - @published_recipes.each.with_index(1) do |recipe, i|
   - unless i == 1 && @page_num_p == 1
     hr
-  .row.mx-1
-    .col-8.my-3
-      .d-flex
-        .text-muted
+  .row.mx-1.py-3-responsive
+    .col-md-8
+      .d-flex.flex-wrap
+        .text-muted.tb-font-size
           = l recipe.published_at
           |  に公開
-        .text-muted.ml-5
+        .text-muted.tb-font-size.mx-auto-responsive
           | （最終更新：
           = l recipe.updated_at
           | ）
@@ -15,13 +15,13 @@
       h5.font-weight-bold
         = link_to recipe_path(recipe), class: 'recipe-description-title' do
           = recipe.title
-      .d-flex.mb-2
+      .d-flex.flex-wrap.mb-2
         - recipe.tags.each do |tag|
           .mr-3
             = link_to tag_path(tag), class: 'text-dark tag' do
               i.fas.fa-cog.tag-icon
               = tag.name
-    .col-2.my-3
+    .col-md-2.col-6.my-recipes-published-total
       div
         p.mb-0
           | アクセス数：
@@ -34,7 +34,7 @@
           i.far.fa-comment
           span.ml-2
             = recipe.comments.size
-    .col-2.my-3.d-flex.flex-column.justify-content-between
+    .col-md-2.col-6.my-recipes-published-tools
       .d-flex.justify-content-around
         = link_to edit_recipe_path(recipe) do
           .d-flex.flex-column

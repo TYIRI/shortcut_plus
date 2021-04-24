@@ -1,4 +1,6 @@
 class EmailChangesController < ApplicationController
+  before_action :set_categories
+
   def new; end
 
   def create

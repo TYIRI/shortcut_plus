@@ -1,3 +1,3 @@
 $('#view-more-draft').remove();
 $('#draft-recipes-list').append("<%= escape_javascript(render 'recipes/draft_recipes', object: @draft_recipes) %>");
-$("#draft-recipes-list").append("<%= escape_javascript(link_to_next_page(@draft_recipes, 'もっと見る', remote: true, id: 'view-more-draft', class: %w[btn text-info border border-info w-100], params: { type: :draft_recipes })) %>");
+$("#draft-recipes-list").append("<%= escape_javascript(link_to_next_page(@draft_recipes, 'もっと見る', remote: true, id: 'view-more-draft', class: %w[btn text-info border border-info], params: { type: :draft_recipes })) %>");
