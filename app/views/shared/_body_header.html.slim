@@ -1,12 +1,14 @@
-.row.mb-5.mt-4
-  .col-2
-  .col-8
+.row.body-header
+  .col-lg-3.col-md-2.tb-hide
+  .col-lg-6.col-md-7.p-0
     = form_with model: @search_recipes_form, scope: :q, url: search_path, method: :get, html: { class: 'form-inline' } do |f|
-        .m-auto
-          => f.select :category_id, Category.pluck(:name, :id) , { include_blank: 'カテゴリ未選択'}, class: 'form-control search-form'
-          => f.search_field :title_and_content, class: 'form-control search-form', placeholder: 'キーワード'
-          = f.submit '検索', class: %w[btn search-btn text-white]
-  .col-2
+      .m-auto.d-flex
+        = f.select :category_id, Category.pluck(:name, :id) , { include_blank: 'カテゴリ未選択'}, class: 'form-control search-form'
+        = f.search_field :title_and_content, class: 'form-control search-form', placeholder: 'キーワード'
+        = f.submit '検索', class: %w[btn search-btn text-white sp-hide]
+        = f.button type: 'submit', class: %w[btn search-btn text-white sp-show] do
+          i.fas.fa-search.fa-lg
+  .col-md-3.text-center.tb-hide
     = link_to new_recipe_path, class: %w[btn new-recipe-btn] do
       i.fas.fa-edit.fa-lg.mr-1
       | レシピ作成

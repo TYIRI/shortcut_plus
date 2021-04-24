@@ -1,13 +1,13 @@
 - @draft_recipes.each.with_index(1) do |recipe, i|
   - unless i == 1 && @page_num_d == 1
     hr
-  .row.mx-1
-    .col-8.my-3
-      .d-flex
-        .text-muted
+  .row.mx-1.py-3-responsive
+    .col-md-8
+      .d-flex.flex-wrap
+        .text-muted.tb-font-size
           = l recipe.created_at
           |  に作成
-        .text-muted.ml-5
+        .text-muted.tb-font-size.mx-auto-responsive
           | （最終更新：
           = l recipe.updated_at
           | ）
@@ -20,14 +20,14 @@
           = recipe.title
         - else
           | タイトル未定
-      .d-flex.mb-2
+      .d-flex.flex-wrap.mb-2
         - recipe.tags.each do |tag|
           .mr-3
             = link_to tag_path(tag), class: 'text-dark tag' do
               i.fas.fa-cog.tag-icon
               = tag.name
-    .col-4.my-3
-      .d-flex.justify-content-around
+    .col-md-4
+      .d-flex.justify-content-around.my-recipes-draft-tools
         = link_to preview_path(recipe), target: :_blank, rel: 'noopener' do
           .d-flex.flex-column
             i.fas.fa-eye.fa-lg.my-recipes-icon.mx-auto

@@ -4,7 +4,7 @@ $(document).on('turbolinks:load', function() {
     fieldName: 'tag_list',
     tagLimit:10,         // タグの最大数
     singleField: true,   // タグの一意性
-    placeholderText: 'タグ(スペース区切りで10個まで入力できます)'
+    placeholderText: 'タグ(スペース区切りで10個まで)'
   });
   tag_string = $('#tag_hidden').val();
   $(".tagit-new").addClass(

@@ -1,12 +1,14 @@
 - set_meta_tags title: 'レシピ検索', og: { type: 'article' }
-.container
+.container-fluid.container-max-width
   = render 'shared/body_header'
-  .col-10.mx-auto.mb-5.bg-white.p-3.shadow-sm
-    .d-flex.align-items-center.mb-3
+  .col-md-10.mx-auto.mb-5.bg-white.p-3-responsive.shadow-sm
+    .d-flex.align-items-center.mb-3.sp-title
       i.fas.fa-search-plus.fa-lg.mr-2
       h5.mb-0
         | 検索結果：
-        = @recipes.count
+        = @recipes.total_count
         | 件
     = render 'recipes/recipe_list', recipes: @recipes
+    - if @recipes.total_count > 10
+      hr.mt-0
     = paginate @recipes

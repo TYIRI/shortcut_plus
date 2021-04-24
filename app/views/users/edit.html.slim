@@ -1,70 +1,97 @@
 - set_meta_tags title: '設定'
-.container.mt-4
-  .col-11.mx-auto.mb-5.bg-white.p-3.shadow-sm
+.container-fluid.container-max-width.mt-4
+  .col-lg-11.mx-auto.mb-5.bg-white.p-3.shadow-sm
     .d-flex.justify-content-center.align-items-center
       i.fas.fa-user.fa-lg.mr-3
       h3.mb-0.mr-4 設定
     = form_with model: @user, url: '/settings', id: 'setting-form' do |f|
       .row.mx-1.my-4.align-items-center
-        .col-4.d-flex.justify-content-center
-          - if @user.avatar.attached?
-            = image_tag @user.avatar.variant(resize_to_fill: [200, 200]).processed, class: %w[rounded-circle bg-white border]
-          - else
-            = image_pack_tag 'default_avatar.PNG', size: '200x200', class: %w[rounded-circle]
-        .col-8
+        .col-md-4.d-flex.justify-content-center.tb-settings-avatar
+          .col-6.settings-avatar.sp-hide
+            - if @user.avatar.attached?
+              = image_tag @user.avatar.variant(resize_to_fill: [200, 200]).processed, class: %w[rounded-circle bg-white border]
+            - else
+              = image_pack_tag 'default_avatar.PNG', size: '200x200', class: %w[rounded-circle]
+          .settings-avatar.sp-show
+            - if @user.avatar.attached?
+              = image_tag @user.avatar.variant(resize_to_fill: [80, 80]).processed, class: %w[rounded-circle bg-white border]
+            - else
+              = image_pack_tag 'default_avatar.PNG', size: '80x80', class: %w[rounded-circle]          
+          .col-6.my-auto.pr-0.tb-show.settings-avatar-text
+            = f.label :avatar, 'ファイルを選択', class: %w[avatar-select btn]
+            p.selected-avatar.word-break-all 選択されていません
+        .col-md-8.tb-mb-5
           .form-group.row.align-items-center
-            = f.label :name, class: %w[font-weight-bold col-4 mb-0 pr-0 pl-5]
-            .col-8
+            .col-4.pr-0.sp-flex
+              = f.label :name, class: %w[font-weight-bold mb-0 settings-list-text]
+            .col-8.sp-flex
               = f.text_field :name, class: %w[form-control form-input]
           .form-group.row.align-items-center.mb-0
-            = f.label :email, class: %w[font-weight-bold col-4 mb-0 pr-0 pl-5]
-            .col-8
+            .col-4.pr-0.sp-flex
+              = f.label :email, class: %w[font-weight-bold mb-0 settings-list-text]
+            .col-8.word-break-all.sp-flex
               = @user.email
               = link_to new_email_change_path do
                 u.ml-1.guide-link 変更する
       .row.mx-1.mt-1
-        .col-4
+        .col-4.text-center.tb-hide
+          = f.label :avatar, 'ファイルを選択', class: %w[avatar-select btn]
           = f.file_field :avatar
-        .col-8
+          p.selected-avatar.word-break-all 選択されていません
+        .col-md-8
           .row.align-items-center.mb-4
-            p.font-weight-bold.pl-5.m-0.col-7 マイレシピにいいね
-            .col-5
-              = f.radio_button :notification_recipe_like, 'true'
-              = f.label :notification_recipe_like, '通知する', value: 'true', class: %w[m-0 mr-3 ml-1]
-              = f.radio_button :notification_recipe_like, 'false'
-              = f.label :notification_recipe_like, '通知しない', value: 'false', class: %w[m-0 ml-1]
+            .col-7.sp-flex
+              p.font-weight-bold.settings-list-text.settings-notification.m-0 マイレシピにいいね
+            .col-5.d-flex.flex-wrap.sp-flex
+              div
+                = f.radio_button :notification_recipe_like, 'true'
+                = f.label :notification_recipe_like, '通知する', value: 'true', class: %w[m-0 mr-3 ml-1]
+              div
+                = f.radio_button :notification_recipe_like, 'false'
+                = f.label :notification_recipe_like, '通知しない', value: 'false', class: %w[m-0 ml-1]
           .row.align-items-center.mb-4
-            p.font-weight-bold.pl-5.m-0.col-7 コメントにいいね
-            .col-5
-              = f.radio_button :notification_comment_like, 'true'
-              = f.label :notification_comment_like, '通知する', value: 'true', class: %w[m-0 mr-3 ml-1]
-              = f.radio_button :notification_comment_like, 'false'
-              = f.label :notification_comment_like, '通知しない', value: 'false', class: %w[m-0 ml-1]
+            .col-7.sp-flex
+              p.font-weight-bold.settings-list-text.settings-notification.m-0 コメントにいいね
+            .col-5.d-flex.flex-wrap.sp-flex
+              div
+                = f.radio_button :notification_comment_like, 'true'
+                = f.label :notification_comment_like, '通知する', value: 'true', class: %w[m-0 mr-3 ml-1]
+              div
+                = f.radio_button :notification_comment_like, 'false'
+                = f.label :notification_comment_like, '通知しない', value: 'false', class: %w[m-0 ml-1]
           .row.align-items-center.mb-4
-            p.font-weight-bold.pl-5.m-0.col-7 マイレシピに新しいコメント
-            .col-5
-              = f.radio_button :notification_recipe_comment, 'true'
-              = f.label :notification_recipe_comment, '通知する', value: 'true', class: %w[m-0 mr-3 ml-1]
-              = f.radio_button :notification_recipe_comment, 'false'
-              = f.label :notification_recipe_comment, '通知しない', value: 'false', class: %w[m-0 ml-1]
+            .col-7.sp-flex
+              p.font-weight-bold.settings-list-text.settings-notification.m-0 マイレシピに新しいコメント
+            .col-5.d-flex.flex-wrap.sp-flex
+              div
+                = f.radio_button :notification_recipe_comment, 'true'
+                = f.label :notification_recipe_comment, '通知する', value: 'true', class: %w[m-0 mr-3 ml-1]
+              div
+                = f.radio_button :notification_recipe_comment, 'false'
+                = f.label :notification_recipe_comment, '通知しない', value: 'false', class: %w[m-0 ml-1]
           .row.align-items-center.mb-4
-            p.font-weight-bold.pl-5.m-0.col-7 コメントしたレシピに新しいコメント
-            .col-5
-              = f.radio_button :notification_others_recipe_comment, 'true'
-              = f.label :notification_others_recipe_comment, '通知する', value: 'true', class: %w[m-0 mr-3 ml-1]
-              = f.radio_button :notification_others_recipe_comment, 'false'
-              = f.label :notification_others_recipe_comment, '通知しない', value: 'false', class: %w[m-0 ml-1]
+            .col-7.sp-flex
+              p.font-weight-bold.settings-list-text.settings-notification.m-0 コメントしたレシピに新しいコメント
+            .col-5.d-flex.flex-wrap.sp-flex
+              div
+                = f.radio_button :notification_others_recipe_comment, 'true'
+                = f.label :notification_others_recipe_comment, '通知する', value: 'true', class: %w[m-0 mr-3 ml-1]
+              div
+                = f.radio_button :notification_others_recipe_comment, 'false'
+                = f.label :notification_others_recipe_comment, '通知しない', value: 'false', class: %w[m-0 ml-1]
       .row.mx-1.my-5
-        .col-4
-        .col-8
+        .col-md-4
+        .col-md-8
           .form-group.row.align-items-center
-            = f.label :password, 'パスワード変更', class: %w[font-weight-bold col-4 mb-0 pr-0 pl-5]
-            .col-8
+            .col-4.pr-0.sp-flex
+              = f.label :password, 'パスワード変更', class: %w[font-weight-bold mb-0 settings-list-text]
+            .col-8.sp-flex
               = f.password_field :password, placeholder: '変更後のパスワード', class: %w[form-control form-input]
           .form-group.row.align-items-center.mb-0
-            = f.label :password_confirmation, class: %w[font-weight-bold col-4 mb-0 pr-0 pl-5]
-            .col-8
+            .col-4.pr-0.sp-flex
+              = f.label :password_confirmation, class: %w[font-weight-bold mb-0 settings-list-text]
+            .col-8.sp-flex
               = f.password_field :password_confirmation, placeholder: '変更後のパスワード', class: %w[form-control form-input]
       .row.mx-1.mb-5
-        .col-12.text-right
-          = f.submit '変更を保存', class: %w[btn border border-danger text-danger]
+        .col-md-12.text-right
+          = f.submit '変更を保存', class: %w[btn btn-user-edit]

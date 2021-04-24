@@ -1,7 +1,7 @@
 - set_meta_tags title: 'マイレシピ', og: { type: 'article' }
-.container
+.container-fluid.container-max-width
   = render 'shared/body_header'
-  .col-10.mx-auto.mb-5.bg-white.px-0.py-3.shadow-sm
+  .col-lg-11.mx-auto.mb-5.bg-white.px-0.py-3.shadow-sm
     .d-flex.align-items-center.mb-3.px-3
       i.fas.fa-user-edit.fa-lg.mr-2
       h5.mb-0 マイレシピ
@@ -11,11 +11,11 @@
       li.nav-item
         = link_to "下書き（#{@draft.size}）", '#item2', class: %w[nav-link rounded-0 my-recipes-tab], data: { toggle: 'tab' }
     .tab-content
-      .tab-pane.fade.show.active.p-3#item1
+      .tab-pane.fade.show.active.p-3-responsive#item1
         #published-recipes-list
           = render 'recipes/published_recipes'
-          = link_to_next_page @published_recipes, 'もっと見る', remote: true, id: 'view-more-published', class: %w[btn text-info border border-info w-100], params: { type: :published_recipes }
-      .tab-pane.fade.p-3#item2
+          = link_to_next_page @published_recipes, 'もっと見る', remote: true, id: 'view-more-published', class: %w[btn text-info border border-info], params: { type: :published_recipes }
+      .tab-pane.fade.p-3-responsive#item2
         #draft-recipes-list
           = render 'recipes/draft_recipes'
-          = link_to_next_page @draft_recipes, 'もっと見る', remote: true, id: 'view-more-draft', class: %w[btn text-info border border-info w-100], params: { type: :draft_recipes }
+          = link_to_next_page @draft_recipes, 'もっと見る', remote: true, id: 'view-more-draft', class: %w[btn text-info border border-info], params: { type: :draft_recipes }

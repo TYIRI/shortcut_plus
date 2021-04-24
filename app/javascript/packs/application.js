@@ -17,6 +17,7 @@ import "./jquery.validationEngine"
 import "./jquery.validationEngine.handler"
 import './recipes'
 import './edit_comment'
+import './avatar_select'
 import "../src/application.scss"
 
 

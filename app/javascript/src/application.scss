@@ -4,7 +4,13 @@
 @import 'tagit.ui-zendesk';
 @import 'validationEngine.jquery.scss';
 @import '../../assets/stylesheets/recipes.scss';
+@import '../../assets/stylesheets/users.scss';
+@import '../../assets/stylesheets/form.scss';
 @import '../../assets/stylesheets/notifications.scss';
+
+.container-max-width {
+  max-width: 1170px;
+}
 
 .pagination {
   justify-content: center;
@@ -26,6 +32,16 @@
   }
 }
 
+// Bootstrapのフォーカスデザイン解除
+.page-link, input, select, .search-btn, #view-more-published, #view-more-draft {
+  &:focus  {
+    border-color: inherit !important;
+    outline: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+  }
+}
+
 body {
   background-color: #FAF8F6;
 }
@@ -33,6 +49,48 @@ body {
 header {
   background-color: #050520;
   border-bottom: 1px solid #FF1758;
+}
+
+.header-notification {
+  display: flex;
+  align-items: center;
+}
+
+// 通知を閉じるアイコン
+.modal-close-btn {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+
+  &::before {
+    content: "";
+    position: absolute;
+    background: #6C757D;
+    right: 0;
+    top: 50%;
+    width: 2px;
+    height: 12px;
+    transform: translate(-50%, -50%) rotateZ(45deg);
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    background: #6C757D;
+    right: 0;
+    top: 50%;
+    width: 2px;
+    height: 12px;
+    transform: translate(-50%, -50%) rotateZ(-45deg);
+  }
+}
+
+.logo-width {
+  width: 150px;
+}
+
+h1 .navbar-brand {
+  margin-right: auto;
 }
 
 .new-recipe-btn {
@@ -63,9 +121,15 @@ header {
   background-color: #CCC;
 }
 
+.body-header {
+  margin-top: 24px;
+  margin-bottom: 48px;
+}
+
 .search-form {
   border: 1px solid #050520;
   border-radius: 0;
+  margin-right: 4px;
 }
 
 .search-btn {
@@ -80,11 +144,342 @@ header {
 
 footer {
   background-color: #6D6861;
-  // background-color: #7A7671;
-  // background-color: #A3967F;
+
+  & ul a:hover {
+    color: #BBB;
+    text-decoration: none;
+  }
 }
 
-.footer-text {
+.footer-text, .footer-copy {
   color: #DDD;
   font-size:0.9em;
+}
+
+.word-break-all {
+  word-break: break-all;
+}
+
+.p-3-responsive {
+  padding: 16px;
+}
+
+.py-3-responsive {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.px-5-responsive {
+  padding-left: 48px;
+  padding-right: 48px;
+}
+
+.mx-auto-responsive {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.w-50-responsive {
+  width: 50%;
+}
+
+// TB向けのため、デフォルト非表示
+.tb-show {
+  display: none;
+}
+
+// SP向けのため、デフォルト非表示
+.sp-show {
+  display: none;
+}
+
+// iPhoneSE向けのため、デフォルト非表示
+.se-show {
+  display: none;
+}
+
+// TB向けレスポンシブ
+@media (max-width: 767px) {
+  .tb-show {
+    display: block;
+  }
+
+  .tb-hide {
+    display: none;
+  }
+
+  .tb-font-size {
+    font-size: 0.95em;
+  }
+
+  .btn-dropdown {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  header .nav-link {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .header-height {
+    height: 41px;
+  }
+
+  .tb-navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .tb-header-icon-text {
+    font-size: 0.6em;
+  }
+
+  .recipe-download-area {
+    margin-bottom: 24px;
+  }
+
+  .my-recipes-published-total, .my-recipes-published-tools, .my-recipes-draft-tools {
+    padding: 15px 15px 0;
+    margin-top: auto;
+  }
+
+  .tb-settings-avatar {
+    margin-bottom: 30px;
+  }
+
+  .settings-list-text {
+    padding-left: 15px;
+  }
+
+  .tb-mb-5 {
+    margin-bottom: 48px;
+  }
+
+  // headerカテゴリボタン
+  #nav-drawer {
+    position: relative;
+  }
+  
+  /*チェックボックス等は非表示に*/
+  .nav-unshown {
+    display:none;
+  }
+  
+  /*アイコンのスペース*/
+  #nav-open {
+    display: inline-block;
+    width: 30px;
+    height: 22px;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+  
+  /*ハンバーガーの形をCSSで表現*/
+  #nav-open span, #nav-open span:before, #nav-open span:after {
+    position: absolute;
+    height: 3px;/*線の太さ*/
+    width: 25px;/*長さ*/
+    border-radius: 3px;
+    background: #FFF;
+    display: block;
+    content: '';
+  }
+  #nav-open span:before {
+    bottom: -8px;
+  }
+  #nav-open span:after {
+    bottom: -16px;
+  }
+  
+  /*閉じる用の薄黒箇所*/
+  #nav-close {
+    display: none;
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 0;
+    transition: .3s ease-in-out;
+  }
+  
+  /*メニューの中身*/
+  #nav-content {
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    width: 90%;
+    max-width: 330px;/*最大幅*/
+    height: 100%;
+    background: #fff;
+    transition: .3s ease-in-out;
+    -webkit-transform: translateX(-105%);
+    transform: translateX(-105%);
+  }
+  
+  /*チェックがついたら表示させる*/
+  #nav-input:checked ~ #nav-close {
+    display: block;
+    opacity: .5;
+  }
+  
+  #nav-input:checked ~ #nav-content {
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%);
+    box-shadow: 6px 0 25px rgba(0,0,0,.15);
+  }
+  
+  .header-logo-menu{
+    display: flex;
+    display: -moz-flex;
+    display: -o-flex;
+    display: -webkit-flex;
+    display: -ms-flex;
+    flex-direction: row;
+    -moz-flex-direction: row;
+    -o-flex-direction: row;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+  }
+}
+
+// SP向けレスポンシブ
+@media (max-width: 519px) {
+  .sp-show {
+    display: block;
+  }
+
+  .sp-hide {
+    display: none;
+  }
+
+  .container-fluid {
+    padding: 0;
+  }
+
+  .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .logo-width {
+    width: 100px;
+  }
+
+  .sp-padding {
+    padding: 0;
+  }
+
+  .p-3-responsive {
+    padding: 16px 0;
+  }
+
+  .box-title-1, .sp-title {
+    padding-left: 16px;
+
+    & h5 {
+      font-weight: normal;
+    }
+  }
+
+  .body-header {
+    margin-bottom: 24px;
+    padding: 0 8px;
+
+    & select {
+      width: 70%;
+    }
+  }
+
+  .search-form {
+    margin-right: 0;
+  }
+
+  footer ul {
+    flex-direction: column;
+
+    & li {
+      background-color: #A39D93;
+      padding: 8px 16px;
+      border-radius: 4px;
+      margin-bottom: 4px;
+    }
+  }
+
+  #view-more-published, #view-more-draft {
+    display: block;
+    margin: 16px auto 0;
+    width: 90%;
+  }
+
+  .mx-auto-responsive {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .py-3-responsive {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .sp-flex {
+    flex-basis: auto;
+    max-width: initial;
+  }
+
+  .btn-user-edit {
+    margin-right: 15px;
+  }
+
+  .settings-list-text {
+    padding-left: 0;
+  }
+  
+  .settings-notification {
+    border-bottom: 1px dotted #CCC;
+  }
+
+  .settings-avatar-text {
+    flex: 0 0 66.66667%;
+    max-width: 66.66667%;
+  }
+
+  .sp-mb-5 {
+    margin-bottom: 48px;
+  }
+
+  .sp-px-3 {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .w-50-responsive {
+    width: 100%;
+  }
+
+  .sp-flex-wrap {
+    flex-wrap: wrap;
+  }
+
+  .px-5-responsive {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+// iPhoneSE向けレスポンシブ
+@media (max-width: 374px) {
+  .se-hide {
+    display: none;
+  }
+
+  .se-show {
+    display: inline-block;
+  }
 }

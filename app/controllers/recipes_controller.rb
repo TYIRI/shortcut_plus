@@ -2,9 +2,9 @@ class RecipesController < ApplicationController
   skip_before_action :require_login, only: %i[index show search]
   before_action :set_recipe, only: %i[edit update destroy]
   before_action :set_search_recipe, only: %i[index show my_recipes search]
+  before_action :set_categories
 
   def index
-    @categories = Category.all
     @ranking_recipes = Recipe.published.includes(:category, user: { avatar_attachment: :blob }).order(impressions_count: :desc).limit(5)
     @pickup_recipes = Recipe.published.includes(:category, user: { avatar_attachment: :blob }).sample(5)
   end

@@ -1,6 +1,7 @@
 class TagsController < ApplicationController
   skip_before_action :require_login, only: %i[show]
   before_action :set_search_recipe, only: %i[show]
+  before_action :set_categories
 
   def show
     @tag = Tag.find(params[:id])

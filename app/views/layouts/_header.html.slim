@@ -1,18 +1,40 @@
-header.navbar.navbar-expand-md
-  .container
-    h1.navbar-brand.mr-auto.my-auto
+header.navbar.navbar-expand
+  .container-fluid.container-max-width
+    h1.navbar-brand.my-auto.tb-navbar-center
       = link_to root_path do
-        = image_pack_tag 'logo.PNG', width: '150', alt: 'ロゴ'
-    ul.navbar-nav
+        = image_pack_tag 'logo.PNG', class: %w[logo-width se-hide], alt: 'ロゴ'
+        = image_pack_tag 'logo-icon.PNG', size: '30x30', class: %w[se-show], alt: 'ロゴ'
+    .tb-show.nav-item.header-logo-menu
+      #nav-drawer
+        input#nav-input.nav-unshown type="checkbox"
+        label#nav-open.my-auto for="nav-input"
+          span
+        label#nav-close.nav-unshown for="nav-input"
+        #nav-content.pt-4
+          .d-flex.align-items-center.box-title-3.px-3.pb-0
+            i.fas.fa-caret-square-right.fa-lg.mr-2
+            p.mb-0 カテゴリ
+          hr.mb-0
+          .ul
+            - @categories.each do |category|
+              = link_to category_path(category), class: 'text-dark category-list' do
+                li.py-2.d-flex.category-list-item.px-3
+                  .mr-auto
+                    = category.name
+                  p.mb-0.text-muted &rsaquo;
+              hr.my-0
+    ul.navbar-nav.ml-auto.header-height
       - if logged_in?
-        li.nav-item.nav-link
+        li.nav-item.nav-link.header-notification
           = render 'notifications/notification_badge'
         .modal.fade#notification-modal tabindex="-1" role="dialog"
         li.nav-item.dropdown.d-flex.align-items-center
-          button.btn.btn-link.d-flex.dropdown-toggle.text-light.align-items-center data-toggle='dropdown' type='button'
+          button.btn.btn-link.d-flex.dropdown-toggle.text-light.align-items-center.btn-dropdown data-toggle='dropdown' type='button'
             - if current_user.avatar.attached?
-              = image_tag current_user.avatar.variant(resize_to_fill: [25, 25]).processed, class: %w[rounded-circle bg-white mr-2]
-            .mr-1
+              = image_tag current_user.avatar.variant(resize_to_fill: [25, 25]).processed, class: %w[rounded-circle bg-white mr-1]
+            - else
+              = image_pack_tag 'default_avatar.PNG', size: '25x25', class: %w[rounded-circle mr-1]
+            .mr-1.tb-hide
               = current_user.name
           .dropdown-menu.dropdown-menu-right
             .dropdown-item-text
@@ -28,5 +50,15 @@ header.navbar.navbar-expand-md
             .dropdown-divider
             = link_to 'ログアウト', logout_path, method: :delete, class: %w[dropdown-item]
       - else
-        li.nav-item.nav-link = link_to 'ユーザー登録', new_user_path, class: %w[text-white]
-        li.nav-item.nav-link = link_to 'ログイン', login_path, class: %w[text-white]
+        li.nav-item.nav-link.tb-hide = link_to 'ユーザー登録', new_user_path, class: %w[text-white]
+        li.nav-item.nav-link.pt-1.tb-show
+          = link_to new_user_path, class: %w[text-white] do
+            .d-flex.flex-column
+              i.fas.fa-user-plus.fa-lg.mx-auto
+              p.mb-0.tb-header-icon-text ユーザー登録
+        li.nav-item.nav-link.tb-hide = link_to 'ログイン', login_path, class: %w[text-white]
+        li.nav-item.nav-link.pt-1.pr-0.tb-show
+          = link_to login_path, class: %w[text-white] do
+            .d-flex.flex-column
+              i.fas.fa-sign-in-alt.fa-lg.mx-auto
+              p.mb-0.tb-header-icon-text ログイン

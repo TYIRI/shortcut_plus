@@ -1,7 +1,7 @@
-<div class="col-11 mx-auto">
+<div class="col-11 mx-auto sp-padding">
   <div class="form-inline">
     <span>
-      <%= link_to labo_path(notification.visitor), class: %w[notification-text] do %>
+      <%= link_to labo_path(notification.visitor), class: %w[notification-text word-break-all] do %>
         <% if notification.visitor.avatar %>
           <%= image_tag notification.visitor.avatar.variant(resize_to_fill: [25, 25]).processed, class: %w[rounded-circle bg-white mr-1] %>
         <% else %>
@@ -25,7 +25,7 @@
         </div>
       <% when 'others_recipe_comment' then %>
         <span>
-          <%= link_to recipe_path(notification.recipe), class: %w[notification-text] do %>
+          <%= link_to recipe_path(notification.recipe), class: %w[notification-text word-break-all] do %>
             <%= image_tag notification.recipe.user.avatar.variant(resize_to_fill: [25, 25]).processed, class: %w[rounded-circle bg-white mr-1] %>
             <%= notification.recipe.user.name + 'さんのレシピ' %>
           <% end %>

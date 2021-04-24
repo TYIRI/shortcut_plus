@@ -1,52 +1,50 @@
-.container
+.container-fluid.container-max-width
   = render 'shared/body_header'
   .row
-    .col-8
-      .mb-5.bg-white.p-3.shadow-sm
+    .col-md-8.sp-padding
+      .mb-5.bg-white.shadow-sm.p-3-responsive
         .d-flex.align-items-center.border-solid.box-title-1
           i.fas.fa-chart-line.fa-lg.mr-2
           h5.mb-0 人気のレシピ
         - @ranking_recipes.each do |recipe|
           .border-top.p-3
             .d-flex.mb-2
-              = link_to labo_path(recipe.user), class: 'text-dark' do
-                div
-                  = render 'shared/user_name', user: recipe.user
+              = link_to labo_path(recipe.user), class: 'text-dark d-flex align-items-center word-break-all' do
+                = render 'shared/user_name', user: recipe.user
               .ml-4.text-muted
                 = l recipe.created_at
             = link_to recipe.category.name, category_path(recipe.category), class: 'text-dark recipe-description-category'
             h5.font-weight-bold
               = link_to recipe_path(recipe), class: 'recipe-description-title' do
                 = recipe.title
-            .d-flex
+            .d-flex.flex-wrap
               - recipe.tags.each do |tag|
                 .mr-3
                   = link_to tag_path(tag), class: 'text-dark tag' do
                     i.fas.fa-cog.tag-icon
                     = tag.name
-      .mb-5.bg-white.p-3.shadow-sm
+      .mb-5.bg-white.shadow-sm.p-3-responsive
         .d-flex.align-items-center.border-solid.box-title-1
           i.fas.fa-plus.fa-lg.mr-2
           h5.mb-0 ピックアップ
         - @pickup_recipes.each do |recipe|
           .border-top.p-3
             .d-flex.mb-2
-              = link_to labo_path(recipe.user), class: 'text-dark' do
-                div
-                  = render 'shared/user_name', user: recipe.user
+              = link_to labo_path(recipe.user), class: 'text-dark d-flex align-items-center word-break-all' do
+                = render 'shared/user_name', user: recipe.user
               .ml-4.text-muted
                 = l recipe.created_at
             = link_to recipe.category.name, category_path(recipe.category), class: 'text-dark recipe-description-category'
             h5.font-weight-bold
               = link_to recipe_path(recipe), class: 'recipe-description-title' do
                 = recipe.title
-            .d-flex
+            .d-flex.flex-wrap
               - recipe.tags.each do |tag|
                 .mr-3
                   = link_to tag_path(tag), class: 'text-dark tag' do
                     i.fas.fa-cog.tag-icon
                     = tag.name
-    .col-4
+    .col-md-4.tb-hide
       .bg-white.p-3.shadow-sm
         .d-flex.align-items-center.border-dotted.box-title-2
           i.fas.fa-caret-square-right.fa-lg.mr-2
