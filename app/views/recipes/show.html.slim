@@ -10,4 +10,5 @@
     - else
       p.mt-3.mb-5#no-comment-text まだコメントはありません。
     .mb-5#js-comments
-    = render 'comments/form'
+    - if current_user
+      = render 'comments/form'
