@@ -8,7 +8,7 @@
       .text-right
         = f.input :remember_me, as: :boolean, boolean_style: :inline
       - if @failed
-        p.invalidError メールアドレスまたはパスワードが誤っています
+        p.invalidError メールアドレスまたはパスワードに誤りがあります
       .text-center.mt-5
         = f.button :submit, 'ログイン', class: %w[btn form-btn text-white px-5]
   .mx-auto.d-flex.justify-content-center.w-50-responsive.sp-mb-5
