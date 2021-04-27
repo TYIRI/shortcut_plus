@@ -1,0 +1,20 @@
+<% set_meta_tags title: @news.title, description: @news.content.body.to_s, og: { title: @news.title, type: 'article' } %>
+<div class="container-fluid container-max-width mt-4">
+  <div class="col-lg-10 mx-auto px-3 pb-2">
+    <div class="d-flex align-items-center">
+      <i class="fas fa-envelope-open-text fa-lg mr-2"></i>
+      <p class="mb-0">
+        <%= link_to 'お知らせ', news_index_path, class: %w[text-dark] %>
+      </p>
+    </div>
+  </div>
+  <div class="col-lg-10 mx-auto mb-3 p-4 border-news">
+    <span class="mr-3">
+      <%= l @news.published_at %>
+    </span>
+    <h5 class="mt-4 font-weight-bold">
+      <%= @news.title %>
+    </h5>
+    <%= @news.content %>
+  </div>
+</div>

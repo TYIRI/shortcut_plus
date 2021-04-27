@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_31_120834) do
+ActiveRecord::Schema.define(version: 2021_04_27_021121) do
 
   create_table "action_text_rich_texts", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -99,6 +99,13 @@ ActiveRecord::Schema.define(version: 2021_03_31_120834) do
     t.index ["impressionable_type", "impressionable_id", "session_hash"], name: "poly_session_index"
     t.index ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index", length: { message: 191 }
     t.index ["user_id"], name: "index_impressions_on_user_id"
+  end
+
+  create_table "news", charset: "utf8mb4", force: :cascade do |t|
+    t.string "title"
+    t.datetime "published_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "notifications", charset: "utf8mb4", force: :cascade do |t|

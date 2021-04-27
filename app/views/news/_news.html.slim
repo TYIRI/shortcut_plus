@@ -1,0 +1,4 @@
+.d-flex.justify-content-start.mb-3
+  p.mb-0.news-width
+    = l news.published_at
+  = link_to news.title, news_path(news), class: %w[guide-link ml-3]

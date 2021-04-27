@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :comment_likes, only: %i[create destroy]
   resources :password_resets, only: %i[new create edit update]
   resources :notifications, only: :index
+  resources :news, only: %i[index show]
 
   scope '/settings' do
     get '/', to: 'users#edit', as: :settings
