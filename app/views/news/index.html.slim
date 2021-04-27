@@ -1,0 +1,10 @@
+- set_meta_tags title: 'お知らせ', og: { type: 'article' }
+.container-fluid.container-max-width.mt-4
+  .col-md-10.mx-auto.mb-5.bg-white.p-3-responsive.shadow-sm
+    .d-flex.align-items-center.mb-3.sp-title
+      i.fas.fa-envelope-open.fa-lg.mr-2
+      h5.mb-0 お知らせ
+    hr
+    .col-12
+      .p-3-responsive
+        = render @news
