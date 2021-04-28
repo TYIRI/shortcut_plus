@@ -30,6 +30,7 @@ class User < ApplicationRecord
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
   validates :password_confirmation, presence: true, format: { with: VALID_PASSWORD_REGEX, message: "は英字と数字両方を含む8文字以上のパスワードを入力してください" }, if: -> { new_record? || changes[:crypted_password] }
   validates :avatar, attachment: { purge: true, content_type: %r{\Aimage/(png|jpeg)\Z}, maximum: 10_485_760 }
+  validates_acceptance_of :agreement, allow_nil: false, on: :create, message: "が必要です"
 
   enum role: { general: 0, admin: 1 }
 

@@ -15,7 +15,7 @@
                     "regex": "none",
                     "alertText": "必須項目です",
                     "alertTextCheckboxMultiple": "選択してください",
-                    "alertTextCheckboxe": "* チェックボックスをチェックしてください"
+                    "alertTextCheckboxe": "チェックが必要です"
                 },
                 "requiredInFunction": { 
                     "func": function(field, rules, i, options){

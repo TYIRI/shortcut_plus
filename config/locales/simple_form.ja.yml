@@ -36,6 +36,7 @@ ja:
         password: 'パスワード'
         password_confirmation: 'パスワード再入力'
         remember_me: 'ログインを記憶する'
+        agreement: '利用規約'
       recipe:
         title: 'タイトル'
         category_id: 'カテゴリ'

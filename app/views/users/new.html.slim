@@ -7,5 +7,10 @@
       = f.input :email, input_html: { class: "form-input validate[required, custom[email]]" }
       = f.input :password, placeholder: '*英数含む8文字以上', input_html: { class: "form-input validate[required, custom[password]]" }
       = f.input :password_confirmation, input_html: { class: "form-input validate[required, custom[password], equals[user_password]]" }
+      .d-flex.justify-content-center.mt-4
+        = f.input :agreement, as: :boolean, boolean_style: :inline, checked: false, label: false, input_html: { class: "validate[required]" }
+        label.form-check-label.ml-1 for="user_agreement"
+          = link_to '利用規約', terms_path, class: %w[guide-link], target: :_blank, rel: 'noopener'
+          | に同意する
       .text-center.mt-5
         = f.button :submit, '登録', class: %w[btn continue form-btn text-white px-5 sp-mb-5]
