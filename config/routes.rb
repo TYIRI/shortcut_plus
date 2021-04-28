@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   resources :password_resets, only: %i[new create edit update]
   resources :notifications, only: :index
   resources :news, only: %i[index show]
-  resources :terms, path: 'term_of_service', only: %i[index]
+  resources :terms, path: 'terms_of_service', only: %i[index]
   resources :privacies, path: 'privacy_policy', only: %i[index]
 
   scope '/settings' do
