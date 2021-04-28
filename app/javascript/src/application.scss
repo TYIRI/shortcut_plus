@@ -451,8 +451,9 @@ footer {
     max-width: 66.66667%;
   }
 
-  .sp-mb-5 {
-    margin-bottom: 48px;
+  .sp-mx-4 {
+    margin-top: 24px;
+    margin-bottom: 24px;
   }
 
   .sp-px-3 {
@@ -471,6 +472,10 @@ footer {
   .px-5-responsive {
     padding-left: 0;
     padding-right: 0;
+  }
+
+  #signup-form .user_agreementformError {
+    top: 40px !important;
   }
 }
 
