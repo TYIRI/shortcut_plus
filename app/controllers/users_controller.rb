@@ -29,6 +29,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user = User.find(current_user.id)
+    @user.destroy!
+    redirect_to root_path
+  end
+
   def activate
     if @user = User.load_from_activation_token(params[:id])
       @user.activate!

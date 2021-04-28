@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   scope '/settings' do
     get '/', to: 'users#edit', as: :settings
     patch '/', to: 'users#update'
+    delete '/', to: 'users#destroy'
     resources :email_changes, only: %i[new create edit]
   end
 
