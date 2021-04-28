@@ -30,3 +30,18 @@ input[type="file"] {
     background-color: #D93060;
   }
 }
+
+.user-destroy {
+  color: #555;
+}
+
+.btn-user-destroy {
+  color: #FFF;
+  background-color: #FF1100;
+  border-radius: 0;
+
+  &:hover {
+    color: #FFF;
+    opacity: 0.7;
+  }
+}

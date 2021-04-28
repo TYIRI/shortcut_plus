@@ -95,3 +95,9 @@
       .row.mx-1.mb-5
         .col-md-12.text-right
           = f.submit '変更を保存', class: %w[btn btn-user-edit]
+    hr.mb-1
+    hr.mt-1
+    .col-12.mt-5.mb-4.user-destroy
+      p.font-weight-bold.mb-0 アカウント削除
+      p アカウントを削除すると、二度と元に戻せなくなります。ご注意ください。
+      = link_to 'アカウントを削除する', settings_path, method: :delete, data: { confirm: "本当に「#{@user.name}」のアカウントを削除してもよろしいですか？" }, class: %w[btn btn-user-destroy]
