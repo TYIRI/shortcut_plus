@@ -24,6 +24,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 # Configuration
 gem 'config'
+gem 'dotenv-rails'
 
 # UI/UX
 gem 'slim-rails'

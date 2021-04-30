@@ -47,6 +47,7 @@ header.navbar.navbar-expand
             = link_to 'お知らせ', news_index_path, class: %w[dropdown-item]
             = link_to '利用規約', terms_path, class: %w[dropdown-item]
             = link_to 'プライバシーポリシー', privacies_path, class: %w[dropdown-item]
+            = link_to 'お問い合わせ', new_contact_path, class: %w[dropdown-item]
             .dropdown-divider
             = link_to 'ログアウト', logout_path, method: :delete, class: %w[dropdown-item]
       - else
