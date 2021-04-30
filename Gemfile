@@ -1,23 +1,18 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
-
 ruby '3.0.0'
 
 gem 'rails', '~> 6.1.2', '>= 6.1.2.1'
-# Use mysql as the database for Active Record
+
+# Database
 gem 'mysql2', '~> 0.5'
-# Use Puma as the app server
+
+# Application server
 gem 'puma', '~> 5.0'
-# Use SCSS for stylesheets
+
+# Assets
 gem 'sass-rails', '>= 6'
-# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 5.0'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.7'
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
@@ -28,7 +23,9 @@ gem 'dotenv-rails'
 
 # UI/UX
 gem 'slim-rails'
+gem 'turbolinks', '~> 5'
 gem 'html2slim'
+gem 'jbuilder', '~> 2.7'
 gem 'rails-i18n', '~> 6.0'
 gem 'meta-tags'
 
@@ -51,6 +48,7 @@ gem 'impressionist',
 # Storage
 gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
+gem 'aws-sdk-s3', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
