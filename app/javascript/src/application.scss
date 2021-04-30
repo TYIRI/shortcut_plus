@@ -34,7 +34,7 @@
 }
 
 // Bootstrapのフォーカスデザイン解除
-.page-link, input, select, .search-btn, .btn-user-destroy, #view-more-published, #view-more-draft {
+.page-link, input, select, textarea, .search-btn, .btn-user-destroy, #view-more-published, #view-more-draft {
   &:focus  {
     border-color: inherit !important;
     outline: none !important;

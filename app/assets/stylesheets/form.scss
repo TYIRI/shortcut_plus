@@ -1,6 +1,6 @@
 // 非同期でバリデーションNGの場合のフォームデザイン
-#signup-form, #password-reset-form, #new-recipe, #edit-recipe {
-  & input.invalid {
+#signup-form, #password-reset-form, #new-recipe, #edit-recipe, #contact-form {
+  & input.invalid, textarea.invalid {
     border: #ea352d 1px solid;
   }
   & input.valid {
@@ -20,9 +20,9 @@
 }
 
 // バリデーション失敗時のフォームデザイン
-#signup-form, #password-reset-form, #new-recipe, #edit-recipe, #setting-form {
+#signup-form, #password-reset-form, #new-recipe, #edit-recipe, #setting-form, #contact-form {
   & .has-error {
-    & input, select {
+    & input, select, textarea {
       border: #ea352d 1px solid;
     }
   }
@@ -34,7 +34,7 @@
 }
 
 // デフォルトのフォームデザイン
-#signup-form, #signin-form, #password-reset-form, #new-recipe, #edit-recipe, #setting-form, #email-change-form, #comment-form, .edit-comment-form {
+#signup-form, #signin-form, #password-reset-form, #new-recipe, #edit-recipe, #setting-form, #email-change-form, #comment-form, #contact-form, .edit-comment-form {
   & .form-input {
     border: 1px solid #99A;
     border-radius: 0;
