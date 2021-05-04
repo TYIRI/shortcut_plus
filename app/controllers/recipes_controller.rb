@@ -25,7 +25,7 @@ class RecipesController < ApplicationController
     if @recipe.save
       @tag_list = params[:tag_list].split(',')
       @recipe.save_recipe_with_tags(@tag_list)
-      redirect_to my_recipes_path(current_user) and return if params[:draft]
+      redirect_to my_recipes_path and return if params[:draft]
       redirect_to recipe_path(@recipe)
     else
       @failed = true if params[:published] && @recipe.content.body.blank?

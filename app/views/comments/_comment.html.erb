@@ -40,7 +40,7 @@
     <% else %>
       <p class="guest-like-btn mb-0 comment-footer-text">
         <i class="fas fa-thumbs-up fa-lg"></i>
-        <span class="pl-2">
+        <span class="pl-1">
           <%= CommentLike.where(comment_id: comment.id).count %>
         </span>
       </p>

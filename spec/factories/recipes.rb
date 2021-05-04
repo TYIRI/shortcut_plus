@@ -3,6 +3,8 @@ FactoryBot.define do
     sequence(:title) { |n| "レシピタイトル#{n}" }
     content { "レシピの内容です。" }
     sequence(:shortcut_id) { |n| "shortcut#{n}" }
+    association :user
+    association :category
     
     trait :draft do
       status { "draft" }
