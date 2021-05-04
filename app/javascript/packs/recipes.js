@@ -40,7 +40,7 @@ $(document).on("keyup", '.tagit', function() {
   let input = $(".ui-widget-content.ui-autocomplete-input").val();
   $.ajax({
     type: 'GET',
-    url: 'recipes/get_tag_search', // routesで設定のURL
+    url: 'get_tag_search', // routesで設定のURL
     data: { key: input }, // 入力値を:keyとしてcontrollerに渡す
     dataType: 'json'
   })

@@ -2,7 +2,7 @@
   <div class="form-inline">
     <span>
       <%= link_to labo_path(notification.visitor), class: %w[notification-text word-break-all] do %>
-        <% if notification.visitor.avatar %>
+        <% if notification.visitor.avatar.present? %>
           <%= image_tag notification.visitor.avatar.variant(resize_to_fill: [25, 25]).processed, class: %w[rounded-circle bg-white mr-1] %>
         <% else %>
           <%= image_pack_tag 'default_avatar.PNG', size: '25x25', class: %w[rounded-circle mr-1] %>
@@ -26,7 +26,11 @@
       <% when 'others_recipe_comment' then %>
         <span>
           <%= link_to recipe_path(notification.recipe), class: %w[notification-text word-break-all] do %>
-            <%= image_tag notification.recipe.user.avatar.variant(resize_to_fill: [25, 25]).processed, class: %w[rounded-circle bg-white mr-1] %>
+            <% if notification.recipe.user.avatar.present? %>
+              <%= image_tag notification.recipe.user.avatar.variant(resize_to_fill: [25, 25]).processed, class: %w[rounded-circle bg-white mr-1] %>
+            <% else %>
+              <%= image_pack_tag 'default_avatar.PNG', size: '25x25', class: %w[rounded-circle mr-1] %>
+            <% end %>
             <%= notification.recipe.user.name + 'さんのレシピ' %>
           <% end %>
         </span>
