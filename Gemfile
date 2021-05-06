@@ -92,3 +92,7 @@ group :test do
   gem 'capybara'
   gem 'webdrivers'
 end
+
+group :production, :staging do
+  gem 'unicorn'
+end

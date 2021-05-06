@@ -51,5 +51,6 @@ test:
 production:
   <<: *default
   database: shortcut_plus_production
-  username: shortcut_plus
-  password: <%= ENV['SHORTCUT_PLUS_DATABASE_PASSWORD'] %>
+  username: root
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
