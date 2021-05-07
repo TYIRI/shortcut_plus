@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
-ruby '3.0.0'
+ruby '2.7.2'
 
 gem 'rails', '6.1.3.1'
 
@@ -94,5 +94,5 @@ group :test do
 end
 
 group :production, :staging do
-  gem 'unicorn'
+  gem 'unicorn', '5.4.1'
 end
