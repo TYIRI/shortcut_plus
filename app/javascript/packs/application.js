@@ -30,3 +30,12 @@ require("@rails/actiontext")
 
 const images = require.context('../images', true)
 const imagePath = (name) => images(name, true)
+
+document.addEventListener('turbolinks:load', function(event){
+  if(typeof(gtag) == 'function'){
+    gtag('config', 'G-CE5RQMYFRT', {
+      'page_title' : event.target.title,
+      'page_path': event.data.url.replace(window.location.protocol + "//" + window.location.hostname, "")
+    });
+  }
+})
