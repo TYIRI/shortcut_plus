@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'info@shortcutplus.com'
+  default from: 'shortcutplus.com <info@shortcutplus.com>'
   layout 'mailer'
 end

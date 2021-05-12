@@ -29,6 +29,9 @@ gem 'jbuilder', '~> 2.7'
 gem 'rails-i18n', '~> 6.0'
 gem 'meta-tags'
 
+# Email
+gem 'aws-sdk-rails'
+
 # Form
 gem 'simple_form'
 
