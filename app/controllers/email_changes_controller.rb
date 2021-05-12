@@ -1,4 +1,5 @@
 class EmailChangesController < ApplicationController
+  skip_before_action :require_login, only: %i[edit]
   before_action :set_categories
 
   def new; end
