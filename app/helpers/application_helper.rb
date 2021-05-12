@@ -24,12 +24,14 @@ module ApplicationHelper
   end
 
   def page_og_image
-    @page_image || image_url(Settings.site.meta.ogp.image_path)
+    @page_image || asset_pack_url(Settings.site.meta.ogp.image_path)
   end
 
   def default_twitter
     {
-      card: 'summary'
+      card: 'summary',
+      width: 100,
+      height: 100
     }
   end
 end
