@@ -75,10 +75,10 @@ class RecipesController < ApplicationController
 
   def my_recipes
     @published = current_user.recipes.published.includes(:category, :recipe_likes).order(id: :desc)
-    @published_recipes = @published.page(params[:page]).per(2)
+    @published_recipes = @published.page(params[:page]).per(10)
     @page_num_p = @published.page(params[:page]).current_page
     @draft = current_user.recipes.draft.includes(:category).order(id: :desc)
-    @draft_recipes = @draft.page(params[:page]).per(2)
+    @draft_recipes = @draft.page(params[:page]).per(10)
     @page_num_d = @draft.page(params[:page]).current_page
 
     # Ajax通信のみ通過
