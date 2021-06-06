@@ -3,7 +3,7 @@ class UserMailer < ApplicationMailer
   def activation_needed_email(user)
     @user = user
     @url = "https://www.shortcutplus.com/users/#{user.activation_token}/activate"
-    mail to: user.email, subject: 'ShortcutPlus本登録のご案内'
+    mail to: user.email, subject: 'ShortcutPlusユーザー登録のご確認'
   end
 
   def activation_success_email(user)
