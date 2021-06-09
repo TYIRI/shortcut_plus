@@ -49,12 +49,22 @@
             h5.font-weight-bold
               = link_to recipe_path(recipe), class: 'recipe-description-title' do
                 = recipe.title
-            .d-flex.flex-wrap
-              - recipe.tags.each do |tag|
-                .mr-3
-                  = link_to tag_path(tag), class: 'text-dark tag' do
-                    i.fas.fa-cog.tag-icon
-                    = tag.name
+            .row
+              .d-flex.flex-wrap.col-md-9.sp-padding
+                - recipe.tags.each do |tag|
+                  .mr-3
+                    = link_to tag_path(tag), class: 'text-dark tag' do
+                      i.fas.fa-cog.tag-icon
+                      = tag.name
+              .d-flex.justify-content-end.align-items-end.col-md-3.pl-0.tb-pt-2
+                p.mb-0
+                  i.far.fa-comment
+                  span.ml-1
+                    = recipe.comments.size
+                p.mb-0.pl-3
+                  i.fas.fa-thumbs-up
+                  span.ml-1
+                    = recipe.liked_users.size
     .col-md-4.tb-hide
       .bg-white.p-3.shadow-sm
         .d-flex.align-items-center.border-dotted.box-title-2
